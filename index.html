@@ -257,7 +257,53 @@ document.getElementById("eth").innerText=data.ethereum.usd;
 document.getElementById("usdt").innerText=data.tether.usd;
 });
 
+<script>
 function askAI(){
+let q = document.getElementById("question").value.toLowerCase();
+let answerBlock = document.getElementById("answer");
+
+answerBlock.innerHTML = "AI печатает...";
+
+setTimeout(() => {
+
+let responses = [];
+
+if(q.includes("блокчейн")){
+responses = [
+"Блокчейн — это распределённая база данных.",
+"Это технология хранения данных в цепочке блоков.",
+"Блокчейн обеспечивает прозрачность и безопасность."
+];
+}
+else if(q.includes("биткоин")){
+responses = [
+"Bitcoin — первая криптовалюта, созданная в 2009 году.",
+"BTC был создан Сатоши Накамото.",
+"Bitcoin — цифровое золото."
+];
+}
+else if(q.includes("как начать")){
+responses = [
+"Начните с изучения основ и создания кошелька.",
+"Выберите надёжную биржу и изучите риски.",
+"Сначала изучите безопасность и хранение средств."
+];
+}
+else{
+responses = [
+"Интересный вопрос! Криптовалюты — это цифровые активы.",
+"Рекомендую подробнее изучить тему Web3.",
+"Криптоиндустрия развивается очень быстро."
+];
+}
+
+let random = responses[Math.floor(Math.random()*responses.length)];
+answerBlock.innerHTML = random;
+
+}, 1000);
+}
+</script>
+
 let q=document.getElementById("question").value.toLowerCase();
 let response="";
 
