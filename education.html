@@ -2,70 +2,101 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Обучение | CryptoStart AI</title>
+<title>Обучение</title>
 
 <style>
 body{
-  font-family: Arial, sans-serif;
+  font-family:Segoe UI;
   background:#0f172a;
   color:white;
-  padding-top:80px;
+  margin:0;
+  padding:40px;
 }
 
-nav{
-  position:fixed;
-  top:0;
-  width:100%;
-  background:#020617;
-  padding:15px 40px;
-  display:flex;
-  justify-content:space-between;
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:25px;
+  margin-top:40px;
 }
 
-nav a{
-  color:white;
-  margin-left:15px;
-  text-decoration:none;
+.card{
+  background:#1e293b;
+  padding:30px;
+  border-radius:15px;
+  text-align:center;
+  cursor:pointer;
+  transition:0.3s;
 }
 
-section{
-  max-width:800px;
-  margin:auto;
-  padding:40px 20px;
+.card:hover{
+  transform:translateY(-5px);
+  background:#334155;
 }
 
-h1{
-  margin-bottom:20px;
+.icon{
+  font-size:40px;
+}
+
+.info{
+  margin-top:30px;
+  padding:20px;
+  background:#1e293b;
+  border-radius:12px;
+  display:none;
 }
 </style>
 </head>
 
 <body>
 
-<nav>
-  <div><b>CryptoStart AI 🚀</b></div>
-  <div>
-    <a href="index.html">Главная</a>
-    <a href="education.html">Обучение</a>
-    <a href="rates.html">Курсы</a>
-    <a href="ai.html">AI</a>
-    <a href="about.html">О проекте</a>
-  </div>
-</nav>
+<h1>Обучение криптовалютам</h1>
 
-<section>
-  <h1>Обучение криптовалюте</h1>
+<div class="grid">
 
-  <h2>Что такое криптовалюта?</h2>
-  <p>Криптовалюта — это цифровые деньги, работающие на блокчейне.</p>
+<div class="card" onclick="showInfo('crypto')">
+<div class="icon">🪙</div>
+<h3>Что такое криптовалюта</h3>
+</div>
 
-  <h2>Что такое блокчейн?</h2>
-  <p>Это распределённая база данных, защищённая криптографией.</p>
+<div class="card" onclick="showInfo('blockchain')">
+<div class="icon">⛓️</div>
+<h3>Блокчейн</h3>
+</div>
 
-  <h2>Что такое майнинг?</h2>
-  <p>Процесс подтверждения транзакций и создания новых монет.</p>
-</section>
+<div class="card" onclick="showInfo('mining')">
+<div class="icon">⛏️</div>
+<h3>Майнинг</h3>
+</div>
+
+<div class="card" onclick="showInfo('security')">
+<div class="icon">🔐</div>
+<h3>Безопасность</h3>
+</div>
+
+</div>
+
+<div id="infoBox" class="info"></div>
+
+<script>
+function showInfo(type){
+  const box = document.getElementById("infoBox");
+  box.style.display="block";
+
+  if(type==="crypto"){
+    box.innerHTML="Криптовалюта — это цифровые деньги, работающие на технологии блокчейн.";
+  }
+  if(type==="blockchain"){
+    box.innerHTML="Блокчейн — это распределённая база данных, защищённая криптографией.";
+  }
+  if(type==="mining"){
+    box.innerHTML="Майнинг — процесс подтверждения транзакций и создания новых монет.";
+  }
+  if(type==="security"){
+    box.innerHTML="Используйте холодные кошельки и двухфакторную аутентификацию.";
+  }
+}
+</script>
 
 </body>
 </html>
