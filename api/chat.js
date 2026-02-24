@@ -6,6 +6,9 @@ export default async function handler(req, res) {
   try {
     const { message } = req.body;
 
+    // Проверка, что ключ существует
+    console.log("GROQ KEY:", process.env.GROQ_API_KEY);
+
     const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -15,8 +18,14 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         model: "llama3-8b-8192",
         messages: [
-          { role: "system", content: "Ты AI-помощник по криптовалюте. Отвечай кратко и понятно." },
-          { role: "user", content: message }
+          {
+            role: "system",
+            content: "Ты AI-помощник по криптовалюте. Отвечай кратко и понятно."
+          },
+          {
+            role: "user",
+            content: message
+          }
         ]
       }),
     });
@@ -29,7 +38,7 @@ export default async function handler(req, res) {
     }
 
     return res.status(200).json({
-      reply: data.choices[0].message.content,
+      reply: data.choices[0].message.content
     });
 
   } catch (error) {
