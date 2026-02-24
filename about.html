@@ -11,19 +11,35 @@ body{
   font-family:Segoe UI;
   color:white;
   margin:0;
-  padding:60px;
+  padding:80px 20px;
 }
 
 .container{
-  max-width:800px;
+  max-width:900px;
   margin:auto;
 }
 
 .card{
   background:#1e293b;
   padding:30px;
-  border-radius:15px;
+  border-radius:18px;
   margin-bottom:30px;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  background:#334155;
+}
+
+.card h2{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.icon{
+  font-size:28px;
 }
 
 nav{
@@ -41,6 +57,12 @@ nav a{
   color:white;
   margin-left:20px;
   text-decoration:none;
+  font-size:15px;
+  transition:0.2s;
+}
+
+nav a:hover{
+  color:#38bdf8;
 }
 </style>
 </head>
@@ -48,12 +70,12 @@ nav a{
 <body>
 
 <nav>
-  <div><b>CryptoStart AI 🚀</b></div>
+  <div><b>🚀 CryptoStart AI</b></div>
   <div>
-    <a href="index.html">Главная</a>
-    <a href="education.html">Обучение</a>
-    <a href="rates.html">Курсы</a>
-    <a href="ai.html">AI</a>
+    <a href="index.html">🏠 Главная</a>
+    <a href="education.html">📚 Обучение</a>
+    <a href="rates.html">💰 Курсы</a>
+    <a href="ai.html">🤖 AI</a>
   </div>
 </nav>
 
@@ -62,20 +84,34 @@ nav a{
 <h1>О проекте</h1>
 
 <div class="card">
-<h2>Что такое CryptoStart AI?</h2>
-<p>CryptoStart AI — это образовательный проект о криптовалютах,
-созданный для изучения блокчейна, цифровых активов и AI-технологий.</p>
+<h2><span class="icon">🌐</span> Что такое CryptoStart AI?</h2>
+<p>
+CryptoStart AI — это образовательный проект о криптовалютах,
+созданный для изучения блокчейна, цифровых активов и современных AI-технологий.
+</p>
 </div>
 
 <div class="card">
-<h2>Цель проекта</h2>
-<p>Помочь новичкам разобраться в криптовалютах,
-понять основы безопасности и научиться принимать осознанные решения.</p>
+<h2><span class="icon">🎯</span> Цель проекта</h2>
+<p>
+Помочь новичкам разобраться в криптовалютах,
+понять основы безопасности и научиться принимать осознанные инвестиционные решения.
+</p>
 </div>
 
 <div class="card">
-<h2>Технологии</h2>
-<p>HTML • CSS • Vercel • Serverless API • Groq AI • CoinGecko API</p>
+<h2><span class="icon">⚙️</span> Технологии</h2>
+<p>
+HTML • CSS • Vercel • Serverless API • Groq AI • CoinGecko API
+</p>
+</div>
+
+<div class="card">
+<h2><span class="icon">🔐</span> Безопасность</h2>
+<p>
+Мы обучаем принципам безопасного хранения криптовалют,
+использованию холодных кошельков и двухфакторной аутентификации.
+</p>
 </div>
 
 </div>
