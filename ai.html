@@ -1,3 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI помощник | CryptoStart AI</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background: linear-gradient(-45deg,#0f172a,#1e293b,#020617,#0f172a);
+  background-size:400% 400%;
+  animation:gradient 15s ease infinite;
+  color:white;
+  padding-top:80px;
+  margin:0;
+}
+
+@keyframes gradient{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(10px);
+  padding:15px 40px;
+  display:flex;
+  justify-content:space-between;
+}
+
+nav a{
+  color:white;
+  margin-left:15px;
+  text-decoration:none;
+}
+
+.chat-container{
+  max-width:700px;
+  margin:40px auto;
+  background:rgba(255,255,255,0.05);
+  border-radius:15px;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  height:70vh;
+}
+
+.chat-messages{
+  flex:1;
+  overflow-y:auto;
+  margin-bottom:15px;
+}
+
+.message{
+  margin-bottom:12px;
+  padding:10px 15px;
+  border-radius:10px;
+  max-width:80%;
+}
+
+.user{
+  background:#2563eb;
+  align-self:flex-end;
+}
+
+.ai{
+  background:#334155;
+  align-self:flex-start;
+}
+
+.input-area{
+  display:flex;
+  gap:10px;
+}
+
+input{
+  flex:1;
+  padding:10px;
+  border-radius:8px;
+  border:none;
+}
+
+button{
+  padding:10px 20px;
+  border:none;
+  border-radius:8px;
+  background:#06b6d4;
+  color:white;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
 <nav>
   <div><b>CryptoStart AI 🚀</b></div>
   <div>
@@ -8,3 +108,55 @@
     <a href="about.html">О проекте</a>
   </div>
 </nav>
+
+<div class="chat-container">
+  <div id="chat-messages" class="chat-messages"></div>
+
+  <div class="input-area">
+    <input type="text" id="question" placeholder="Введите вопрос...">
+    <button onclick="askAI()">Спросить</button>
+  </div>
+</div>
+
+<script>
+function addMessage(text, sender){
+  const messages = document.getElementById("chat-messages");
+  const div = document.createElement("div");
+  div.classList.add("message", sender);
+  div.innerText = text;
+  messages.appendChild(div);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+async function askAI(){
+  const input = document.getElementById("question");
+  const text = input.value.trim();
+  if(!text) return;
+
+  addMessage(text, "user");
+  input.value = "";
+
+  addMessage("AI печатает...", "ai");
+
+  try{
+    const response = await fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: text })
+    });
+
+    const data = await response.json();
+
+    const messages = document.getElementById("chat-messages");
+    messages.lastChild.remove();
+
+    addMessage(data.reply || "Ошибка ответа AI", "ai");
+
+  } catch(error){
+    addMessage("Ошибка подключения к серверу.", "ai");
+  }
+}
+</script>
+
+</body>
+</html>
