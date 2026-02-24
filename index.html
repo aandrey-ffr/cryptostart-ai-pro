@@ -335,14 +335,13 @@ input.value = "";
 addMessage("AI печатает...", "ai");
 
 try {
-const response = await fetch("https://cryptostart-ai-pro.vercel.app/api/chat", {
-method: "POST",
-headers: {
-"Content-Type": "application/json"
-},
-body: JSON.stringify({ message: text })
+const response = await fetch("/api/chat", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({ message: text })
 });
-
 const data = await response.json();
 
 const messages = document.getElementById("chat-messages");
