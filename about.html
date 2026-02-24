@@ -7,18 +7,23 @@
 
 <style>
 body{
-  font-family: Arial, sans-serif;
-  background: linear-gradient(-45deg,#0f172a,#1e293b,#020617,#0f172a);
-  background-size:400% 400%;
-  animation:gradient 15s ease infinite;
+  background:#0f172a;
+  font-family:Segoe UI;
   color:white;
-  padding-top:80px;
+  margin:0;
+  padding:60px;
 }
 
-@keyframes gradient{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
+.container{
+  max-width:800px;
+  margin:auto;
+}
+
+.card{
+  background:#1e293b;
+  padding:30px;
+  border-radius:15px;
+  margin-bottom:30px;
 }
 
 nav{
@@ -34,26 +39,8 @@ nav{
 
 nav a{
   color:white;
-  margin-left:15px;
+  margin-left:20px;
   text-decoration:none;
-}
-
-section{
-  max-width:900px;
-  margin:auto;
-  padding:40px 20px;
-}
-
-h1{
-  font-size:40px;
-  margin-bottom:20px;
-}
-
-.card{
-  background:rgba(255,255,255,0.05);
-  padding:25px;
-  border-radius:15px;
-  margin-top:20px;
 }
 </style>
 </head>
@@ -67,41 +54,31 @@ h1{
     <a href="education.html">Обучение</a>
     <a href="rates.html">Курсы</a>
     <a href="ai.html">AI</a>
-    <a href="about.html">О проекте</a>
   </div>
 </nav>
 
-<section>
-  <h1>О проекте</h1>
+<div class="container">
 
-  <div class="card">
-    <h2>Что такое CryptoStart AI?</h2>
-    <p>
-      CryptoStart AI — это образовательный проект о криптовалютах,
-      созданный для изучения блокчейна, цифровых активов и современных AI-технологий.
-    </p>
-  </div>
+<h1>О проекте</h1>
 
-  <div class="card">
-    <h2>Цель проекта</h2>
-    <p>
-      Помочь новичкам разобраться в мире криптовалют,
-      понять основы безопасности и научиться принимать осознанные решения.
-    </p>
-  </div>
+<div class="card">
+<h2>Что такое CryptoStart AI?</h2>
+<p>CryptoStart AI — это образовательный проект о криптовалютах,
+созданный для изучения блокчейна, цифровых активов и AI-технологий.</p>
+</div>
 
-  <div class="card">
-    <h2>Технологии</h2>
-    <p>
-      • HTML / CSS  
-      • Vercel  
-      • Serverless API  
-      • AI интеграция (Groq)  
-      • Работа с внешними API (CoinGecko)
-    </p>
-  </div>
+<div class="card">
+<h2>Цель проекта</h2>
+<p>Помочь новичкам разобраться в криптовалютах,
+понять основы безопасности и научиться принимать осознанные решения.</p>
+</div>
 
-</section>
+<div class="card">
+<h2>Технологии</h2>
+<p>HTML • CSS • Vercel • Serverless API • Groq AI • CoinGecko API</p>
+</div>
+
+</div>
 
 </body>
 </html>
