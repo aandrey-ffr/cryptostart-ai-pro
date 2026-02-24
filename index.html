@@ -167,6 +167,17 @@ animation-duration:16s;
 100%{transform:translateY(0px);}
 }
 
+.fade{
+opacity:0;
+transform:translateY(40px);
+transition:all 0.8s ease;
+}
+
+.fade.show{
+opacity:1;
+transform:translateY(0);
+}
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
 </head>
@@ -192,7 +203,7 @@ animation-duration:16s;
 <button onclick="document.getElementById('about').scrollIntoView()">Начать</button>
 </section>
 
-<section id="about">
+<section id="about" class="fade">
 <h2>Что такое криптовалюта?</h2>
 <div class="cards">
 <div class="card">
@@ -210,7 +221,7 @@ animation-duration:16s;
 </div>
 </section>
 
-<section id="rates">
+<section id="rates" class="fade">
 <h2>Курсы криптовалют</h2>
 
 <table>
@@ -222,7 +233,7 @@ animation-duration:16s;
 
 </section>
 
-<section id="ai">
+<section id="ai" class="fade">
 <h2>AI помощник</h2>
 
 <div class="chat-box">
@@ -275,6 +286,29 @@ opacity: { value: 0.3 },
 size: { value: 3 },
 move: { enable: true, speed: 1 }
 }
+});
+</script>
+
+<script>
+const faders = document.querySelectorAll('.fade');
+
+const appearOptions = {
+threshold: 0.2
+};
+
+const appearOnScroll = new IntersectionObserver(function(entries, observer){
+entries.forEach(entry => {
+if(!entry.isIntersecting){
+return;
+}else{
+entry.target.classList.add("show");
+observer.unobserve(entry.target);
+}
+});
+}, appearOptions);
+
+faders.forEach(fader => {
+appearOnScroll.observe(fader);
 });
 </script>
 
