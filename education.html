@@ -9,12 +9,17 @@
 body{
   margin:0;
   font-family:'Segoe UI',sans-serif;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(99,102,241,0.15), transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(6,182,212,0.15), transparent 40%),
-    #0f172a;
+  background:linear-gradient(-45deg,#0f172a,#1e293b,#0f172a,#1e1b4b);
+  background-size:400% 400%;
+  animation:gradientMove 15s ease infinite;
   color:white;
-  padding:100px 40px 60px 40px;
+  padding:120px 40px 60px 40px;
+}
+
+@keyframes gradientMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
 }
 
 /* NAV */
@@ -24,16 +29,19 @@ nav{
   width:100%;
   display:flex;
   justify-content:space-between;
-  padding:20px 40px;
-  background:rgba(0,0,0,0.5);
-  backdrop-filter:blur(10px);
+  align-items:center;
+  padding:20px 50px;
+  background:rgba(15,23,42,0.8);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.05);
 }
 
 nav a{
-  color:white;
-  margin-left:20px;
+  color:#cbd5e1;
+  margin-left:25px;
   text-decoration:none;
   transition:0.3s;
+  font-weight:500;
 }
 
 nav a:hover{
@@ -42,79 +50,54 @@ nav a:hover{
 
 h1{
   text-align:center;
-  margin-bottom:40px;
+  margin-bottom:50px;
+  font-size:32px;
 }
 
 /* GRID */
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:25px;
 }
 
 /* CARD */
 .card{
-  perspective:1000px;
-  cursor:pointer;
-}
-
-.card-inner{
-  position:relative;
-  width:100%;
-  height:260px;
-  transform-style:preserve-3d;
-  transition:transform 0.6s;
-}
-
-.card.active .card-inner{
-  transform:rotateY(180deg);
-}
-
-.card-front,
-.card-back{
-  position:absolute;
-  width:100%;
-  height:100%;
-  backface-visibility:hidden;
-  background:rgba(30,41,59,0.85);
-  border-radius:18px;
-  padding:20px;
-  box-sizing:border-box;
-  border:1px solid rgba(255,255,255,0.05);
-  transition:0.3s;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
+  background:rgba(30,41,59,0.8);
+  border-radius:20px;
+  padding:30px;
   text-align:center;
+  cursor:pointer;
+  transition:0.3s;
+  border:1px solid rgba(255,255,255,0.05);
 }
 
-.card-back{
-  transform:rotateY(180deg);
-  font-size:13px;
-  line-height:1.5;
-  overflow:auto;
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 0 25px rgba(99,102,241,0.4);
 }
 
-.card.active .card-front,
-.card.active .card-back{
-  box-shadow:0 0 30px rgba(99,102,241,0.6);
+.card h3{
+  margin-top:15px;
 }
 
-/* ARROW */
-.arrow{
-  margin-top:10px;
-  transition:0.4s;
+.card-content{
+  margin-top:15px;
+  font-size:14px;
+  line-height:1.6;
+  display:none;
+  opacity:0.8;
 }
 
-.card.active .arrow{
-  transform:rotate(180deg);
+.card.active .card-content{
+  display:block;
+  margin-top:20px;
 }
 
 /* PROGRESS */
 .progress{
-  margin-top:40px;
-  height:10px;
+  margin-top:50px;
+  height:8px;
   background:#1e293b;
   border-radius:10px;
   overflow:hidden;
@@ -123,7 +106,7 @@ h1{
 .progress-bar{
   height:100%;
   width:0%;
-  background:linear-gradient(90deg,#06b6d4,#6366f1);
+  background:linear-gradient(90deg,#06b6d4,#6366f1,#8b5cf6);
   transition:0.5s;
 }
 
@@ -164,38 +147,20 @@ h1{
 <script>
 const courses = [
 
-{ icon:"🪙", title:"Криптовалюта",
-text:"Цифровой актив на блокчейне. Децентрализация, прозрачность, высокая волатильность. Используется для переводов и инвестиций." },
-
-{ icon:"⛓️", title:"Блокчейн",
-text:"Распределённая база данных. Каждый блок связан с предыдущим. Практически невозможно изменить историю транзакций." },
-
-{ icon:"₿", title:"Bitcoin",
-text:"Первая криптовалюта (2009). Ограничение 21 млн монет. Создан для независимой финансовой системы." },
-
-{ icon:"💳", title:"Кошельки",
-text:"Горячие и холодные. Seed-фраза 12–24 слова. Никогда не передавайте её никому." },
-
-{ icon:"🏦", title:"Биржи",
-text:"Платформы для торговли. Централизованные и децентрализованные. Возможны риски блокировки." },
-
-{ icon:"📈", title:"Трейдинг",
-text:"Активная торговля. Стратегии: скальпинг, свинг, дневная торговля. Обязателен риск-менеджмент." },
-
-{ icon:"💼", title:"Инвестирование",
-text:"Долгосрочное удержание (HODL). Анализ проекта, команды и токеномики." },
-
-{ icon:"🌍", title:"DeFi",
-text:"Финансовые сервисы без банков. Стейкинг, лендинг, фарминг. Есть риски смарт-контрактов." },
-
-{ icon:"🖼️", title:"NFT",
-text:"Невзаимозаменяемые токены. Используются в играх, искусстве и метавселенных." },
-
-{ icon:"⚡", title:"Layer 2",
-text:"Решения для ускорения транзакций и снижения комиссий. Примеры: Arbitrum, Optimism." },
-
-{ icon:"🔐", title:"Безопасность",
-text:"Фишинг, скам, поддельные сайты. Используйте 2FA и аппаратные кошельки." }
+{ icon:"🪙", title:"Криптовалюта", text:"Цифровой актив на блокчейне. Используется для переводов и инвестиций." },
+{ icon:"⛓️", title:"Блокчейн", text:"Распределённая база данных, защищённая криптографией." },
+{ icon:"₿", title:"Bitcoin", text:"Первая криптовалюта. Ограничение 21 млн монет." },
+{ icon:"💳", title:"Кошельки", text:"Горячие и холодные кошельки. Seed-фраза — ключ к доступу." },
+{ icon:"🏦", title:"Биржи", text:"Платформы для торговли криптовалютами." },
+{ icon:"📈", title:"Трейдинг", text:"Активная торговля на краткосрочных движениях." },
+{ icon:"💼", title:"Инвестирование", text:"Долгосрочное удержание активов." },
+{ icon:"🌍", title:"DeFi", text:"Децентрализованные финансы без банков." },
+{ icon:"🖼️", title:"NFT", text:"Уникальные цифровые токены." },
+{ icon:"⚡", title:"Layer 2", text:"Решения для ускорения сети." },
+{ icon:"🔐", title:"Безопасность", text:"2FA, холодные кошельки, защита от фишинга." },
+{ icon:"📊", title:"Анализ рынка", text:"Технический и фундаментальный анализ." },
+{ icon:"📉", title:"Риски", text:"Волатильность, регуляции, скам-проекты." },
+{ icon:"🏛️", title:"Регулирование", text:"Законы и государственное влияние на крипторынок." }
 
 ];
 
@@ -210,17 +175,9 @@ courses.forEach(course=>{
   card.className="card";
 
   card.innerHTML=`
-    <div class="card-inner">
-      <div class="card-front">
-        <div style="font-size:40px">${course.icon}</div>
-        <h3>${course.title}</h3>
-        <div class="arrow">▼</div>
-      </div>
-      <div class="card-back">
-        <h3>${course.title}</h3>
-        <p>${course.text}</p>
-      </div>
-    </div>
+    <div style="font-size:40px">${course.icon}</div>
+    <h3>${course.title}</h3>
+    <div class="card-content">${course.text}</div>
   `;
 
   card.onclick=()=>{
