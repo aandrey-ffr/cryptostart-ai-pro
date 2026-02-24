@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Обучение | CryptoStart AI</title>
+<title>Обучение | CryptoStart</title>
 
 <style>
 body{
@@ -11,9 +11,8 @@ body{
   font-family:'Segoe UI',sans-serif;
   background:linear-gradient(-45deg,#0f172a,#1e293b,#0f172a,#1e1b4b);
   background-size:400% 400%;
-  animation:gradientMove 15s ease infinite;
+  animation:gradientMove 18s ease infinite;
   color:white;
-  padding:120px 40px 60px 40px;
 }
 
 @keyframes gradientMove{
@@ -22,50 +21,55 @@ body{
   100%{background-position:0% 50%;}
 }
 
-/* NAV */
+/* ===== NAV ===== */
 nav{
   position:fixed;
   top:0;
   width:100%;
+  padding:18px 50px;
+  background:rgba(15,23,42,0.85);
+  backdrop-filter:blur(12px);
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:20px 50px;
-  background:rgba(15,23,42,0.8);
-  backdrop-filter:blur(12px);
   border-bottom:1px solid rgba(255,255,255,0.05);
+  z-index:1000;
 }
 
 nav a{
   color:#cbd5e1;
   margin-left:25px;
   text-decoration:none;
-  transition:0.3s;
   font-weight:500;
+  transition:0.3s;
 }
 
 nav a:hover{
   color:#38bdf8;
 }
 
+/* ===== CONTENT ===== */
+.container{
+  padding:130px 60px 60px 60px;
+}
+
 h1{
   text-align:center;
   margin-bottom:50px;
-  font-size:32px;
+  font-size:34px;
 }
 
-/* GRID */
+/* ===== GRID ===== */
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:25px;
 }
 
-/* CARD */
 .card{
   background:rgba(30,41,59,0.8);
-  border-radius:20px;
-  padding:30px;
+  border-radius:18px;
+  padding:35px 20px;
   text-align:center;
   cursor:pointer;
   transition:0.3s;
@@ -73,51 +77,37 @@ h1{
 }
 
 .card:hover{
-  transform:translateY(-5px);
+  transform:translateY(-6px);
   box-shadow:0 0 25px rgba(99,102,241,0.4);
 }
 
-.card h3{
-  margin-top:15px;
+.icon{
+  font-size:40px;
+  margin-bottom:15px;
 }
 
-.card-content{
-  margin-top:15px;
-  font-size:14px;
-  line-height:1.6;
-  display:none;
-  opacity:0.8;
+/* ===== PROGRESS ===== */
+.progress-wrapper{
+  margin-top:70px;
 }
 
-.card.active .card-content{
-  display:block;
-  margin-top:20px;
-}
-
-/* PROGRESS */
 .progress{
-  margin-top:50px;
-  height:8px;
-  background:#1e293b;
+  height:6px;
+  background:rgba(255,255,255,0.05);
   border-radius:10px;
   overflow:hidden;
 }
 
 .progress-bar{
   height:100%;
-  width:0%;
-  background:linear-gradient(90deg,#06b6d4,#6366f1,#8b5cf6);
-  transition:0.5s;
+  width:35%;
+  background:linear-gradient(90deg,#38bdf8,#8b5cf6);
+  opacity:0.6;
 }
 
-.reset-btn{
-  margin-top:15px;
-  padding:8px 15px;
-  border:none;
-  border-radius:8px;
-  background:#334155;
-  color:white;
-  cursor:pointer;
+/* subtle look */
+.progress-bar{
+  transition:width 0.4s ease;
 }
 </style>
 </head>
@@ -134,81 +124,48 @@ h1{
   </div>
 </nav>
 
+<div class="container">
+
 <h1>Обучение криптовалютам</h1>
 
-<div class="grid" id="courseGrid"></div>
+<div class="grid">
 
-<div class="progress">
-  <div class="progress-bar" id="progressBar"></div>
+<!-- РЯД 1 -->
+<div class="card"><div class="icon">🪙</div>Криптовалюта</div>
+<div class="card"><div class="icon">⛓</div>Блокчейн</div>
+<div class="card"><div class="icon">₿</div>Bitcoin</div>
+<div class="card"><div class="icon">💳</div>Кошельки</div>
+<div class="card"><div class="icon">🏛</div>Биржи</div>
+<div class="card"><div class="icon">📈</div>Трейдинг</div>
+<div class="card"><div class="icon">💼</div>Инвестирование</div>
+
+<!-- РЯД 2 -->
+<div class="card"><div class="icon">🌍</div>DeFi</div>
+<div class="card"><div class="icon">🖼</div>NFT</div>
+<div class="card"><div class="icon">⚡</div>Layer 2</div>
+<div class="card"><div class="icon">🔐</div>Безопасность</div>
+<div class="card"><div class="icon">📊</div>Анализ рынка</div>
+<div class="card"><div class="icon">📉</div>Риски</div>
+<div class="card"><div class="icon">🏦</div>Регулирование</div>
+
+<!-- НОВЫЙ РЯД 3 -->
+<div class="card"><div class="icon">🤖</div>AI в крипте</div>
+<div class="card"><div class="icon">🧠</div>Психология рынка</div>
+<div class="card"><div class="icon">🌐</div>Web3</div>
+<div class="card"><div class="icon">📜</div>Whitepaper</div>
+<div class="card"><div class="icon">⛏</div>Майнинг</div>
+<div class="card"><div class="icon">💡</div>ICO / IDO</div>
+<div class="card"><div class="icon">🔗</div>Смарт-контракты</div>
+
 </div>
 
-<button class="reset-btn" onclick="resetProgress()">Сбросить прогресс</button>
+<div class="progress-wrapper">
+  <div class="progress">
+    <div class="progress-bar"></div>
+  </div>
+</div>
 
-<script>
-const courses = [
-
-{ icon:"🪙", title:"Криптовалюта", text:"Цифровой актив на блокчейне. Используется для переводов и инвестиций." },
-{ icon:"⛓️", title:"Блокчейн", text:"Распределённая база данных, защищённая криптографией." },
-{ icon:"₿", title:"Bitcoin", text:"Первая криптовалюта. Ограничение 21 млн монет." },
-{ icon:"💳", title:"Кошельки", text:"Горячие и холодные кошельки. Seed-фраза — ключ к доступу." },
-{ icon:"🏦", title:"Биржи", text:"Платформы для торговли криптовалютами." },
-{ icon:"📈", title:"Трейдинг", text:"Активная торговля на краткосрочных движениях." },
-{ icon:"💼", title:"Инвестирование", text:"Долгосрочное удержание активов." },
-{ icon:"🌍", title:"DeFi", text:"Децентрализованные финансы без банков." },
-{ icon:"🖼️", title:"NFT", text:"Уникальные цифровые токены." },
-{ icon:"⚡", title:"Layer 2", text:"Решения для ускорения сети." },
-{ icon:"🔐", title:"Безопасность", text:"2FA, холодные кошельки, защита от фишинга." },
-{ icon:"📊", title:"Анализ рынка", text:"Технический и фундаментальный анализ." },
-{ icon:"📉", title:"Риски", text:"Волатильность, регуляции, скам-проекты." },
-{ icon:"🏛️", title:"Регулирование", text:"Законы и государственное влияние на крипторынок." }
-
-];
-
-const grid = document.getElementById("courseGrid");
-const progressBar = document.getElementById("progressBar");
-
-let completed = JSON.parse(localStorage.getItem("progress")) || 0;
-updateProgress();
-
-courses.forEach(course=>{
-  const card = document.createElement("div");
-  card.className="card";
-
-  card.innerHTML=`
-    <div style="font-size:40px">${course.icon}</div>
-    <h3>${course.title}</h3>
-    <div class="card-content">${course.text}</div>
-  `;
-
-  card.onclick=()=>{
-    document.querySelectorAll(".card").forEach(c=>{
-      if(c!==card) c.classList.remove("active");
-    });
-
-    card.classList.toggle("active");
-
-    if(!card.dataset.opened){
-      completed++;
-      card.dataset.opened = true;
-      localStorage.setItem("progress", completed);
-      updateProgress();
-    }
-  };
-
-  grid.appendChild(card);
-});
-
-function updateProgress(){
-  let percent = Math.min((completed / courses.length) * 100,100);
-  progressBar.style.width = percent + "%";
-}
-
-function resetProgress(){
-  completed = 0;
-  localStorage.removeItem("progress");
-  progressBar.style.width = "0%";
-}
-</script>
+</div>
 
 </body>
 </html>
