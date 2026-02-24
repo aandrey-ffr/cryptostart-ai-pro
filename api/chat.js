@@ -6,37 +6,29 @@ export default async function handler(req, res) {
   try {
     const { message } = req.body;
 
-    const response = await fetch("/api/chat", {
+    const response = await fetch("https://api.openai.com/v1/responses", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
       },
       body: JSON.stringify({
-        model: "gpt-4o-mini",
-        messages: [
-          {
-            role: "system",
-            content: "Ты AI-помощник по криптовалюте. Отвечай кратко и понятно."
-          },
-          {
-            role: "user",
-            content: message
-          }
-        ]
+        model: "gpt-4.1-mini",
+        input: message,
       }),
     });
 
     const data = await response.json();
 
-    if (!data.choices) {
-      console.error("OpenAI error:", data);
-      return res.status(500).json({ error: "OpenAI error" });
+    console.log("OpenAI response:", data);
+
+    if (!data.output || !data.output[0]) {
+      return res.status(500).json({ error: "Bad OpenAI response" });
     }
 
-    return res.status(200).json({
-      reply: data.choices[0].message.content,
-    });
+    const reply = data.output[0].content[0].text;
+
+    return res.status(200).json({ reply });
 
   } catch (error) {
     console.error("Server error:", error);
