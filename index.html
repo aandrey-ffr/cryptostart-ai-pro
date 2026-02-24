@@ -3,104 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CryptoStart AI 2.0</title>
+<title>CryptoStart AI</title>
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-scroll-behavior:smooth;
-}
-
 body{
 font-family:Arial, sans-serif;
-background:linear-gradient(-45deg,#0f172a,#1e293b,#020617,#0f172a);
-background-size:400% 400%;
-animation:gradient 15s ease infinite;
+background:#0f172a;
 color:white;
-}
-
-@keyframes gradient{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
-}
-
-nav{
-position:fixed;
-width:100%;
-top:0;
-background:rgba(0,0,0,0.6);
-backdrop-filter:blur(10px);
-display:flex;
-justify-content:space-between;
-padding:15px 40px;
-z-index:1000;
-}
-
-nav a{
-color:white;
-text-decoration:none;
-margin-left:20px;
-}
-
-section{
-padding:100px 20px;
 text-align:center;
-}
-
-.hero{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
+padding:40px;
 }
 
 h1{
-font-size:60px;
+font-size:48px;
 margin-bottom:20px;
-}
-
-button{
-padding:15px 35px;
-border:none;
-border-radius:50px;
-background:linear-gradient(90deg,#2563eb,#06b6d4);
-color:white;
-cursor:pointer;
-margin-top:20px;
-font-weight:bold;
-box-shadow:0 0 15px rgba(37,99,235,0.6);
-transition:0.3s;
-}
-
-button:hover{
-transform:scale(1.1);
-box-shadow:0 0 30px rgba(6,182,212,0.9);
-}
-
-.cards{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:20px;
-margin-top:40px;
-}
-
-.card{
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(10px);
-padding:30px;
-border-radius:15px;
-width:250px;
-transition:0.3s;
-}
-
-.card:hover{
-transform:translateY(-10px);
-background:rgba(255,255,255,0.1);
 }
 
 table{
@@ -117,7 +33,7 @@ padding:10px 20px;
 .chat-box{
 max-width:600px;
 margin:auto;
-margin-top:30px;
+margin-top:40px;
 }
 
 input{
@@ -127,101 +43,27 @@ border-radius:5px;
 border:none;
 }
 
-footer{
-padding:30px;
-background:#020617;
-margin-top:50px;
+button{
+padding:10px 25px;
+border:none;
+border-radius:30px;
+background:#2563eb;
+color:white;
+cursor:pointer;
+margin-left:10px;
 }
 
-#tsparticles{
-position:fixed;
-width:100%;
-height:100%;
-top:0;
-left:0;
-z-index:-1;
+#chat-messages{
+margin-top:20px;
+text-align:left;
 }
-
-.floating{
-position:fixed;
-font-size:40px;
-opacity:0.08;
-animation: float 12s ease-in-out infinite;
-pointer-events:none;
-}
-
-.btc{
-top:20%;
-left:10%;
-}
-
-.eth{
-bottom:20%;
-right:15%;
-animation-duration:16s;
-}
-
-@keyframes float{
-0%{transform:translateY(0px);}
-50%{transform:translateY(-40px);}
-100%{transform:translateY(0px);}
-}
-
-.fade{
-opacity:0;
-transform:translateY(40px);
-transition:all 0.8s ease;
-}
-
-.fade.show{
-opacity:1;
-transform:translateY(0);
-}
-
 </style>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
 </head>
 
 <body>
 
-<div id="tsparticles"></div>
-<div class="floating btc">₿</div>
-<div class="floating eth">Ξ</div>
-
-<nav>
-<div><b>CryptoStart AI</b></div>
-<div>
-<a href="#about">Обучение</a>
-<a href="#rates">Курсы</a>
-<a href="#ai">AI</a>
-</div>
-</nav>
-
-<section class="hero">
 <h1>CryptoStart AI 🚀</h1>
-<p>Современный обучающий проект о криптовалюте с AI-помощником и актуальными курсами.</p>
-<button onclick="document.getElementById('about').scrollIntoView()">Начать</button>
-</section>
 
-<section id="about" class="fade">
-<h2>Что такое криптовалюта?</h2>
-<div class="cards">
-<div class="card">
-<h3>Криптовалюта</h3>
-<p>Цифровые деньги без банков.</p>
-</div>
-<div class="card">
-<h3>Блокчейн</h3>
-<p>Безопасная цепочка блоков с данными.</p>
-</div>
-<div class="card">
-<h3>Bitcoin</h3>
-<p>Первая криптовалюта, созданная в 2009 году.</p>
-</div>
-</div>
-</section>
-
-<section id="rates" class="fade">
 <h2>Курсы криптовалют</h2>
 
 <table>
@@ -231,24 +73,15 @@ transform:translateY(0);
 <tr><td>USDT</td><td id="usdt">loading...</td></tr>
 </table>
 
-</section>
-
-<section id="ai" class="fade">
-<h2>AI помощник</h2>
-
 <div class="chat-box">
+<h2>AI помощник</h2>
 <input type="text" id="question" placeholder="Введите вопрос...">
 <button onclick="askAI()">Спросить</button>
-<div id="chat-messages" style="margin-top:20px;"></div>
+<div id="chat-messages"></div>
 </div>
 
-</section>
-
-<footer>
-<p>© 2026 CryptoStart AI | Проект для стажировки</p>
-</footer>
-
 <script>
+/* Загрузка курсов */
 fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,tether&vs_currencies=usd")
 .then(res=>res.json())
 .then(data=>{
@@ -257,162 +90,47 @@ document.getElementById("eth").innerText=data.ethereum.usd;
 document.getElementById("usdt").innerText=data.tether.usd;
 });
 
-let q=document.getElementById("question").value.toLowerCase();
-let response="";
-
-if(q.includes("блокчейн")){
-response="Блокчейн — это технология хранения данных в виде защищённой цепочки блоков.";
-}
-else if(q.includes("биткоин")){
-response="Bitcoin — первая криптовалюта, созданная Сатоши Накамото.";
-}
-else{
-response="Отличный вопрос! Криптовалюты — это цифровые активы, работающие на технологии блокчейн.";
-}
-
-document.getElementById("answer").innerText=response;
-}
-</script>
-
-<script>
-tsParticles.load("tsparticles", {
-background: { color: "transparent" },
-particles: {
-number: { value: 70 },
-color: { value: "#3b82f6" },
-shape: { type: "circle" },
-opacity: { value: 0.3 },
-size: { value: 3 },
-move: { enable: true, speed: 1 }
-}
-});
-</script>
-
-<script>
-const faders = document.querySelectorAll('.fade');
-
-const appearOptions = {
-threshold: 0.2
-};
-
-const appearOnScroll = new IntersectionObserver(function(entries, observer){
-entries.forEach(entry => {
-if(!entry.isIntersecting){
-return;
-}else{
-entry.target.classList.add("show");
-observer.unobserve(entry.target);
-}
-});
-}, appearOptions);
-
-faders.forEach(fader => {
-appearOnScroll.observe(fader);
-});
-</script>
-
-<script>
-
-<script>
-
-function addMessage(text, sender){
+/* Чат */
+function addMessage(text){
   const messages = document.getElementById("chat-messages");
   const div = document.createElement("div");
-  div.classList.add("message", sender);
+  div.style.marginBottom = "10px";
   div.innerText = text;
   messages.appendChild(div);
   messages.scrollTop = messages.scrollHeight;
 }
 
 async function askAI() {
-const input = document.getElementById("question");
-const text = input.value;
-if (!text) return;
+  const input = document.getElementById("question");
+  const text = input.value;
+  if (!text) return;
 
-addMessage(text, "user");
-input.value = "";
+  addMessage("Вы: " + text);
+  input.value = "";
 
-addMessage("AI печатает...", "ai");
+  addMessage("AI печатает...");
 
-try {
-const response = await fetch("/api/chat", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({ message: text })
-});
-const data = await response.json();
+  try {
+    const response = await fetch("/api/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ message: text })
+    });
 
-const messages = document.getElementById("chat-messages");
-messages.lastChild.remove();
+    const data = await response.json();
 
-addMessage(data.reply, "ai");
+    const messages = document.getElementById("chat-messages");
+    messages.lastChild.remove();
 
-} catch (error) {
-addMessage("Ошибка подключения к серверу.", "ai");
-}
-}
-</script>
+    addMessage("AI: " + data.reply);
 
-<script>
-function addMessage(text, sender){
-const messages = document.getElementById("chat-messages");
-const div = document.createElement("div");
-div.classList.add("message", sender);
-div.innerText = text;
-messages.appendChild(div);
-messages.scrollTop = messages.scrollHeight;
-}
-
-async function askAI() {
-const input = document.getElementById("question");
-const text = input.value;
-if (!text) return;
-
-addMessage(text, "user");
-input.value = "";
-
-addMessage("AI печатает...", "ai");
-
-try {
-const response = await fetch("https://cryptostart-ai-pro.vercel.app/api/chat", {
-method: "POST",
-headers: {
-"Content-Type": "application/json"
-},
-body: JSON.stringify({ message: text })
-});
-
-const data = await response.json();
-
-const messages = document.getElementById("chat-messages");
-messages.lastChild.remove();
-
-addMessage(data.reply, "ai");
-
-} catch (error) {
-addMessage("Ошибка подключения к серверу.", "ai");
-}
+  } catch (error) {
+    addMessage("Ошибка подключения к серверу.");
+  }
 }
 </script>
 
 </body>
-  
-  <script>
-
-const data = await response.json();
-
-if(data.choices && data.choices.length > 0){
-answerBlock.innerHTML = data.choices[0].message.content;
-} else {
-answerBlock.innerHTML = "Ошибка ответа AI.";
-}
-
-} catch (error) {
-answerBlock.innerHTML = "Ошибка подключения к AI.";
-}
-}
-</script>
-  
 </html>
