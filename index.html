@@ -7,60 +7,82 @@
 
 <style>
 body{
-  font-family: Arial, sans-serif;
-  background: linear-gradient(-45deg,#0f172a,#1e293b,#020617,#0f172a);
-  background-size:400% 400%;
-  animation:gradient 15s ease infinite;
-  color:white;
-  padding-top:80px;
   margin:0;
-  text-align:center;
+  font-family: 'Segoe UI', sans-serif;
+  color:white;
+  overflow-x:hidden;
+  background: radial-gradient(circle at 20% 20%, #1e293b, #020617);
 }
 
-@keyframes gradient{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
+/* фон монет */
+.coin{
+  position:absolute;
+  width:80px;
+  opacity:0.15;
+  animation: float 20s linear infinite;
+}
+
+@keyframes float{
+  0%{ transform:translateY(0px);}
+  50%{ transform:translateY(-40px);}
+  100%{ transform:translateY(0px);}
 }
 
 nav{
   position:fixed;
-  top:0;
   width:100%;
-  background:rgba(0,0,0,0.6);
-  backdrop-filter:blur(10px);
-  padding:15px 40px;
+  top:0;
   display:flex;
   justify-content:space-between;
+  padding:20px 40px;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(10px);
 }
 
 nav a{
   color:white;
-  margin-left:15px;
+  margin-left:20px;
   text-decoration:none;
 }
 
 .hero{
-  margin-top:100px;
+  text-align:center;
+  margin-top:180px;
 }
 
 h1{
-  font-size:50px;
+  font-size:55px;
+}
+
+p{
+  font-size:18px;
+  opacity:0.8;
 }
 
 button{
   margin-top:30px;
-  padding:12px 25px;
+  padding:14px 28px;
   border:none;
-  border-radius:8px;
-  background:#06b6d4;
+  border-radius:10px;
+  background:linear-gradient(45deg,#06b6d4,#6366f1);
   color:white;
+  font-size:16px;
   cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  transform:scale(1.05);
 }
 </style>
 </head>
 
 <body>
+
+<!-- Монеты -->
+<img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png" class="coin" style="top:20%; left:10%;">
+<img src="https://cryptologos.cc/logos/ethereum-eth-logo.png" class="coin" style="top:60%; left:80%;">
+<img src="https://cryptologos.cc/logos/tether-usdt-logo.png" class="coin" style="top:40%; left:50%;">
 
 <nav>
   <div><b>CryptoStart AI 🚀</b></div>
@@ -73,8 +95,8 @@ button{
 </nav>
 
 <div class="hero">
-  <h1>Добро пожаловать в CryptoStart AI</h1>
-  <p>Изучай криптовалюты и общайся с AI-помощником.</p>
+  <h1>Изучай криптовалюты современно</h1>
+  <p>Блокчейн • Инвестиции • Безопасность • AI-помощник</p>
   <button onclick="window.location.href='education.html'">
     Начать обучение
   </button>
