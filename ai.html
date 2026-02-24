@@ -3,79 +3,107 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI помощник | CryptoStart AI</title>
+<title>AI | CryptoStart</title>
 
 <style>
 body{
-  font-family: Arial, sans-serif;
-  background: linear-gradient(-45deg,#0f172a,#1e293b,#020617,#0f172a);
-  background-size:400% 400%;
-  animation:gradient 15s ease infinite;
-  color:white;
-  padding-top:80px;
   margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(-45deg,#0f172a,#1e293b,#0f172a,#1e1b4b);
+  background-size:400% 400%;
+  animation:gradientMove 15s ease infinite;
+  color:white;
 }
 
-@keyframes gradient{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
+@keyframes gradientMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
 }
 
 nav{
-  position:fixed;
-  top:0;
-  width:100%;
-  background:rgba(0,0,0,0.6);
-  backdrop-filter:blur(10px);
-  padding:15px 40px;
+  padding:20px 40px;
+  background:rgba(15,23,42,0.9);
   display:flex;
   justify-content:space-between;
 }
 
 nav a{
-  color:white;
-  margin-left:15px;
+  color:#cbd5e1;
+  margin-left:20px;
   text-decoration:none;
 }
 
-.chat-container{
-  max-width:700px;
-  margin:40px auto;
-  background:rgba(255,255,255,0.05);
-  border-radius:15px;
-  padding:20px;
-  display:flex;
-  flex-direction:column;
-  height:70vh;
+nav a:hover{
+  color:#38bdf8;
 }
 
-.chat-messages{
-  flex:1;
-  overflow-y:auto;
+.container{
+  display:grid;
+  grid-template-columns:250px 1fr 250px;
+  gap:20px;
+  padding:40px;
+}
+
+/* SIDE PANELS */
+.side{
+  background:rgba(30,41,59,0.8);
+  border-radius:20px;
+  padding:20px;
+  height:75vh;
+  overflow:auto;
+}
+
+.market-card{
+  background:#1e293b;
+  padding:15px;
+  border-radius:12px;
   margin-bottom:15px;
 }
 
+.market-card h4{
+  margin:0;
+}
+
+.price{
+  font-size:18px;
+  margin-top:5px;
+}
+
+/* CHAT */
+.chat{
+  background:rgba(30,41,59,0.85);
+  border-radius:20px;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  height:75vh;
+}
+
+.messages{
+  flex:1;
+  overflow:auto;
+}
+
 .message{
-  margin-bottom:12px;
-  padding:10px 15px;
-  border-radius:10px;
-  max-width:80%;
+  padding:12px;
+  margin-bottom:10px;
+  border-radius:12px;
 }
 
 .user{
-  background:#2563eb;
+  background:#6366f1;
   align-self:flex-end;
 }
 
-.ai{
+.bot{
   background:#334155;
-  align-self:flex-start;
 }
 
 .input-area{
   display:flex;
   gap:10px;
+  margin-top:15px;
 }
 
 input{
@@ -86,12 +114,28 @@ input{
 }
 
 button{
-  padding:10px 20px;
+  padding:10px 15px;
   border:none;
   border-radius:8px;
   background:#06b6d4;
   color:white;
   cursor:pointer;
+}
+
+.quick-btn{
+  display:block;
+  width:100%;
+  padding:10px;
+  margin-bottom:10px;
+  background:#334155;
+  border:none;
+  border-radius:10px;
+  color:white;
+  cursor:pointer;
+}
+
+.quick-btn:hover{
+  background:#475569;
 }
 </style>
 </head>
@@ -99,62 +143,98 @@ button{
 <body>
 
 <nav>
-  <div><b>CryptoStart AI 🚀</b></div>
+  <div><b>🚀 CryptoStart AI</b></div>
   <div>
     <a href="index.html">Главная</a>
     <a href="education.html">Обучение</a>
     <a href="rates.html">Курсы</a>
-    <a href="ai.html">AI</a>
     <a href="about.html">О проекте</a>
   </div>
 </nav>
 
-<div class="chat-container">
-  <div id="chat-messages" class="chat-messages"></div>
+<div class="container">
 
-  <div class="input-area">
-    <input type="text" id="question" placeholder="Введите вопрос...">
-    <button onclick="askAI()">Спросить</button>
+  <!-- LEFT MARKET -->
+  <div class="side">
+    <h3>📊 Рынок</h3>
+    <div id="market"></div>
   </div>
+
+  <!-- CHAT -->
+  <div class="chat">
+    <div class="messages" id="messages"></div>
+
+    <div class="input-area">
+      <input id="input" placeholder="Введите вопрос..." />
+      <button onclick="sendMessage()">Спросить</button>
+    </div>
+  </div>
+
+  <!-- RIGHT QUICK QUESTIONS -->
+  <div class="side">
+    <h3>⚡ Быстрые вопросы</h3>
+    <button class="quick-btn" onclick="quickAsk('Объясни Bitcoin простыми словами')">Что такое Bitcoin?</button>
+    <button class="quick-btn" onclick="quickAsk('Что такое DeFi?')">Что такое DeFi?</button>
+    <button class="quick-btn" onclick="quickAsk('Стоит ли инвестировать в крипту?')">Стоит ли инвестировать?</button>
+    <button class="quick-btn" onclick="quickAsk('Какие риски в криптовалюте?')">Риски крипты</button>
+  </div>
+
 </div>
 
 <script>
-function addMessage(text, sender){
-  const messages = document.getElementById("chat-messages");
-  const div = document.createElement("div");
-  div.classList.add("message", sender);
-  div.innerText = text;
-  messages.appendChild(div);
-  messages.scrollTop = messages.scrollHeight;
+// ===== MARKET DATA =====
+async function loadMarket(){
+  const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,tether&vs_currencies=usd");
+  const data = await res.json();
+
+  document.getElementById("market").innerHTML = `
+    <div class="market-card">
+      <h4>Bitcoin</h4>
+      <div class="price">$${data.bitcoin.usd}</div>
+    </div>
+    <div class="market-card">
+      <h4>Ethereum</h4>
+      <div class="price">$${data.ethereum.usd}</div>
+    </div>
+    <div class="market-card">
+      <h4>USDT</h4>
+      <div class="price">$${data.tether.usd}</div>
+    </div>
+  `;
 }
 
-async function askAI(){
-  const input = document.getElementById("question");
-  const text = input.value.trim();
+loadMarket();
+setInterval(loadMarket,30000);
+
+// ===== CHAT =====
+function addMessage(text,type){
+  const msg=document.createElement("div");
+  msg.className="message "+type;
+  msg.innerText=text;
+  document.getElementById("messages").appendChild(msg);
+}
+
+async function sendMessage(){
+  const input=document.getElementById("input");
+  const text=input.value;
   if(!text) return;
 
-  addMessage(text, "user");
-  input.value = "";
+  addMessage(text,"user");
+  input.value="";
 
-  addMessage("AI печатает...", "ai");
+  const res=await fetch("/api/chat",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({message:text})
+  });
 
-  try{
-    const response = await fetch("/api/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: text })
-    });
+  const data=await res.json();
+  addMessage(data.reply,"bot");
+}
 
-    const data = await response.json();
-
-    const messages = document.getElementById("chat-messages");
-    messages.lastChild.remove();
-
-    addMessage(data.reply || "Ошибка ответа AI", "ai");
-
-  } catch(error){
-    addMessage("Ошибка подключения к серверу.", "ai");
-  }
+function quickAsk(question){
+  document.getElementById("input").value=question;
+  sendMessage();
 }
 </script>
 
