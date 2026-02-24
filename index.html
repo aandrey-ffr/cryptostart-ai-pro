@@ -134,6 +134,30 @@ left:0;
 z-index:-1;
 }
 
+.floating{
+position:fixed;
+font-size:40px;
+opacity:0.08;
+animation: float 12s ease-in-out infinite;
+pointer-events:none;
+}
+
+.btc{
+top:20%;
+left:10%;
+}
+
+.eth{
+bottom:20%;
+right:15%;
+animation-duration:16s;
+}
+
+@keyframes float{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-40px);}
+100%{transform:translateY(0px);}
+}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
 </head>
@@ -141,6 +165,8 @@ z-index:-1;
 <body>
 
 <div id="tsparticles"></div>
+<div class="floating btc">₿</div>
+<div class="floating eth">Ξ</div>
 
 <nav>
 <div><b>CryptoStart AI</b></div>
