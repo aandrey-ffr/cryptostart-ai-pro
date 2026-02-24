@@ -21,7 +21,7 @@ body{
   100%{background-position:0% 50%;}
 }
 
-/* ===== NAV ===== */
+/* NAV */
 nav{
   position:fixed;
   top:0;
@@ -40,7 +40,6 @@ nav a{
   color:#cbd5e1;
   margin-left:25px;
   text-decoration:none;
-  font-weight:500;
   transition:0.3s;
 }
 
@@ -48,7 +47,7 @@ nav a:hover{
   color:#38bdf8;
 }
 
-/* ===== CONTENT ===== */
+/* CONTENT */
 .container{
   padding:130px 60px 60px 60px;
 }
@@ -56,10 +55,9 @@ nav a:hover{
 h1{
   text-align:center;
   margin-bottom:50px;
-  font-size:34px;
 }
 
-/* ===== GRID ===== */
+/* GRID */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -67,18 +65,49 @@ h1{
 }
 
 .card{
-  background:rgba(30,41,59,0.8);
-  border-radius:18px;
-  padding:35px 20px;
-  text-align:center;
-  cursor:pointer;
-  transition:0.3s;
-  border:1px solid rgba(255,255,255,0.05);
+  perspective:1000px;
+  height:220px;
 }
 
-.card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 0 25px rgba(99,102,241,0.4);
+.card-inner{
+  position:relative;
+  width:100%;
+  height:100%;
+  transition:transform 0.6s;
+  transform-style:preserve-3d;
+}
+
+.card.active .card-inner{
+  transform:rotateY(180deg);
+}
+
+.card-front, .card-back{
+  position:absolute;
+  width:100%;
+  height:100%;
+  backface-visibility:hidden;
+  background:rgba(30,41,59,0.85);
+  border-radius:18px;
+  padding:20px;
+  text-align:center;
+  border:1px solid rgba(255,255,255,0.05);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+.card-front{
+  font-size:18px;
+}
+
+.card-back{
+  transform:rotateY(180deg);
+  font-size:14px;
+}
+
+.card.active .card-front{
+  box-shadow:0 0 25px rgba(139,92,246,0.6);
 }
 
 .icon{
@@ -86,7 +115,7 @@ h1{
   margin-bottom:15px;
 }
 
-/* ===== PROGRESS ===== */
+/* PROGRESS */
 .progress-wrapper{
   margin-top:70px;
 }
@@ -100,13 +129,9 @@ h1{
 
 .progress-bar{
   height:100%;
-  width:35%;
+  width:20%;
   background:linear-gradient(90deg,#38bdf8,#8b5cf6);
   opacity:0.6;
-}
-
-/* subtle look */
-.progress-bar{
   transition:width 0.4s ease;
 }
 </style>
@@ -125,47 +150,165 @@ h1{
 </nav>
 
 <div class="container">
-
 <h1>Обучение криптовалютам</h1>
 
 <div class="grid">
 
-<!-- РЯД 1 -->
-<div class="card"><div class="icon">🪙</div>Криптовалюта</div>
-<div class="card"><div class="icon">⛓</div>Блокчейн</div>
-<div class="card"><div class="icon">₿</div>Bitcoin</div>
-<div class="card"><div class="icon">💳</div>Кошельки</div>
-<div class="card"><div class="icon">🏛</div>Биржи</div>
-<div class="card"><div class="icon">📈</div>Трейдинг</div>
-<div class="card"><div class="icon">💼</div>Инвестирование</div>
+<!-- 1 -->
+<div class="card" onclick="toggleCard(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">🪙</div>Криптовалюта</div>
+<div class="card-back">Цифровые активы, работающие на блокчейне и защищённые криптографией.</div>
+</div></div>
 
-<!-- РЯД 2 -->
-<div class="card"><div class="icon">🌍</div>DeFi</div>
-<div class="card"><div class="icon">🖼</div>NFT</div>
-<div class="card"><div class="icon">⚡</div>Layer 2</div>
-<div class="card"><div class="icon">🔐</div>Безопасность</div>
-<div class="card"><div class="icon">📊</div>Анализ рынка</div>
-<div class="card"><div class="icon">📉</div>Риски</div>
-<div class="card"><div class="icon">🏦</div>Регулирование</div>
+<!-- 2 -->
+<div class="card" onclick="toggleCard(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">⛓</div>Блокчейн</div>
+<div class="card-back">Децентрализованный реестр транзакций, защищённый криптографией.</div>
+</div></div>
 
-<!-- НОВЫЙ РЯД 3 -->
-<div class="card"><div class="icon">🤖</div>AI в крипте</div>
-<div class="card"><div class="icon">🧠</div>Психология рынка</div>
-<div class="card"><div class="icon">🌐</div>Web3</div>
-<div class="card"><div class="icon">📜</div>Whitepaper</div>
-<div class="card"><div class="icon">⛏</div>Майнинг</div>
-<div class="card"><div class="icon">💡</div>ICO / IDO</div>
-<div class="card"><div class="icon">🔗</div>Смарт-контракты</div>
+<!-- 3 -->
+<div class="card" onclick="toggleCard(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">₿</div>Bitcoin</div>
+<div class="card-back">Первая криптовалюта, созданная в 2009 году Сатоши Накамото.</div>
+</div></div>
+
+<!-- 4 -->
+<div class="card" onclick="toggleCard(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">💳</div>Кошельки</div>
+<div class="card-back">Инструменты хранения приватных ключей и управления криптоактивами.</div>
+</div></div>
+
+<!-- 5 -->
+<div class="card" onclick="toggleCard(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">🏛</div>Биржи</div>
+<div class="card-back">Платформы для покупки, продажи и обмена криптовалют.</div>
+</div></div>
+
+<!-- 6 -->
+<div class="card" onclick="toggleCard(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">📈</div>Трейдинг</div>
+<div class="card-back">Краткосрочная торговля с целью заработка на колебаниях цены.</div>
+</div></div>
+
+<!-- 7 -->
+<div class="card" onclick="toggleCard(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">💼</div>Инвестирование</div>
+<div class="card-back">Долгосрочное вложение капитала в криптоактивы.</div>
+</div></div>
+
+<!-- 8 -->
+<div class="card" onclick="toggleCard(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">🌍</div>DeFi</div>
+<div class="card-back">Финансовые сервисы без посредников на основе смарт-контрактов.</div>
+</div></div>
+
+<!-- 9 -->
+<div class="card" onclick="toggleCard(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">🖼</div>NFT</div>
+<div class="card-back">Уникальные токены, подтверждающие владение цифровыми объектами.</div>
+</div></div>
+
+<!-- 10 -->
+<div class="card" onclick="toggleCard(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">⚡</div>Layer 2</div>
+<div class="card-back">Решения для масштабирования блокчейнов и снижения комиссий.</div>
+</div></div>
+
+<!-- 11 -->
+<div class="card" onclick="toggleCard(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">🔐</div>Безопасность</div>
+<div class="card-back">Приватные ключи, двухфакторная аутентификация и защита активов.</div>
+</div></div>
+
+<!-- 12 -->
+<div class="card" onclick="toggleCard(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">📊</div>Анализ рынка</div>
+<div class="card-back">Технический и фундаментальный анализ крипторынка.</div>
+</div></div>
+
+<!-- 13 -->
+<div class="card" onclick="toggleCard(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">📉</div>Риски</div>
+<div class="card-back">Волатильность, мошенничество, рыночные циклы.</div>
+</div></div>
+
+<!-- 14 -->
+<div class="card" onclick="toggleCard(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">🤖</div>AI в крипте</div>
+<div class="card-back">ИИ используется для анализа рынка и автоматизации торговли.</div>
+</div></div>
+
+<!-- 15 -->
+<div class="card" onclick="toggleCard(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">🌐</div>Web3</div>
+<div class="card-back">Новая эра интернета с децентрализацией и владением данными.</div>
+</div></div>
+
+<!-- 16 -->
+<div class="card" onclick="toggleCard(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">⛏</div>Майнинг</div>
+<div class="card-back">Процесс подтверждения транзакций и создания новых блоков.</div>
+</div></div>
+
+<!-- 17 -->
+<div class="card" onclick="toggleCard(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">💡</div>ICO / IDO</div>
+<div class="card-back">Способы привлечения инвестиций через выпуск токенов.</div>
+</div></div>
+
+<!-- 18 -->
+<div class="card" onclick="toggleCard(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">🔗</div>Смарт-контракты</div>
+<div class="card-back">Автоматические контракты, выполняющиеся в блокчейне.</div>
+</div></div>
 
 </div>
 
 <div class="progress-wrapper">
-  <div class="progress">
-    <div class="progress-bar"></div>
-  </div>
+<div class="progress">
+<div class="progress-bar" id="progressBar"></div>
+</div>
 </div>
 
 </div>
+
+<script>
+function toggleCard(card){
+const allCards=document.querySelectorAll(".card");
+allCards.forEach(c=>{
+if(c!==card){
+c.classList.remove("active");
+}
+});
+card.classList.toggle("active");
+updateProgress();
+}
+
+function updateProgress(){
+const opened=document.querySelectorAll(".card.active").length;
+const total=document.querySelectorAll(".card").length;
+const percent=(opened/total)*100;
+document.getElementById("progressBar").style.width=percent+"%";
+}
+</script>
 
 </body>
 </html>
