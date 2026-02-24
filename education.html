@@ -2,99 +2,196 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>Обучение</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Обучение | CryptoStart AI</title>
 
 <style>
 body{
-  font-family:Segoe UI;
-  background:#0f172a;
-  color:white;
   margin:0;
-  padding:40px;
+  font-family:'Segoe UI',sans-serif;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(99,102,241,0.15), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(6,182,212,0.15), transparent 40%),
+    #0f172a;
+  color:white;
+  padding:100px 40px 60px 40px;
 }
 
+/* Навигация */
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  padding:20px 40px;
+  background:rgba(0,0,0,0.5);
+  backdrop-filter:blur(10px);
+}
+
+nav a{
+  color:white;
+  margin-left:20px;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+nav a:hover{
+  color:#38bdf8;
+}
+
+/* Заголовок */
+h1{
+  text-align:center;
+  margin-bottom:40px;
+  font-size:38px;
+}
+
+/* Сетка */
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:25px;
-  margin-top:40px;
 }
 
+/* Карточки */
 .card{
-  background:#1e293b;
+  background:rgba(30,41,59,0.7);
+  backdrop-filter:blur(10px);
   padding:30px;
-  border-radius:15px;
+  border-radius:18px;
   text-align:center;
+  cursor:pointer;
+  transition:0.3s;
+  border:1px solid rgba(255,255,255,0.05);
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  background:rgba(51,65,85,0.9);
+  box-shadow:0 0 25px rgba(99,102,241,0.3);
+}
+
+.icon{
+  font-size:42px;
+  margin-bottom:15px;
+  transition:0.3s;
+}
+
+.card:hover .icon{
+  transform:scale(1.2) rotate(5deg);
+}
+
+/* Инфо блок */
+.info{
+  margin-top:40px;
+  padding:30px;
+  background:rgba(30,41,59,0.8);
+  border-radius:18px;
+  min-height:120px;
+  transition:0.3s;
+  border:1px solid rgba(255,255,255,0.05);
+}
+
+/* Прогресс */
+.progress{
+  margin-top:30px;
+  height:10px;
+  background:#1e293b;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.progress-bar{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#06b6d4,#6366f1);
+  transition:0.5s;
+}
+
+/* Кнопка сброса */
+.reset-btn{
+  margin-top:15px;
+  padding:8px 15px;
+  border:none;
+  border-radius:8px;
+  background:#334155;
+  color:white;
   cursor:pointer;
   transition:0.3s;
 }
 
-.card:hover{
-  transform:translateY(-5px);
-  background:#334155;
-}
-
-.icon{
-  font-size:40px;
-}
-
-.info{
-  margin-top:30px;
-  padding:20px;
-  background:#1e293b;
-  border-radius:12px;
-  display:none;
+.reset-btn:hover{
+  background:#475569;
 }
 </style>
 </head>
 
 <body>
 
+<nav>
+  <div><b>🚀 CryptoStart AI</b></div>
+  <div>
+    <a href="index.html">Главная</a>
+    <a href="rates.html">Курсы</a>
+    <a href="ai.html">AI</a>
+    <a href="about.html">О проекте</a>
+  </div>
+</nav>
+
 <h1>Обучение криптовалютам</h1>
 
-<div class="grid">
+<div class="grid" id="courseGrid"></div>
 
-<div class="card" onclick="showInfo('crypto')">
-<div class="icon">🪙</div>
-<h3>Что такое криптовалюта</h3>
+<div class="info" id="infoBox">
+Выберите категорию, чтобы начать обучение.
 </div>
 
-<div class="card" onclick="showInfo('blockchain')">
-<div class="icon">⛓️</div>
-<h3>Блокчейн</h3>
+<div class="progress">
+  <div class="progress-bar" id="progressBar"></div>
 </div>
 
-<div class="card" onclick="showInfo('mining')">
-<div class="icon">⛏️</div>
-<h3>Майнинг</h3>
-</div>
-
-<div class="card" onclick="showInfo('security')">
-<div class="icon">🔐</div>
-<h3>Безопасность</h3>
-</div>
-
-</div>
-
-<div id="infoBox" class="info"></div>
+<button class="reset-btn" onclick="resetProgress()">Сбросить прогресс</button>
 
 <script>
-function showInfo(type){
-  const box = document.getElementById("infoBox");
-  box.style.display="block";
+const courses = [
+  { icon:"🪙", title:"Что такое криптовалюта", text:"Криптовалюта — цифровые деньги на основе блокчейна." },
+  { icon:"⛓️", title:"Блокчейн", text:"Распределённая база данных, защищённая криптографией." },
+  { icon:"⛏️", title:"Майнинг", text:"Процесс подтверждения транзакций и создания новых монет." },
+  { icon:"🔐", title:"Безопасность", text:"Используйте холодные кошельки и 2FA." },
+  { icon:"📈", title:"Трейдинг", text:"Активная торговля криптовалютой для получения прибыли." },
+  { icon:"💼", title:"Инвестиции", text:"Долгосрочное вложение в перспективные проекты." },
+  { icon:"🦊", title:"Кошельки", text:"MetaMask, TrustWallet и аппаратные кошельки." },
+  { icon:"🌍", title:"DeFi", text:"Децентрализованные финансы без банков." },
+  { icon:"🖼️", title:"NFT", text:"Уникальные цифровые токены на блокчейне." }
+];
 
-  if(type==="crypto"){
-    box.innerHTML="Криптовалюта — это цифровые деньги, работающие на технологии блокчейн.";
-  }
-  if(type==="blockchain"){
-    box.innerHTML="Блокчейн — это распределённая база данных, защищённая криптографией.";
-  }
-  if(type==="mining"){
-    box.innerHTML="Майнинг — процесс подтверждения транзакций и создания новых монет.";
-  }
-  if(type==="security"){
-    box.innerHTML="Используйте холодные кошельки и двухфакторную аутентификацию.";
-  }
+const grid = document.getElementById("courseGrid");
+const infoBox = document.getElementById("infoBox");
+const progressBar = document.getElementById("progressBar");
+
+let completed = 0;
+
+courses.forEach(course=>{
+  const card = document.createElement("div");
+  card.className="card";
+  card.innerHTML=`
+    <div class="icon">${course.icon}</div>
+    <h3>${course.title}</h3>
+  `;
+  card.onclick=()=>{
+    infoBox.innerHTML=`<h2>${course.title}</h2><p>${course.text}</p>`;
+    completed++;
+    let progress=Math.min((completed/courses.length)*100,100);
+    progressBar.style.width=progress+"%";
+  };
+  grid.appendChild(card);
+});
+
+function resetProgress(){
+  completed=0;
+  progressBar.style.width="0%";
+  infoBox.innerHTML="Прогресс сброшен. Выберите категорию снова.";
 }
 </script>
 
