@@ -17,7 +17,7 @@ body{
   padding:100px 40px 60px 40px;
 }
 
-/* Навигация */
+/* NAV */
 nav{
   position:fixed;
   top:0;
@@ -40,62 +40,80 @@ nav a:hover{
   color:#38bdf8;
 }
 
-/* Заголовок */
 h1{
   text-align:center;
   margin-bottom:40px;
-  font-size:38px;
 }
 
-/* Сетка */
+/* GRID */
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:25px;
 }
 
-/* Карточки */
+/* CARD */
 .card{
-  background:rgba(30,41,59,0.7);
-  backdrop-filter:blur(10px);
-  padding:30px;
-  border-radius:18px;
-  text-align:center;
+  perspective:1000px;
   cursor:pointer;
-  transition:0.3s;
-  border:1px solid rgba(255,255,255,0.05);
 }
 
-.card:hover{
-  transform:translateY(-6px);
-  background:rgba(51,65,85,0.9);
-  box-shadow:0 0 25px rgba(99,102,241,0.3);
+.card-inner{
+  position:relative;
+  width:100%;
+  height:260px;
+  transform-style:preserve-3d;
+  transition:transform 0.6s;
 }
 
-.icon{
-  font-size:42px;
-  margin-bottom:15px;
-  transition:0.3s;
+.card.active .card-inner{
+  transform:rotateY(180deg);
 }
 
-.card:hover .icon{
-  transform:scale(1.2) rotate(5deg);
-}
-
-/* Инфо блок */
-.info{
-  margin-top:40px;
-  padding:30px;
-  background:rgba(30,41,59,0.8);
+.card-front,
+.card-back{
+  position:absolute;
+  width:100%;
+  height:100%;
+  backface-visibility:hidden;
+  background:rgba(30,41,59,0.85);
   border-radius:18px;
-  min-height:120px;
-  transition:0.3s;
+  padding:20px;
+  box-sizing:border-box;
   border:1px solid rgba(255,255,255,0.05);
+  transition:0.3s;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
 }
 
-/* Прогресс */
+.card-back{
+  transform:rotateY(180deg);
+  font-size:13px;
+  line-height:1.5;
+  overflow:auto;
+}
+
+.card.active .card-front,
+.card.active .card-back{
+  box-shadow:0 0 30px rgba(99,102,241,0.6);
+}
+
+/* ARROW */
+.arrow{
+  margin-top:10px;
+  transition:0.4s;
+}
+
+.card.active .arrow{
+  transform:rotate(180deg);
+}
+
+/* PROGRESS */
 .progress{
-  margin-top:30px;
+  margin-top:40px;
   height:10px;
   background:#1e293b;
   border-radius:10px;
@@ -109,7 +127,6 @@ h1{
   transition:0.5s;
 }
 
-/* Кнопка сброса */
 .reset-btn{
   margin-top:15px;
   padding:8px 15px;
@@ -118,11 +135,6 @@ h1{
   background:#334155;
   color:white;
   cursor:pointer;
-  transition:0.3s;
-}
-
-.reset-btn:hover{
-  background:#475569;
 }
 </style>
 </head>
@@ -143,10 +155,6 @@ h1{
 
 <div class="grid" id="courseGrid"></div>
 
-<div class="info" id="infoBox">
-Выберите категорию, чтобы начать обучение.
-</div>
-
 <div class="progress">
   <div class="progress-bar" id="progressBar"></div>
 </div>
@@ -155,43 +163,93 @@ h1{
 
 <script>
 const courses = [
-  { icon:"🪙", title:"Что такое криптовалюта", text:"Криптовалюта — цифровые деньги на основе блокчейна." },
-  { icon:"⛓️", title:"Блокчейн", text:"Распределённая база данных, защищённая криптографией." },
-  { icon:"⛏️", title:"Майнинг", text:"Процесс подтверждения транзакций и создания новых монет." },
-  { icon:"🔐", title:"Безопасность", text:"Используйте холодные кошельки и 2FA." },
-  { icon:"📈", title:"Трейдинг", text:"Активная торговля криптовалютой для получения прибыли." },
-  { icon:"💼", title:"Инвестиции", text:"Долгосрочное вложение в перспективные проекты." },
-  { icon:"🦊", title:"Кошельки", text:"MetaMask, TrustWallet и аппаратные кошельки." },
-  { icon:"🌍", title:"DeFi", text:"Децентрализованные финансы без банков." },
-  { icon:"🖼️", title:"NFT", text:"Уникальные цифровые токены на блокчейне." }
+
+{ icon:"🪙", title:"Криптовалюта",
+text:"Цифровой актив на блокчейне. Децентрализация, прозрачность, высокая волатильность. Используется для переводов и инвестиций." },
+
+{ icon:"⛓️", title:"Блокчейн",
+text:"Распределённая база данных. Каждый блок связан с предыдущим. Практически невозможно изменить историю транзакций." },
+
+{ icon:"₿", title:"Bitcoin",
+text:"Первая криптовалюта (2009). Ограничение 21 млн монет. Создан для независимой финансовой системы." },
+
+{ icon:"💳", title:"Кошельки",
+text:"Горячие и холодные. Seed-фраза 12–24 слова. Никогда не передавайте её никому." },
+
+{ icon:"🏦", title:"Биржи",
+text:"Платформы для торговли. Централизованные и децентрализованные. Возможны риски блокировки." },
+
+{ icon:"📈", title:"Трейдинг",
+text:"Активная торговля. Стратегии: скальпинг, свинг, дневная торговля. Обязателен риск-менеджмент." },
+
+{ icon:"💼", title:"Инвестирование",
+text:"Долгосрочное удержание (HODL). Анализ проекта, команды и токеномики." },
+
+{ icon:"🌍", title:"DeFi",
+text:"Финансовые сервисы без банков. Стейкинг, лендинг, фарминг. Есть риски смарт-контрактов." },
+
+{ icon:"🖼️", title:"NFT",
+text:"Невзаимозаменяемые токены. Используются в играх, искусстве и метавселенных." },
+
+{ icon:"⚡", title:"Layer 2",
+text:"Решения для ускорения транзакций и снижения комиссий. Примеры: Arbitrum, Optimism." },
+
+{ icon:"🔐", title:"Безопасность",
+text:"Фишинг, скам, поддельные сайты. Используйте 2FA и аппаратные кошельки." }
+
 ];
 
 const grid = document.getElementById("courseGrid");
-const infoBox = document.getElementById("infoBox");
 const progressBar = document.getElementById("progressBar");
 
-let completed = 0;
+let completed = JSON.parse(localStorage.getItem("progress")) || 0;
+updateProgress();
 
 courses.forEach(course=>{
   const card = document.createElement("div");
   card.className="card";
+
   card.innerHTML=`
-    <div class="icon">${course.icon}</div>
-    <h3>${course.title}</h3>
+    <div class="card-inner">
+      <div class="card-front">
+        <div style="font-size:40px">${course.icon}</div>
+        <h3>${course.title}</h3>
+        <div class="arrow">▼</div>
+      </div>
+      <div class="card-back">
+        <h3>${course.title}</h3>
+        <p>${course.text}</p>
+      </div>
+    </div>
   `;
+
   card.onclick=()=>{
-    infoBox.innerHTML=`<h2>${course.title}</h2><p>${course.text}</p>`;
-    completed++;
-    let progress=Math.min((completed/courses.length)*100,100);
-    progressBar.style.width=progress+"%";
+    document.querySelectorAll(".card").forEach(c=>{
+      if(c!==card) c.classList.remove("active");
+    });
+
+    card.classList.toggle("active");
+
+    if(!card.dataset.opened){
+      completed++;
+      card.dataset.opened = true;
+      localStorage.setItem("progress", completed);
+      updateProgress();
+    }
   };
+
   grid.appendChild(card);
 });
 
+function updateProgress(){
+  let percent = Math.min((completed / courses.length) * 100,100);
+  progressBar.style.width = percent + "%";
+}
+
 function resetProgress(){
-  completed=0;
-  progressBar.style.width="0%";
-  infoBox.innerHTML="Прогресс сброшен. Выберите категорию снова.";
+  completed = 0;
+  localStorage.removeItem("progress");
+  progressBar.style.width = "0%";
 }
 </script>
 
