@@ -257,53 +257,6 @@ document.getElementById("eth").innerText=data.ethereum.usd;
 document.getElementById("usdt").innerText=data.tether.usd;
 });
 
-<script>
-function askAI(){
-let q = document.getElementById("question").value.toLowerCase();
-let answerBlock = document.getElementById("answer");
-
-answerBlock.innerHTML = "AI печатает...";
-
-setTimeout(() => {
-
-let responses = [];
-
-if(q.includes("блокчейн")){
-responses = [
-"Блокчейн — это распределённая база данных.",
-"Это технология хранения данных в цепочке блоков.",
-"Блокчейн обеспечивает прозрачность и безопасность."
-];
-}
-else if(q.includes("биткоин")){
-responses = [
-"Bitcoin — первая криптовалюта, созданная в 2009 году.",
-"BTC был создан Сатоши Накамото.",
-"Bitcoin — цифровое золото."
-];
-}
-else if(q.includes("как начать")){
-responses = [
-"Начните с изучения основ и создания кошелька.",
-"Выберите надёжную биржу и изучите риски.",
-"Сначала изучите безопасность и хранение средств."
-];
-}
-else{
-responses = [
-"Интересный вопрос! Криптовалюты — это цифровые активы.",
-"Рекомендую подробнее изучить тему Web3.",
-"Криптоиндустрия развивается очень быстро."
-];
-}
-
-let random = responses[Math.floor(Math.random()*responses.length)];
-answerBlock.innerHTML = random;
-
-}, 1000);
-}
-</script>
-
 let q=document.getElementById("question").value.toLowerCase();
 let response="";
 
@@ -359,4 +312,42 @@ appearOnScroll.observe(fader);
 </script>
 
 </body>
+  
+  <script>
+async function askAI() {
+const question = document.getElementById("question").value;
+const answerBlock = document.getElementById("answer");
+
+answerBlock.innerHTML = "AI печатает...";
+
+try {
+const response = await fetch("https://api.openai.com/v1/chat/completions", {
+method: "POST",
+headers: {
+"Content-Type": "application/json",
+"Authorization": ""Ключ удалил""
+},
+body: JSON.stringify({
+model: "gpt-4o-mini",
+messages: [
+{ role: "system", content: "Ты AI-помощник по криптовалюте. Отвечай кратко и понятно." },
+{ role: "user", content: question }
+]
+})
+});
+
+const data = await response.json();
+
+if(data.choices && data.choices.length > 0){
+answerBlock.innerHTML = data.choices[0].message.content;
+} else {
+answerBlock.innerHTML = "Ошибка ответа AI.";
+}
+
+} catch (error) {
+answerBlock.innerHTML = "Ошибка подключения к AI.";
+}
+}
+</script>
+  
 </html>
