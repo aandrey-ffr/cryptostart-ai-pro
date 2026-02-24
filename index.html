@@ -1,81 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CryptoStart AI</title>
+
 <style>
 body{
   margin:0;
   font-family:'Segoe UI',sans-serif;
   color:white;
   overflow:hidden;
-  height:100vh;
   background: linear-gradient(-45deg,#0f172a,#1e293b,#0b1120,#020617);
   background-size:400% 400%;
   animation: gradientMove 20s ease infinite;
 }
 
-/* плавное движение фона */
+/* Плавающий фон */
 @keyframes gradientMove{
   0%{background-position:0% 50%;}
   50%{background-position:100% 50%;}
   100%{background-position:0% 50%;}
 }
 
-/* монеты */
-.coin{
-  position:absolute;
-  width:90px;
-  opacity:0.12;
-  pointer-events:none;
+/* Навигация */
+nav{
+  position:fixed;
+  width:100%;
+  top:0;
+  display:flex;
+  justify-content:space-between;
+  padding:20px 40px;
+  background:rgba(0,0,0,0.5);
+  backdrop-filter:blur(10px);
+  z-index:10;
 }
 
-/* разные анимации */
-.coin1{
-  top:15%;
-  left:10%;
-  animation: float1 12s ease-in-out infinite;
+nav a{
+  color:white;
+  margin-left:20px;
+  text-decoration:none;
+  transition:0.3s;
 }
 
-.coin2{
-  top:60%;
-  left:80%;
-  animation: float2 18s ease-in-out infinite;
+nav a:hover{
+  color:#38bdf8;
 }
 
-.coin3{
-  top:40%;
-  left:50%;
-  animation: float3 15s ease-in-out infinite;
-}
-
-@keyframes float1{
-  0%{transform:translateY(0px) rotate(0deg);}
-  50%{transform:translateY(-40px) rotate(10deg);}
-  100%{transform:translateY(0px) rotate(0deg);}
-}
-
-@keyframes float2{
-  0%{transform:translateX(0px) rotate(0deg);}
-  50%{transform:translateX(-50px) rotate(-15deg);}
-  100%{transform:translateX(0px) rotate(0deg);}
-}
-
-@keyframes float3{
-  0%{transform:translate(0px,0px);}
-  50%{transform:translate(30px,-30px);}
-  100%{transform:translate(0px,0px);}
-}
-
+/* Главный блок */
 .hero{
-  position:relative;
   text-align:center;
-  top:35%;
-  transform:translateY(-50%);
+  margin-top:220px;
+  position:relative;
+  z-index:5;
 }
 
 h1{
   font-size:60px;
   margin-bottom:20px;
+  text-shadow:0 0 20px rgba(255,255,255,0.2);
 }
 
 p{
   opacity:0.8;
+  font-size:18px;
 }
 
 button{
@@ -91,6 +79,80 @@ button{
 }
 
 button:hover{
-  transform:scale(1.08);
+  transform:scale(1.1);
+}
+
+/* Монеты */
+.coin{
+  position:absolute;
+  width:100px;
+  opacity:0.15;
+  pointer-events:none;
+}
+
+/* Анимации */
+.coin1{
+  top:15%;
+  left:10%;
+  animation: float1 14s ease-in-out infinite;
+}
+
+.coin2{
+  top:65%;
+  left:80%;
+  animation: float2 18s ease-in-out infinite;
+}
+
+.coin3{
+  top:45%;
+  left:50%;
+  animation: float3 16s ease-in-out infinite;
+}
+
+@keyframes float1{
+  0%{transform:translateY(0px) rotate(0deg);}
+  50%{transform:translateY(-60px) rotate(15deg);}
+  100%{transform:translateY(0px) rotate(0deg);}
+}
+
+@keyframes float2{
+  0%{transform:translateX(0px) rotate(0deg);}
+  50%{transform:translateX(-80px) rotate(-20deg);}
+  100%{transform:translateX(0px) rotate(0deg);}
+}
+
+@keyframes float3{
+  0%{transform:translate(0px,0px);}
+  50%{transform:translate(40px,-40px);}
+  100%{transform:translate(0px,0px);}
 }
 </style>
+</head>
+
+<body>
+
+<!-- Монеты -->
+<img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png" class="coin coin1">
+<img src="https://cryptologos.cc/logos/ethereum-eth-logo.png" class="coin coin2">
+<img src="https://cryptologos.cc/logos/tether-usdt-logo.png" class="coin coin3">
+
+<nav>
+  <div><b>🚀 CryptoStart AI</b></div>
+  <div>
+    <a href="education.html">📚 Обучение</a>
+    <a href="rates.html">💰 Курсы</a>
+    <a href="ai.html">🤖 AI</a>
+    <a href="about.html">🌐 О проекте</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <h1>Изучай криптовалюты современно</h1>
+  <p>Блокчейн • Инвестиции • Безопасность • AI-помощник</p>
+  <button onclick="window.location.href='education.html'">
+    Начать обучение
+  </button>
+</div>
+
+</body>
+</html>
