@@ -124,10 +124,23 @@ padding:30px;
 background:#020617;
 margin-top:50px;
 }
+
+#tsparticles{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+z-index:-1;
+}
+
 </style>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
 </head>
 
 <body>
+
+<div id="tsparticles"></div>
 
 <nav>
 <div><b>CryptoStart AI</b></div>
@@ -214,6 +227,20 @@ response="Отличный вопрос! Криптовалюты — это ц�
 
 document.getElementById("answer").innerText=response;
 }
+</script>
+
+<script>
+tsParticles.load("tsparticles", {
+background: { color: "transparent" },
+particles: {
+number: { value: 70 },
+color: { value: "#3b82f6" },
+shape: { type: "circle" },
+opacity: { value: 0.3 },
+size: { value: 3 },
+move: { enable: true, speed: 1 }
+}
+});
 </script>
 
 </body>
