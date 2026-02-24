@@ -13,22 +13,33 @@ export default async function handler(req, res) {
         "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
       },
       body: JSON.stringify({
-        model: "gpt-3.5-turbo",
+        model: "gpt-4o-mini",
         messages: [
-          { role: "system", content: "Ты AI-помощник по криптовалюте. Отвечай кратко и понятно." },
-          { role: "user", content: message }
+          {
+            role: "system",
+            content: "Ты AI-помощник по криптовалюте. Отвечай кратко и понятно."
+          },
+          {
+            role: "user",
+            content: message
+          }
         ]
       }),
     });
 
     const data = await response.json();
 
+    if (!data.choices) {
+      console.error("OpenAI error:", data);
+      return res.status(500).json({ error: "OpenAI error" });
+    }
+
     return res.status(200).json({
       reply: data.choices[0].message.content,
     });
 
   } catch (error) {
-    console.error(error);
+    console.error("Server error:", error);
     return res.status(500).json({ error: "AI request failed" });
   }
 }
