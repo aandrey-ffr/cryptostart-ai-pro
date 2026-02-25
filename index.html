@@ -7,7 +7,7 @@
 
 <style>
 
-/* ===== ЧИСТЫЙ ГРАДИЕНТ (БЕЗ ПОЛОС) ===== */
+/* ===== ГЛУБОКИЙ ФИОЛЕТОВО-СИНИЙ ФОН ===== */
 
 body{
   margin:0;
@@ -15,32 +15,21 @@ body{
   color:white;
   overflow:hidden;
 
-  background:linear-gradient(
-    135deg,
-    #0f172a 0%,
-    #1e293b 40%,
-    #1e1b4b 70%,
-    #0f172a 100%
-  );
+  background:
+  radial-gradient(circle at 20% 30%, #312e81 0%, transparent 40%),
+  radial-gradient(circle at 80% 70%, #1e1b4b 0%, transparent 40%),
+  linear-gradient(135deg,#0b1120,#0f172a,#1e1b4b);
 
-  background-size:200% 200%;
-  animation:gradientMove 18s ease infinite;
-}
-
-@keyframes gradientMove{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
+  background-repeat:no-repeat;
+  background-attachment:fixed;
 }
 
 /* ===== NAVBAR ===== */
 
 nav{
   padding:20px 40px;
-  background:rgba(15,23,42,0.7);
-  backdrop-filter:blur(12px);
-  position:relative;
-  z-index:10;
+  background:rgba(10,15,30,0.6);
+  backdrop-filter:blur(15px);
   font-weight:bold;
 }
 
@@ -53,17 +42,24 @@ nav{
   z-index:5;
 }
 
+/* ===== КРАСИВЫЙ ЗАГОЛОВОК ===== */
+
 .hero h1{
-  font-size:54px;
-  margin-bottom:20px;
-  background:linear-gradient(90deg,#60a5fa,#8b5cf6);
+  font-size:58px;
+  font-weight:800;
+  letter-spacing:1px;
+
+  background:linear-gradient(90deg,#60a5fa,#a78bfa,#8b5cf6);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
+
+  text-shadow:0 0 30px rgba(139,92,246,0.4);
 }
 
 .hero p{
   color:#94a3b8;
-  margin-bottom:40px;
+  margin-top:20px;
+  margin-bottom:45px;
   font-size:18px;
 }
 
@@ -71,9 +67,9 @@ nav{
 
 .main-btn{
   display:inline-block;
-  padding:16px 40px;
+  padding:16px 45px;
   border-radius:14px;
-  background:linear-gradient(90deg,#3b82f6,#8b5cf6);
+  background:linear-gradient(90deg,#6366f1,#8b5cf6);
   color:white;
   text-decoration:none;
   font-weight:bold;
@@ -82,7 +78,7 @@ nav{
 
 .main-btn:hover{
   transform:translateY(-4px);
-  box-shadow:0 0 35px rgba(139,92,246,0.7);
+  box-shadow:0 0 40px rgba(139,92,246,0.8);
 }
 
 /* ===== ВТОРИЧНЫЕ КНОПКИ ===== */
@@ -119,31 +115,35 @@ nav{
   position:absolute;
   width:80px;
   height:80px;
-  opacity:0.18; /* СТАЛИ ВИДНЕЕ */
+  opacity:0.15;
   animation:float linear infinite;
   filter:drop-shadow(0 0 20px rgba(139,92,246,0.4));
 }
 
 .c1{ left:8%; animation-duration:20s; }
-.c2{ left:25%; animation-duration:24s; }
-.c3{ left:45%; animation-duration:22s; }
-.c4{ left:65%; animation-duration:26s; }
-.c5{ left:85%; animation-duration:28s; }
+.c2{ left:30%; animation-duration:24s; }
+.c3{ left:55%; animation-duration:22s; }
+.c4{ left:75%; animation-duration:26s; }
 
 @keyframes float{
   0%{ transform:translateY(110vh) rotate(0deg);}
   100%{ transform:translateY(-20vh) rotate(360deg);}
 }
 
-/* ===== МОБИЛКА ===== */
+/* ===== МОБИЛЬНАЯ ВЕРСИЯ ===== */
 
 @media (max-width:768px){
 
   body{overflow:auto;}
 
-  .hero{margin-top:80px;padding:0 20px;}
+  .hero{
+    margin-top:80px;
+    padding:0 20px;
+  }
 
-  .hero h1{font-size:34px;}
+  .hero h1{
+    font-size:34px;
+  }
 
   .main-btn{
     display:block;
@@ -175,7 +175,6 @@ nav{
   <h1>Изучай криптовалюты современно</h1>
   <p>Блокчейн • Инвестиции • Безопасность • AI-помощник</p>
 
-  <!-- ГЛАВНАЯ КНОПКА ПО СЕРЕДИНЕ -->
   <a href="education.html" class="main-btn">
     Начать обучение
   </a>
@@ -187,12 +186,11 @@ nav{
   </div>
 </div>
 
-<!-- SVG монеты -->
+<!-- Монеты -->
 <img class="coin c1" src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=029">
 <img class="coin c2" src="https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=029">
-<img class="coin c3" src="https://cryptologos.cc/logos/solana-sol-logo.svg?v=029">
-<img class="coin c4" src="https://cryptologos.cc/logos/binance-coin-bnb-logo.svg?v=029">
-<img class="coin c5" src="https://cryptologos.cc/logos/xrp-xrp-logo.svg?v=029">
+<img class="coin c3" src="https://cryptologos.cc/logos/binance-coin-bnb-logo.svg?v=029">
+<img class="coin c4" src="https://cryptologos.cc/logos/solana-sol-logo.svg?v=029">
 
 </body>
 </html>
