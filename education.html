@@ -131,6 +131,20 @@ h1{
   font-size:14px;
 }
 
+/* ===== НЕОНОВОЕ СВЕЧЕНИЕ ПРИ НАВЕДЕНИИ ===== */
+.card:hover .card-front{
+  box-shadow:
+    0 0 10px rgba(56,189,248,0.6),
+    0 0 25px rgba(139,92,246,0.6),
+    0 0 50px rgba(56,189,248,0.4);
+  border:1px solid rgba(139,92,246,0.6);
+}
+
+/* Плавность */
+.card-front{
+  transition:all 0.3s ease;
+}
+
 .icon{
   font-size:40px;
   margin-bottom:15px;
