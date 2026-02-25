@@ -7,73 +7,76 @@
 
 <style>
 
-/* ===== ЧИСТЫЙ ГРАДИЕНТ (БЕЗ ПОЛОС) ===== */
+/* =========================
+   СБРОС
+========================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
 body{
-  margin:0;
   font-family:Segoe UI, sans-serif;
   color:white;
   overflow:hidden;
+  min-height:100vh;
 
-  background:linear-gradient(
-    135deg,
-    #0f172a 0%,
-    #1e293b 40%,
-    #1e1b4b 70%,
-    #0f172a 100%
-  );
-
-  background-size:200% 200%;
-  animation:gradientMove 18s ease infinite;
+  /* ГЛУБОКИЙ ФОН */
+  background:
+    radial-gradient(circle at 20% 30%, rgba(139,92,246,0.25), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(59,130,246,0.25), transparent 40%),
+    linear-gradient(135deg, #0b1120 0%, #1e1b4b 50%, #312e81 100%);
 }
 
-@keyframes gradientMove{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
-}
-
-/* ===== NAVBAR ===== */
-
+/* =========================
+   NAVBAR
+========================= */
 nav{
   padding:20px 40px;
-  background:rgba(15,23,42,0.7);
-  backdrop-filter:blur(12px);
+  background:rgba(15,23,42,0.75);
+  backdrop-filter:blur(14px);
+  font-weight:bold;
   position:relative;
   z-index:10;
-  font-weight:bold;
 }
 
-/* ===== HERO ===== */
-
+/* =========================
+   HERO
+========================= */
 .hero{
   text-align:center;
   margin-top:120px;
   position:relative;
-  z-index:5;
+  z-index:10;
 }
 
 .hero h1{
-  font-size:54px;
+  font-size:56px;
+  font-weight:800;
   margin-bottom:20px;
-  background:linear-gradient(90deg,#60a5fa,#8b5cf6);
+
+  background:linear-gradient(90deg,#60a5fa,#a78bfa,#8b5cf6);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
+
+  text-shadow:0 0 35px rgba(139,92,246,0.5);
 }
 
 .hero p{
   color:#94a3b8;
-  margin-bottom:40px;
+  margin-bottom:45px;
   font-size:18px;
 }
 
-/* ===== ГЛАВНАЯ КНОПКА ===== */
-
+/* =========================
+   ГЛАВНАЯ КНОПКА
+========================= */
 .main-btn{
   display:inline-block;
-  padding:16px 40px;
+  padding:16px 45px;
   border-radius:14px;
-  background:linear-gradient(90deg,#3b82f6,#8b5cf6);
+  background:linear-gradient(90deg,#6366f1,#8b5cf6);
   color:white;
   text-decoration:none;
   font-weight:bold;
@@ -81,12 +84,13 @@ nav{
 }
 
 .main-btn:hover{
-  transform:translateY(-4px);
-  box-shadow:0 0 35px rgba(139,92,246,0.7);
+  transform:translateY(-5px);
+  box-shadow:0 0 45px rgba(139,92,246,0.9);
 }
 
-/* ===== ВТОРИЧНЫЕ КНОПКИ ===== */
-
+/* =========================
+   ВТОРИЧНЫЕ КНОПКИ
+========================= */
 .hero-links{
   margin-top:50px;
   display:flex;
@@ -100,7 +104,7 @@ nav{
   border-radius:14px;
   text-decoration:none;
   color:#cbd5e1;
-  background:rgba(30,41,59,0.5);
+  background:rgba(30,41,59,0.4);
   backdrop-filter:blur(8px);
   border:1px solid rgba(255,255,255,0.05);
   transition:0.3s;
@@ -109,52 +113,85 @@ nav{
 .hero-links a:hover{
   transform:translateY(-4px);
   border:1px solid #8b5cf6;
-  box-shadow:0 0 20px rgba(139,92,246,0.6);
+  box-shadow:0 0 25px rgba(139,92,246,0.7);
   color:white;
 }
 
-/* ===== МОНЕТЫ ===== */
+/* =========================
+   ГЛУБИНА (BLUR СЛОЙ)
+========================= */
+.blur-layer{
+  position:absolute;
+  width:600px;
+  height:600px;
+  background:radial-gradient(circle, rgba(139,92,246,0.3), transparent 60%);
+  filter:blur(120px);
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  z-index:1;
+}
 
+/* =========================
+   МОНЕТЫ (ХАОТИЧНЫЕ)
+========================= */
 .coin{
   position:absolute;
-  width:80px;
-  height:80px;
-  opacity:0.18; /* СТАЛИ ВИДНЕЕ */
-  animation:float linear infinite;
-  filter:drop-shadow(0 0 20px rgba(139,92,246,0.4));
+  width:85px;
+  height:85px;
+  opacity:0.22;
+  filter:drop-shadow(0 0 20px rgba(139,92,246,0.5));
+  animation:floatUp linear infinite;
 }
 
-.c1{ left:8%; animation-duration:20s; }
-.c2{ left:25%; animation-duration:24s; }
-.c3{ left:45%; animation-duration:22s; }
-.c4{ left:65%; animation-duration:26s; }
-.c5{ left:85%; animation-duration:28s; }
+/* разные позиции и скорости */
+.c1{ left:8%; animation-duration:19s; }
+.c2{ left:22%; animation-duration:24s; }
+.c3{ left:40%; animation-duration:21s; }
+.c4{ left:60%; animation-duration:26s; }
+.c5{ left:78%; animation-duration:23s; }
+.c6{ left:90%; animation-duration:28s; }
 
-@keyframes float{
-  0%{ transform:translateY(110vh) rotate(0deg);}
-  100%{ transform:translateY(-20vh) rotate(360deg);}
+@keyframes floatUp{
+  0%{
+    transform:translateY(120vh) translateX(0px) rotate(0deg);
+  }
+
+  20%{
+    transform:translateY(90vh) translateX(-30px) rotate(60deg);
+  }
+
+  40%{
+    transform:translateY(60vh) translateX(40px) rotate(140deg);
+  }
+
+  60%{
+    transform:translateY(30vh) translateX(-20px) rotate(220deg);
+  }
+
+  80%{
+    transform:translateY(10vh) translateX(25px) rotate(300deg);
+  }
+
+  100%{
+    transform:translateY(-25vh) translateX(-10px) rotate(360deg);
+  }
 }
 
-/* ===== МОБИЛКА ===== */
-
-@media (max-width:768px){
+/* =========================
+   МОБИЛКА
+========================= */
+@media(max-width:768px){
 
   body{overflow:auto;}
 
-  .hero{margin-top:80px;padding:0 20px;}
-
-  .hero h1{font-size:34px;}
-
-  .main-btn{
-    display:block;
-    margin:0 auto;
-    max-width:280px;
+  .hero{
+    margin-top:80px;
+    padding:0 20px;
   }
 
-  .hero-links a{
-    width:100%;
-    max-width:260px;
-    text-align:center;
+  .hero h1{
+    font-size:34px;
   }
 
   .coin{
@@ -175,7 +212,6 @@ nav{
   <h1>Изучай криптовалюты современно</h1>
   <p>Блокчейн • Инвестиции • Безопасность • AI-помощник</p>
 
-  <!-- ГЛАВНАЯ КНОПКА ПО СЕРЕДИНЕ -->
   <a href="education.html" class="main-btn">
     Начать обучение
   </a>
@@ -187,12 +223,16 @@ nav{
   </div>
 </div>
 
-<!-- SVG монеты -->
+<!-- слой глубины -->
+<div class="blur-layer"></div>
+
+<!-- Монеты -->
 <img class="coin c1" src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=029">
 <img class="coin c2" src="https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=029">
 <img class="coin c3" src="https://cryptologos.cc/logos/solana-sol-logo.svg?v=029">
 <img class="coin c4" src="https://cryptologos.cc/logos/binance-coin-bnb-logo.svg?v=029">
 <img class="coin c5" src="https://cryptologos.cc/logos/xrp-xrp-logo.svg?v=029">
+<img class="coin c6" src="https://cryptologos.cc/logos/cardano-ada-logo.svg?v=029">
 
 </body>
 </html>
