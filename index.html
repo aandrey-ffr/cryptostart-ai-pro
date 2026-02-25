@@ -192,5 +192,61 @@ nav{
 <img class="coin c5" src="https://cryptologos.cc/logos/xrp-xrp-logo.svg?v=029">
 <img class="coin c6" src="https://cryptologos.cc/logos/cardano-ada-logo.svg?v=029">
 
+<script>
+
+const coins = [
+  "https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=029",
+  "https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=029",
+  "https://cryptologos.cc/logos/solana-sol-logo.svg?v=029",
+  "https://cryptologos.cc/logos/binance-coin-bnb-logo.svg?v=029",
+  "https://cryptologos.cc/logos/xrp-xrp-logo.svg?v=029",
+  "https://cryptologos.cc/logos/cardano-ada-logo.svg?v=029",
+  "https://cryptologos.cc/logos/polygon-matic-logo.svg?v=029"
+];
+
+function createCoin(){
+  const coin = document.createElement("img");
+  coin.src = coins[Math.floor(Math.random() * coins.length)];
+  coin.className = "floating-coin";
+
+  const size = Math.random() * 50 + 50;
+  coin.style.width = size + "px";
+  coin.style.height = size + "px";
+
+  coin.style.left = Math.random() * 100 + "vw";
+  coin.style.animationDuration = (Math.random() * 8 + 8) + "s";
+  coin.style.opacity = Math.random() * 0.2 + 0.15;
+
+  document.body.appendChild(coin);
+
+  setTimeout(()=>{
+    coin.remove();
+  },15000);
+}
+
+setInterval(createCoin, 700);
+
+/* ===== ДИНАМИЧЕСКИЕ ЛЕТАЮЩИЕ МОНЕТЫ ===== */
+
+.floating-coin{
+  position:fixed;
+  bottom:-120px;
+  pointer-events:none;
+  animation:flyUp linear forwards;
+  filter:drop-shadow(0 0 20px rgba(139,92,246,0.5));
+  z-index:1;
+}
+
+@keyframes flyUp{
+  0%{
+    transform:translateY(0) rotate(0deg);
+  }
+  100%{
+    transform:translateY(-120vh) rotate(360deg);
+  }
+}
+
+</script>
+
 </body>
 </html>
