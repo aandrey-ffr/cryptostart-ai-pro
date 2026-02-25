@@ -26,7 +26,7 @@ body{
 /* Монеты */
 .coin{
   position:fixed;
-  font-size:28px;
+  font-size:26px;
   opacity:0.05;
   animation:float 25s linear infinite;
   pointer-events:none;
@@ -66,14 +66,25 @@ h1{
   margin-bottom:60px;
 }
 
-/* ===== СЕТКА 5 КОЛОНОК ===== */
+/* ===== СЕТКА ===== */
 .grid{
   display:grid;
   grid-template-columns:repeat(5, 1fr);
   gap:30px;
 }
 
-/* ===== КАРТОЧКА ===== */
+/* Центрируем вторую строку */
+.grid .card:nth-child(6){
+  grid-column:2;
+}
+.grid .card:nth-child(7){
+  grid-column:3;
+}
+.grid .card:nth-child(8){
+  grid-column:4;
+}
+
+/* ===== КАРТОЧКИ ===== */
 .card{
   perspective:1000px;
   height:220px;
@@ -127,7 +138,7 @@ h1{
                0 0 20px #8b5cf6;
 }
 
-/* Прогресс */
+/* ===== ПРОГРЕСС ===== */
 .progress{
   margin-top:60px;
   height:6px;
@@ -147,6 +158,9 @@ h1{
 @media(max-width:1100px){
   .grid{
     grid-template-columns:repeat(3, 1fr);
+  }
+  .grid .card{
+    grid-column:auto !important;
   }
 }
 
@@ -179,7 +193,7 @@ h1{
 
 <div class="grid">
 
-<!-- ПЕРВЫЙ РЯД -->
+<!-- Первый ряд -->
 <div class="card" onclick="toggleCard(this)">
 <div class="card-inner">
 <div class="card-front"><div class="icon">₿</div>Bitcoin</div>
@@ -210,7 +224,7 @@ h1{
 <div class="card-back">Попытка заработать на изменении цены.</div>
 </div></div>
 
-<!-- ВТОРОЙ РЯД -->
+<!-- Второй ряд (центрированный) -->
 <div class="card" onclick="toggleCard(this)">
 <div class="card-inner">
 <div class="card-front"><div class="icon">🔐</div>Безопасность</div>
@@ -239,27 +253,45 @@ h1{
 
 <script>
 
+let openedCards = new Set();
+
 function toggleCard(card){
-  const cards=document.querySelectorAll(".card");
+    const index = Array.from(document.querySelectorAll(".card")).indexOf(card);
 
-  if(card.classList.contains("active")){
-      card.classList.remove("active");
-  } else {
-      cards.forEach(c=>c.classList.remove("active"));
-      card.classList.add("active");
-  }
+    card.classList.toggle("active");
 
-  updateProgress();
+    if(card.classList.contains("active")){
+        openedCards.add(index);
+    } else {
+        openedCards.delete(index);
+    }
+
+    localStorage.setItem("cryptoProgress", JSON.stringify([...openedCards]));
+    updateProgress();
 }
 
 function updateProgress(){
-  const total=document.querySelectorAll(".card").length;
-  const opened=document.querySelectorAll(".card.active").length;
-  const percent=(opened/total)*100;
-  document.getElementById("progressBar").style.width=percent+"%";
+    const total = document.querySelectorAll(".card").length;
+    const percent = (openedCards.size / total) * 100;
+    document.getElementById("progressBar").style.width = percent + "%";
 }
+
+window.onload = function(){
+    const saved = JSON.parse(localStorage.getItem("cryptoProgress")) || [];
+    const cards = document.querySelectorAll(".card");
+
+    saved.forEach(i=>{
+        if(cards[i]){
+            cards[i].classList.add("active");
+            openedCards.add(i);
+        }
+    });
+
+    updateProgress();
+};
 
 </script>
 
 </body>
+</html>
 </html>
