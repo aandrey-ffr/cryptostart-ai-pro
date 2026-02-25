@@ -13,7 +13,7 @@ body{
   margin:0;
   font-family:Segoe UI, sans-serif;
   color:white;
-  background:#0f172a;
+  background:#0b1220;
   overflow:hidden;
 }
 
@@ -53,10 +53,13 @@ nav a.active{
 
 .table-wrapper{
   display:inline-block;
-  background:rgba(30,41,59,0.95);
+  background:rgba(17,24,39,0.95);
   padding:30px;
   border-radius:18px;
-  box-shadow:0 0 40px rgba(0,0,0,0.4);
+  border:1px solid rgba(34,197,94,0.3);
+  box-shadow:
+    0 0 20px rgba(34,197,94,0.4),
+    0 0 50px rgba(34,197,94,0.2);
 }
 
 table{
@@ -84,95 +87,62 @@ button{
 
 button:hover{
   background:#16a34a;
+  box-shadow:0 0 15px #22c55e;
 }
 
-/* ===== TRADING BACKGROUND ===== */
+/* ===== FUTURES CANDLE BACKGROUND ===== */
 
-.chart-container{
+.candles{
   position:absolute;
   width:100%;
   height:100%;
   top:0;
   left:0;
+  overflow:hidden;
   z-index:0;
-  opacity:0.12;
+  opacity:0.2;
 }
 
-.chart{
+.candle{
   position:absolute;
-  width:1200px;
-  height:400px;
-  bottom:0;
-  animation:move 25s linear infinite;
+  width:14px;
+  border-radius:3px;
+  animation:floatUp linear infinite;
 }
 
-.chart path{
-  fill:none;
-  stroke:#22c55e;
-  stroke-width:4;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-  filter:drop-shadow(0 0 8px #22c55e);
-  animation:volatility 2s infinite ease-in-out;
+/* фитиль */
+.candle::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  width:2px;
+  background:inherit;
+  top:-20px;
+  bottom:-20px;
 }
 
-/* Движение графика */
-@keyframes move{
-  0%{ transform:translateX(-200px); }
-  100%{ transform:translateX(300px); }
-}
-
-/* Быстрые отскоки */
-@keyframes volatility{
-  0%{ transform:translateY(0); }
-  25%{ transform:translateY(-8px); }
-  50%{ transform:translateY(12px); }
-  75%{ transform:translateY(-6px); }
-  100%{ transform:translateY(0); }
+/* движение вверх */
+@keyframes floatUp{
+  0%{
+    transform:translateY(100vh);
+    opacity:0;
+  }
+  10%{
+    opacity:1;
+  }
+  100%{
+    transform:translateY(-120vh);
+    opacity:0;
+  }
 }
 
 </style>
 </head>
 <body>
 
-<!-- TRADING BACKGROUND -->
-<div class="chart-container">
-
-<svg class="chart" viewBox="0 0 1200 400">
-<path d="
-M0 320 
-L100 260 
-L180 300 
-L260 200 
-L340 230 
-L420 160 
-L520 210 
-L600 130 
-L700 180 
-L820 100 
-L950 150 
-L1100 60
-"/>
-</svg>
-
-<svg class="chart" style="animation-duration:35s; opacity:0.6;" viewBox="0 0 1200 400">
-<path d="
-M0 350 
-L120 290 
-L220 330 
-L300 250 
-L380 280 
-L480 190 
-L580 240 
-L650 170 
-L760 210 
-L900 140 
-L1050 190 
-L1180 110
-"/>
-</svg>
-
-</div>
+<!-- CANDLE BACKGROUND -->
+<div class="candles"></div>
 
 <nav>
   <div><b>🚀 CryptoStart AI</b></div>
@@ -204,6 +174,38 @@ L1180 110
 </div>
 
 <script>
+
+/* ===== ГЕНЕРАЦИЯ СВЕЧЕЙ ===== */
+
+const container = document.querySelector(".candles");
+
+function createCandle(){
+  const candle = document.createElement("div");
+  candle.classList.add("candle");
+
+  const height = Math.random() * 100 + 40;
+  const left = Math.random() * 100;
+  const duration = Math.random() * 10 + 10;
+  const isGreen = Math.random() > 0.5;
+
+  candle.style.height = height + "px";
+  candle.style.left = left + "vw";
+  candle.style.background = isGreen ? "#22c55e" : "#ef4444";
+  candle.style.animationDuration = duration + "s";
+
+  container.appendChild(candle);
+
+  setTimeout(() => {
+    candle.remove();
+  }, duration * 1000);
+}
+
+/* каждые 700мс новая свеча */
+setInterval(createCandle, 700);
+
+
+/* ===== ЗАГРУЗКА ЦЕН ===== */
+
 async function loadPrices(){
   try{
     const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,tether,binancecoin,solana,ripple&vs_currencies=usd");
@@ -215,11 +217,14 @@ async function loadPrices(){
     bnb.innerText = data.binancecoin.usd;
     sol.innerText = data.solana.usd;
     xrp.innerText = data.ripple.usd;
+
   }catch{
     alert("Ошибка загрузки цен");
   }
 }
+
 loadPrices();
+
 </script>
 
 </body>
