@@ -7,30 +7,31 @@
 
 <style>
 
-/* ===== ФОН ===== */
+/* ===== ОСНОВА ===== */
 
 body{
   margin:0;
   font-family:Segoe UI, sans-serif;
   color:white;
-  background:linear-gradient(135deg,#0f172a,#1e293b);
   overflow:hidden;
+  background:linear-gradient(135deg,#0f172a,#1e293b,#0f172a);
+  background-size:400% 400%;
+  animation:bgMove 20s infinite alternate;
+}
+
+@keyframes bgMove{
+  0%{background-position:0% 50%;}
+  100%{background-position:100% 50%;}
 }
 
 /* ===== НАВБАР ===== */
 
 nav{
   padding:20px 40px;
-  background:rgba(15,23,42,0.9);
+  background:rgba(15,23,42,0.85);
   backdrop-filter:blur(10px);
-  display:flex;
-  justify-content:flex-start;
   position:relative;
   z-index:10;
-}
-
-nav b{
-  font-size:18px;
 }
 
 /* ===== HERO ===== */
@@ -39,7 +40,7 @@ nav b{
   text-align:center;
   margin-top:120px;
   position:relative;
-  z-index:3;
+  z-index:5;
 }
 
 .hero h1{
@@ -65,13 +66,13 @@ nav b{
 
 .hero button:hover{
   transform:scale(1.05);
-  box-shadow:0 0 20px rgba(139,92,246,0.5);
+  box-shadow:0 0 25px rgba(139,92,246,0.6);
 }
 
-/* ===== ССЫЛКИ ПОД КНОПКОЙ ===== */
+/* ===== КНОПКИ НИЖЕ ===== */
 
 .hero-links{
-  margin-top:50px;
+  margin-top:80px; /* ОПУСТИЛ НИЖЕ */
   display:flex;
   justify-content:center;
   gap:30px;
@@ -96,23 +97,40 @@ nav b{
   box-shadow:0 0 20px rgba(139,92,246,0.4);
 }
 
-/* ===== ФОНОВЫЕ МОНЕТЫ ===== */
+/* ===== ХАОТИЧНЫЕ МОНЕТЫ ===== */
 
 .coin{
   position:absolute;
-  font-size:120px;
-  opacity:0.05;
+  font-size:60px;
+  opacity:0.07;
+  animation:float linear infinite;
 }
 
-.coin1{ top:120px; left:100px; }
-.coin2{ bottom:150px; right:200px; }
+@keyframes float{
+  0%{
+    transform:translateY(100vh) rotate(0deg);
+  }
+  100%{
+    transform:translateY(-20vh) rotate(360deg);
+  }
+}
+
+/* Разные скорости */
+.c1{ left:5%; animation-duration:18s; }
+.c2{ left:15%; animation-duration:25s; }
+.c3{ left:30%; animation-duration:20s; }
+.c4{ left:45%; animation-duration:30s; }
+.c5{ left:60%; animation-duration:22s; }
+.c6{ left:75%; animation-duration:28s; }
+.c7{ left:85%; animation-duration:24s; }
+.c8{ left:95%; animation-duration:32s; }
 
 </style>
 </head>
 <body>
 
 <nav>
-  <b>🚀 CryptoStart AI</b>
+  🚀 CryptoStart AI
 </nav>
 
 <div class="hero">
@@ -131,9 +149,15 @@ nav b{
   </div>
 </div>
 
-<!-- Фон -->
-<div class="coin coin1">₿</div>
-<div class="coin coin2">◆</div>
+<!-- МНОГО КРИПТЫ -->
+<div class="coin c1">₿</div>
+<div class="coin c2">◆</div>
+<div class="coin c3">Ξ</div>
+<div class="coin c4">◎</div>
+<div class="coin c5">₮</div>
+<div class="coin c6">✕</div>
+<div class="coin c7">Ł</div>
+<div class="coin c8">Ð</div>
 
 </body>
 </html>
