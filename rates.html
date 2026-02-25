@@ -7,30 +7,22 @@
 
 <style>
 
-/* ===== ФОН ===== */
+/* ===== ОСНОВНОЙ ФОН ===== */
 
 body{
   margin:0;
   font-family:Segoe UI, sans-serif;
   color:white;
-  background:linear-gradient(-45deg,#0f172a,#1e293b,#0f172a,#1e1b4b);
-  background-size:400% 400%;
-  animation:gradientMove 18s ease infinite;
+  background:#0f172a;
   overflow:hidden;
-}
-
-@keyframes gradientMove{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
 }
 
 /* ===== НАВБАР ===== */
 
 nav{
   padding:20px 40px;
-  background:rgba(15,23,42,0.85);
-  backdrop-filter:blur(12px);
+  background:rgba(15,23,42,0.9);
+  backdrop-filter:blur(10px);
   display:flex;
   justify-content:space-between;
   position:relative;
@@ -38,28 +30,16 @@ nav{
 }
 
 nav a{
-  color:#cbd5e1;
+  color:#94a3b8;
   margin-left:20px;
   text-decoration:none;
-  position:relative;
-  padding-bottom:4px;
   transition:0.3s;
 }
 
-nav a:hover{ color:#38bdf8; }
+nav a:hover{ color:#22c55e; }
 
 nav a.active{
-  color:#38bdf8;
-}
-
-nav a.active::after{
-  content:"";
-  position:absolute;
-  bottom:0;
-  left:0;
-  width:100%;
-  height:2px;
-  background:linear-gradient(90deg,#38bdf8,#8b5cf6);
+  color:#22c55e;
 }
 
 /* ===== КОНТЕНТ ===== */
@@ -73,11 +53,10 @@ nav a.active::after{
 
 .table-wrapper{
   display:inline-block;
-  background:rgba(30,41,59,0.9);
+  background:rgba(30,41,59,0.95);
   padding:30px;
   border-radius:18px;
-  border:1px solid rgba(255,255,255,0.05);
-  box-shadow:0 0 40px rgba(139,92,246,0.25);
+  box-shadow:0 0 40px rgba(0,0,0,0.4);
 }
 
 table{
@@ -87,93 +66,112 @@ table{
 
 th, td{
   padding:14px 20px;
-  border-bottom:1px solid rgba(255,255,255,0.08);
+  border-bottom:1px solid rgba(255,255,255,0.05);
 }
 
-th{ color:#38bdf8; }
+th{ color:#22c55e; }
 
 button{
   margin-top:20px;
   padding:10px 20px;
   border:none;
   border-radius:10px;
-  background:linear-gradient(90deg,#38bdf8,#8b5cf6);
-  color:white;
+  background:#22c55e;
+  color:black;
   cursor:pointer;
   transition:0.3s;
 }
 
 button:hover{
-  transform:scale(1.05);
-  box-shadow:0 0 20px #8b5cf6;
+  background:#16a34a;
 }
 
-/* ===== НЕРВНАЯ РЫНОЧНАЯ СТРЕЛКА ===== */
+/* ===== TRADING BACKGROUND ===== */
 
-.market-container{
+.chart-container{
   position:absolute;
   width:100%;
   height:100%;
   top:0;
   left:0;
-  overflow:hidden;
   z-index:0;
-  opacity:0.08;
+  opacity:0.12;
 }
 
-.market-svg{
-  width:1400px;
+.chart{
   position:absolute;
-  bottom:50px;
-  left:-300px;
-  animation:slide 20s linear infinite;
+  width:1200px;
+  height:400px;
+  bottom:0;
+  animation:move 25s linear infinite;
 }
 
-.market-path{
+.chart path{
   fill:none;
-  stroke:#ef4444;
-  stroke-width:10;
-  stroke-linejoin:round;
+  stroke:#22c55e;
+  stroke-width:4;
   stroke-linecap:round;
-  filter:drop-shadow(0 0 15px #ef4444);
-  animation:shake 1.8s infinite ease-in-out;
+  stroke-linejoin:round;
+  filter:drop-shadow(0 0 8px #22c55e);
+  animation:volatility 2s infinite ease-in-out;
 }
 
-/* движение слева направо */
-@keyframes slide{
-  0%{transform:translateX(0);}
-  100%{transform:translateX(400px);}
+/* Движение графика */
+@keyframes move{
+  0%{ transform:translateX(-200px); }
+  100%{ transform:translateX(300px); }
 }
 
-/* нестабильный быстрый отскок */
-@keyframes shake{
-  0%{transform:translateY(0);}
-  15%{transform:translateY(-15px);}
-  30%{transform:translateY(20px);}
-  45%{transform:translateY(-25px);}
-  60%{transform:translateY(15px);}
-  75%{transform:translateY(-10px);}
-  100%{transform:translateY(0);}
+/* Быстрые отскоки */
+@keyframes volatility{
+  0%{ transform:translateY(0); }
+  25%{ transform:translateY(-8px); }
+  50%{ transform:translateY(12px); }
+  75%{ transform:translateY(-6px); }
+  100%{ transform:translateY(0); }
 }
 
 </style>
 </head>
 <body>
 
-<!-- Фон рынка -->
-<div class="market-container">
-  <svg class="market-svg" viewBox="0 0 1200 400">
-    <path class="market-path"
-      d="M0 300 
-         L150 200 
-         L250 260 
-         L400 150 
-         L520 220 
-         L700 100 
-         L850 180 
-         L1050 60"
-    />
-  </svg>
+<!-- TRADING BACKGROUND -->
+<div class="chart-container">
+
+<svg class="chart" viewBox="0 0 1200 400">
+<path d="
+M0 320 
+L100 260 
+L180 300 
+L260 200 
+L340 230 
+L420 160 
+L520 210 
+L600 130 
+L700 180 
+L820 100 
+L950 150 
+L1100 60
+"/>
+</svg>
+
+<svg class="chart" style="animation-duration:35s; opacity:0.6;" viewBox="0 0 1200 400">
+<path d="
+M0 350 
+L120 290 
+L220 330 
+L300 250 
+L380 280 
+L480 190 
+L580 240 
+L650 170 
+L760 210 
+L900 140 
+L1050 190 
+L1180 110
+"/>
+</svg>
+
 </div>
 
 <nav>
@@ -203,11 +201,9 @@ button:hover{
 
 <button onclick="loadPrices()">Обновить</button>
 </div>
-
 </div>
 
 <script>
-
 async function loadPrices(){
   try{
     const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,tether,binancecoin,solana,ripple&vs_currencies=usd");
@@ -219,14 +215,11 @@ async function loadPrices(){
     bnb.innerText = data.binancecoin.usd;
     sol.innerText = data.solana.usd;
     xrp.innerText = data.ripple.usd;
-
   }catch{
     alert("Ошибка загрузки цен");
   }
 }
-
 loadPrices();
-
 </script>
 
 </body>
