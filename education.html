@@ -7,7 +7,7 @@
 
 <style>
 
-/* ===== ЖИВОЙ ФОН ===== */
+/* ===== ЖИВОЙ ГРАДИЕНТ ===== */
 body{
   margin:0;
   font-family:Segoe UI, sans-serif;
@@ -27,8 +27,8 @@ body{
 /* ===== ПЛАВАЮЩИЕ МОНЕТЫ ===== */
 .coin{
   position:fixed;
-  font-size:30px;
-  opacity:0.08;
+  font-size:28px;
+  opacity:0.05;
   animation:float 25s linear infinite;
   pointer-events:none;
 }
@@ -38,11 +38,11 @@ body{
   100%{transform:translateY(-20vh) rotate(360deg);}
 }
 
-/* ===== НАВ ===== */
+/* ===== НАВБАР ===== */
 nav{
   padding:20px 40px;
   background:rgba(15,23,42,0.9);
-  backdrop-filter:blur(10px);
+  backdrop-filter:blur(12px);
   display:flex;
   justify-content:space-between;
 }
@@ -59,7 +59,7 @@ nav a:hover{
 
 /* ===== КОНТЕЙНЕР ===== */
 .container{
-  padding:60px 30px;
+  padding:70px 30px;
   max-width:1300px;
   margin:auto;
   position:relative;
@@ -68,7 +68,25 @@ nav a:hover{
 
 h1{
   text-align:center;
-  margin-bottom:50px;
+  margin-bottom:60px;
+}
+
+/* ===== ГЛУБИНА ПОД СЕТКОЙ ===== */
+.grid-wrapper{
+  position:relative;
+}
+
+.grid-wrapper::before{
+  content:"";
+  position:absolute;
+  top:-120px;
+  left:50%;
+  transform:translateX(-50%);
+  width:900px;
+  height:500px;
+  background:radial-gradient(circle, rgba(139,92,246,0.25), transparent 70%);
+  filter:blur(120px);
+  z-index:-1;
 }
 
 /* ===== СЕТКА ===== */
@@ -78,11 +96,16 @@ h1{
   gap:30px;
 }
 
-/* ===== КАРТОЧКИ ===== */
+/* ===== КАРТОЧКА ===== */
 .card{
   perspective:1000px;
   height:230px;
   cursor:pointer;
+  transition:0.3s ease;
+}
+
+.card:hover{
+  transform:translateY(-8px) scale(1.03);
 }
 
 .card-inner{
@@ -118,9 +141,10 @@ h1{
 .card-back{
   transform:rotateY(180deg);
   font-size:14px;
+  line-height:1.4;
 }
 
-/* ===== НЕОНОВЫЕ ИКОНКИ ===== */
+/* ===== ИКОНКИ ===== */
 .icon{
   font-size:42px;
   margin-bottom:15px;
@@ -135,7 +159,7 @@ h1{
                0 0 40px #38bdf8;
 }
 
-/* НЕОНОВОЕ СВЕЧЕНИЕ КАРТОЧКИ */
+/* НЕОНОВОЕ СВЕЧЕНИЕ АКТИВНОЙ */
 .card.active .card-front{
   box-shadow:0 0 20px #38bdf8,
              0 0 40px #8b5cf6;
@@ -163,11 +187,10 @@ h1{
 
 <!-- Плавающие монеты -->
 <div class="coin" style="left:5%; animation-delay:0s;">₿</div>
-<div class="coin" style="left:20%; animation-delay:5s;">Ξ</div>
-<div class="coin" style="left:35%; animation-delay:10s;">₿</div>
-<div class="coin" style="left:55%; animation-delay:3s;">Ξ</div>
-<div class="coin" style="left:75%; animation-delay:8s;">₿</div>
-<div class="coin" style="left:90%; animation-delay:12s;">Ξ</div>
+<div class="coin" style="left:20%; animation-delay:6s;">Ξ</div>
+<div class="coin" style="left:40%; animation-delay:12s;">₿</div>
+<div class="coin" style="left:60%; animation-delay:4s;">Ξ</div>
+<div class="coin" style="left:80%; animation-delay:9s;">₿</div>
 
 <nav>
   <div><b>🚀 CryptoStart AI</b></div>
@@ -182,6 +205,7 @@ h1{
 <div class="container">
 <h1>Обучение криптовалютам</h1>
 
+<div class="grid-wrapper">
 <div class="grid">
 
 <div class="card" onclick="toggleCard(this)">
@@ -199,13 +223,13 @@ h1{
 <div class="card" onclick="toggleCard(this)">
 <div class="card-inner">
 <div class="card-front"><div class="icon">⛓</div>Блокчейн</div>
-<div class="card-back">Система хранения всех переводов.</div>
+<div class="card-back">Система, где записываются все переводы.</div>
 </div></div>
 
 <div class="card" onclick="toggleCard(this)">
 <div class="card-inner">
 <div class="card-front"><div class="icon">💳</div>Кошелёк</div>
-<div class="card-back">Место, где хранятся ваши криптомонеты.</div>
+<div class="card-back">Программа для хранения ваших монет.</div>
 </div></div>
 
 <div class="card" onclick="toggleCard(this)">
@@ -217,13 +241,13 @@ h1{
 <div class="card" onclick="toggleCard(this)">
 <div class="card-inner">
 <div class="card-front"><div class="icon">📈</div>Трейдинг</div>
-<div class="card-back">Заработок на изменении цены.</div>
+<div class="card-back">Попытка заработать на изменении цены.</div>
 </div></div>
 
 <div class="card" onclick="toggleCard(this)">
 <div class="card-inner">
 <div class="card-front"><div class="icon">🔐</div>Безопасность</div>
-<div class="card-back">Никому не сообщайте свои пароли.</div>
+<div class="card-back">Никому не сообщайте свои пароли и коды.</div>
 </div></div>
 
 <div class="card" onclick="toggleCard(this)">
@@ -233,6 +257,7 @@ h1{
 </div></div>
 
 </div>
+</div>
 
 <div class="progress">
 <div class="progress-bar" id="progressBar"></div>
@@ -241,15 +266,17 @@ h1{
 </div>
 
 <script>
+
 function toggleCard(card){
   const cards=document.querySelectorAll(".card");
-  cards.forEach(c=>{
-    if(c!==card){
-      c.classList.remove("active");
-    }
-  });
 
-  card.classList.toggle("active");
+  if(card.classList.contains("active")){
+      card.classList.remove("active");
+  } else {
+      cards.forEach(c=>c.classList.remove("active"));
+      card.classList.add("active");
+  }
+
   updateProgress();
 }
 
@@ -259,6 +286,7 @@ function updateProgress(){
   const percent=(opened/total)*100;
   document.getElementById("progressBar").style.width=percent+"%";
 }
+
 </script>
 
 </body>
