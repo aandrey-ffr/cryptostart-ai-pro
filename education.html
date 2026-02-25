@@ -6,16 +6,43 @@
 <title>Обучение | CryptoStart</title>
 
 <style>
+
+/* ===== ЖИВОЙ ФОН ===== */
 body{
   margin:0;
   font-family:Segoe UI, sans-serif;
-  background:linear-gradient(135deg,#0f172a,#1e293b);
   color:white;
+  background:linear-gradient(-45deg,#0f172a,#1e293b,#0f172a,#1e1b4b);
+  background-size:400% 400%;
+  animation:gradientMove 18s ease infinite;
+  overflow-x:hidden;
 }
 
+@keyframes gradientMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* ===== ПЛАВАЮЩИЕ МОНЕТЫ ===== */
+.coin{
+  position:fixed;
+  font-size:30px;
+  opacity:0.08;
+  animation:float 25s linear infinite;
+  pointer-events:none;
+}
+
+@keyframes float{
+  0%{transform:translateY(110vh) rotate(0deg);}
+  100%{transform:translateY(-20vh) rotate(360deg);}
+}
+
+/* ===== НАВ ===== */
 nav{
   padding:20px 40px;
-  background:#0f172a;
+  background:rgba(15,23,42,0.9);
+  backdrop-filter:blur(10px);
   display:flex;
   justify-content:space-between;
 }
@@ -30,56 +57,95 @@ nav a:hover{
   color:#38bdf8;
 }
 
+/* ===== КОНТЕЙНЕР ===== */
 .container{
-  padding:50px 30px;
-  max-width:1200px;
+  padding:60px 30px;
+  max-width:1300px;
   margin:auto;
+  position:relative;
+  z-index:2;
 }
 
 h1{
   text-align:center;
-  margin-bottom:40px;
+  margin-bottom:50px;
 }
 
+/* ===== СЕТКА ===== */
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:25px;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:30px;
 }
 
+/* ===== КАРТОЧКИ ===== */
 .card{
-  background:#1e293b;
-  border-radius:15px;
-  padding:25px;
+  perspective:1000px;
+  height:230px;
   cursor:pointer;
-  transition:0.3s;
+}
+
+.card-inner{
+  position:relative;
+  width:100%;
+  height:100%;
+  transition:transform 0.6s;
+  transform-style:preserve-3d;
+}
+
+.card.active .card-inner{
+  transform:rotateY(180deg);
+}
+
+.card-front,
+.card-back{
+  position:absolute;
+  width:100%;
+  height:100%;
+  backface-visibility:hidden;
+  border-radius:18px;
+  padding:25px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  box-sizing:border-box;
+  background:rgba(30,41,59,0.85);
   border:1px solid rgba(255,255,255,0.05);
 }
 
-.card:hover{
-  background:#243447;
-}
-
-.card h3{
-  margin-top:0;
-  margin-bottom:10px;
-}
-
-.card p{
+.card-back{
+  transform:rotateY(180deg);
   font-size:14px;
-  color:#cbd5e1;
-  display:none;
-  margin-top:15px;
 }
 
-.card.active p{
-  display:block;
+/* ===== НЕОНОВЫЕ ИКОНКИ ===== */
+.icon{
+  font-size:42px;
+  margin-bottom:15px;
+  text-shadow:0 0 5px #38bdf8,
+               0 0 15px #8b5cf6;
+  transition:0.3s;
 }
 
+.card:hover .icon{
+  text-shadow:0 0 10px #38bdf8,
+               0 0 25px #8b5cf6,
+               0 0 40px #38bdf8;
+}
+
+/* НЕОНОВОЕ СВЕЧЕНИЕ КАРТОЧКИ */
+.card.active .card-front{
+  box-shadow:0 0 20px #38bdf8,
+             0 0 40px #8b5cf6;
+}
+
+/* ===== ПРОГРЕСС ===== */
 .progress{
-  margin-top:50px;
+  margin-top:60px;
   height:6px;
-  background:#1e293b;
+  background:rgba(255,255,255,0.1);
   border-radius:10px;
   overflow:hidden;
 }
@@ -87,13 +153,21 @@ h1{
 .progress-bar{
   height:100%;
   width:0%;
-  background:#38bdf8;
+  background:linear-gradient(90deg,#38bdf8,#8b5cf6);
   transition:0.4s;
 }
+
 </style>
 </head>
-
 <body>
+
+<!-- Плавающие монеты -->
+<div class="coin" style="left:5%; animation-delay:0s;">₿</div>
+<div class="coin" style="left:20%; animation-delay:5s;">Ξ</div>
+<div class="coin" style="left:35%; animation-delay:10s;">₿</div>
+<div class="coin" style="left:55%; animation-delay:3s;">Ξ</div>
+<div class="coin" style="left:75%; animation-delay:8s;">₿</div>
+<div class="coin" style="left:90%; animation-delay:12s;">Ξ</div>
 
 <nav>
   <div><b>🚀 CryptoStart AI</b></div>
@@ -106,60 +180,57 @@ h1{
 </nav>
 
 <div class="container">
-
 <h1>Обучение криптовалютам</h1>
 
 <div class="grid">
 
-<div class="card" onclick="toggle(this)">
-<h3>Что такое криптовалюта?</h3>
-<p>Это цифровые деньги. Их нельзя потрогать, но ими можно платить, хранить и переводить через интернет.</p>
-</div>
+<div class="card" onclick="toggleCard(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">🪙</div>Криптовалюта</div>
+<div class="card-back">Цифровые деньги, которыми можно платить через интернет.</div>
+</div></div>
 
-<div class="card" onclick="toggle(this)">
-<h3>Что такое Bitcoin?</h3>
-<p>Bitcoin — первая и самая известная криптовалюта. Она появилась в 2009 году.</p>
-</div>
+<div class="card" onclick="toggleCard(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">₿</div>Bitcoin</div>
+<div class="card-back">Первая и самая известная криптовалюта.</div>
+</div></div>
 
-<div class="card" onclick="toggle(this)">
-<h3>Что такое блокчейн?</h3>
-<p>Это система хранения информации. Она записывает все переводы и не позволяет их изменить.</p>
-</div>
+<div class="card" onclick="toggleCard(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">⛓</div>Блокчейн</div>
+<div class="card-back">Система хранения всех переводов.</div>
+</div></div>
 
-<div class="card" onclick="toggle(this)">
-<h3>Что такое кошелёк?</h3>
-<p>Это приложение или устройство, где хранятся ваши криптовалюты.</p>
-</div>
+<div class="card" onclick="toggleCard(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">💳</div>Кошелёк</div>
+<div class="card-back">Место, где хранятся ваши криптомонеты.</div>
+</div></div>
 
-<div class="card" onclick="toggle(this)">
-<h3>Что такое биржа?</h3>
-<p>Это сайт, где можно купить или продать криптовалюту.</p>
-</div>
+<div class="card" onclick="toggleCard(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">🏛</div>Биржа</div>
+<div class="card-back">Платформа для покупки и продажи криптовалют.</div>
+</div></div>
 
-<div class="card" onclick="toggle(this)">
-<h3>Что такое трейдинг?</h3>
-<p>Это покупка и продажа криптовалюты, чтобы заработать на разнице в цене.</p>
-</div>
+<div class="card" onclick="toggleCard(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">📈</div>Трейдинг</div>
+<div class="card-back">Заработок на изменении цены.</div>
+</div></div>
 
-<div class="card" onclick="toggle(this)">
-<h3>Инвестирование</h3>
-<p>Это покупка криптовалюты на долгий срок с надеждой, что она вырастет в цене.</p>
-</div>
+<div class="card" onclick="toggleCard(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">🔐</div>Безопасность</div>
+<div class="card-back">Никому не сообщайте свои пароли.</div>
+</div></div>
 
-<div class="card" onclick="toggle(this)">
-<h3>Безопасность</h3>
-<p>Никогда не сообщайте свои пароли и храните доступы в безопасном месте.</p>
-</div>
-
-<div class="card" onclick="toggle(this)">
-<h3>Риски</h3>
-<p>Цена криптовалют может сильно меняться. Можно как заработать, так и потерять деньги.</p>
-</div>
-
-<div class="card" onclick="toggle(this)">
-<h3>Как начать?</h3>
-<p>Создайте кошелёк, зарегистрируйтесь на бирже и начните с небольшой суммы.</p>
-</div>
+<div class="card" onclick="toggleCard(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">⛏</div>Майнинг</div>
+<div class="card-back">Создание новых монет с помощью техники.</div>
+</div></div>
 
 </div>
 
@@ -170,7 +241,7 @@ h1{
 </div>
 
 <script>
-function toggle(card){
+function toggleCard(card){
   const cards=document.querySelectorAll(".card");
   cards.forEach(c=>{
     if(c!==card){
@@ -179,7 +250,6 @@ function toggle(card){
   });
 
   card.classList.toggle("active");
-
   updateProgress();
 }
 
