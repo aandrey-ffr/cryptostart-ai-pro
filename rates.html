@@ -7,7 +7,7 @@
 
 <style>
 
-/* ===== ЖИВОЙ ГРАДИЕНТ ===== */
+/* ===== ФОН ===== */
 
 body{
   margin:0;
@@ -46,9 +46,7 @@ nav a{
   transition:0.3s;
 }
 
-nav a:hover{
-  color:#38bdf8;
-}
+nav a:hover{ color:#38bdf8; }
 
 nav a.active{
   color:#38bdf8;
@@ -75,11 +73,11 @@ nav a.active::after{
 
 .table-wrapper{
   display:inline-block;
-  background:rgba(30,41,59,0.85);
+  background:rgba(30,41,59,0.9);
   padding:30px;
   border-radius:18px;
   border:1px solid rgba(255,255,255,0.05);
-  box-shadow:0 0 40px rgba(139,92,246,0.2);
+  box-shadow:0 0 40px rgba(139,92,246,0.25);
 }
 
 table{
@@ -92,9 +90,7 @@ th, td{
   border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
-th{
-  color:#38bdf8;
-}
+th{ color:#38bdf8; }
 
 button{
   margin-top:20px;
@@ -112,78 +108,73 @@ button:hover{
   box-shadow:0 0 20px #8b5cf6;
 }
 
-/* ===== ЖИВЫЕ СТРЕЛКИ РЫНКА ===== */
+/* ===== НЕРВНАЯ РЫНОЧНАЯ СТРЕЛКА ===== */
 
-.market-arrow{
+.market-container{
   position:absolute;
-  width:200px;
-  height:2px;
-  background:linear-gradient(90deg,#22c55e,#38bdf8);
-  opacity:0.07;
-  border-radius:4px;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  overflow:hidden;
+  z-index:0;
+  opacity:0.08;
 }
 
-.market-arrow::after{
-  content:"";
+.market-svg{
+  width:1400px;
   position:absolute;
-  right:-6px;
-  top:-4px;
-  border-left:8px solid #22c55e;
-  border-top:5px solid transparent;
-  border-bottom:5px solid transparent;
+  bottom:50px;
+  left:-300px;
+  animation:slide 20s linear infinite;
 }
 
-/* ПАТТЕРНЫ ДВИЖЕНИЯ */
-
-@keyframes wave1{
-  0%{transform:translateY(300px) rotate(20deg);}
-  40%{transform:translateY(-50px) rotate(-10deg);}
-  70%{transform:translateY(100px) rotate(15deg);}
-  100%{transform:translateY(-400px) rotate(25deg);}
+.market-path{
+  fill:none;
+  stroke:#ef4444;
+  stroke-width:10;
+  stroke-linejoin:round;
+  stroke-linecap:round;
+  filter:drop-shadow(0 0 15px #ef4444);
+  animation:shake 1.8s infinite ease-in-out;
 }
 
-@keyframes wave2{
-  0%{transform:translateY(-200px) rotate(-20deg);}
-  50%{transform:translateY(150px) rotate(20deg);}
-  100%{transform:translateY(-300px) rotate(-30deg);}
+/* движение слева направо */
+@keyframes slide{
+  0%{transform:translateX(0);}
+  100%{transform:translateX(400px);}
 }
 
-@keyframes wave3{
-  0%{transform:translateY(250px) rotate(10deg);}
-  60%{transform:translateY(-150px) rotate(-15deg);}
-  100%{transform:translateY(300px) rotate(20deg);}
+/* нестабильный быстрый отскок */
+@keyframes shake{
+  0%{transform:translateY(0);}
+  15%{transform:translateY(-15px);}
+  30%{transform:translateY(20px);}
+  45%{transform:translateY(-25px);}
+  60%{transform:translateY(15px);}
+  75%{transform:translateY(-10px);}
+  100%{transform:translateY(0);}
 }
-
-@keyframes wave4{
-  0%{transform:translateY(-150px) rotate(30deg);}
-  50%{transform:translateY(200px) rotate(-20deg);}
-  100%{transform:translateY(-250px) rotate(30deg);}
-}
-
-@keyframes wave5{
-  0%{transform:translateY(200px) rotate(-15deg);}
-  50%{transform:translateY(-200px) rotate(20deg);}
-  100%{transform:translateY(200px) rotate(-15deg);}
-}
-
-/* Разные позиции */
-
-.a1{ left:5%; top:60%; animation:wave1 22s infinite linear; }
-.a2{ left:25%; top:20%; animation:wave2 26s infinite linear; }
-.a3{ left:45%; top:75%; animation:wave3 24s infinite linear; }
-.a4{ left:65%; top:35%; animation:wave4 28s infinite linear; }
-.a5{ left:80%; top:10%; animation:wave5 30s infinite linear; }
 
 </style>
 </head>
 <body>
 
-<!-- Фоновые стрелки -->
-<div class="market-arrow a1"></div>
-<div class="market-arrow a2"></div>
-<div class="market-arrow a3"></div>
-<div class="market-arrow a4"></div>
-<div class="market-arrow a5"></div>
+<!-- Фон рынка -->
+<div class="market-container">
+  <svg class="market-svg" viewBox="0 0 1200 400">
+    <path class="market-path"
+      d="M0 300 
+         L150 200 
+         L250 260 
+         L400 150 
+         L520 220 
+         L700 100 
+         L850 180 
+         L1050 60"
+    />
+  </svg>
+</div>
 
 <nav>
   <div><b>🚀 CryptoStart AI</b></div>
