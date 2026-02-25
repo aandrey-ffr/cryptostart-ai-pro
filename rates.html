@@ -7,7 +7,8 @@
 
 <style>
 
-/* ===== ЖИВОЙ ФОН ===== */
+/* ===== ЖИВОЙ ГРАДИЕНТ ===== */
+
 body{
   margin:0;
   font-family:Segoe UI, sans-serif;
@@ -24,37 +25,11 @@ body{
   100%{background-position:0% 50%;}
 }
 
-/* ===== АНИМАЦИЯ РЫНОЧНЫХ ЛИНИЙ ===== */
-.market-line{
-  position:absolute;
-  width:600px;
-  height:200px;
-  border-left:2px solid transparent;
-  border-bottom:2px solid #38bdf8;
-  transform:rotate(-20deg);
-  opacity:0.15;
-  animation:rise 12s linear infinite;
-}
-
-.market-line.red{
-  border-bottom:2px solid #ef4444;
-  animation:fall 14s linear infinite;
-}
-
-@keyframes rise{
-  0%{transform:translateY(200px) rotate(-20deg);}
-  100%{transform:translateY(-400px) rotate(-20deg);}
-}
-
-@keyframes fall{
-  0%{transform:translateY(-200px) rotate(20deg);}
-  100%{transform:translateY(400px) rotate(20deg);}
-}
-
 /* ===== НАВБАР ===== */
+
 nav{
   padding:20px 40px;
-  background:rgba(15,23,42,0.95);
+  background:rgba(15,23,42,0.85);
   backdrop-filter:blur(12px);
   display:flex;
   justify-content:space-between;
@@ -67,10 +42,14 @@ nav a{
   margin-left:20px;
   text-decoration:none;
   position:relative;
-  padding-bottom:5px;
+  padding-bottom:4px;
+  transition:0.3s;
 }
 
-/* Активная вкладка */
+nav a:hover{
+  color:#38bdf8;
+}
+
 nav a.active{
   color:#38bdf8;
 }
@@ -85,7 +64,8 @@ nav a.active::after{
   background:linear-gradient(90deg,#38bdf8,#8b5cf6);
 }
 
-/* ===== КОНТЕЙНЕР ===== */
+/* ===== КОНТЕНТ ===== */
+
 .container{
   text-align:center;
   margin-top:80px;
@@ -93,28 +73,23 @@ nav a.active::after{
   z-index:5;
 }
 
-h1{
-  margin-bottom:40px;
-}
-
-/* ===== ТАБЛИЦА ===== */
 .table-wrapper{
   display:inline-block;
   background:rgba(30,41,59,0.85);
-  padding:25px;
+  padding:30px;
   border-radius:18px;
   border:1px solid rgba(255,255,255,0.05);
-  box-shadow:0 0 30px rgba(139,92,246,0.2);
+  box-shadow:0 0 40px rgba(139,92,246,0.2);
 }
 
 table{
   border-collapse:collapse;
-  min-width:300px;
+  min-width:320px;
 }
 
 th, td{
-  padding:12px 20px;
-  border-bottom:1px solid rgba(255,255,255,0.1);
+  padding:14px 20px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
 th{
@@ -137,14 +112,78 @@ button:hover{
   box-shadow:0 0 20px #8b5cf6;
 }
 
+/* ===== ЖИВЫЕ СТРЕЛКИ РЫНКА ===== */
+
+.market-arrow{
+  position:absolute;
+  width:200px;
+  height:2px;
+  background:linear-gradient(90deg,#22c55e,#38bdf8);
+  opacity:0.07;
+  border-radius:4px;
+}
+
+.market-arrow::after{
+  content:"";
+  position:absolute;
+  right:-6px;
+  top:-4px;
+  border-left:8px solid #22c55e;
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+
+/* ПАТТЕРНЫ ДВИЖЕНИЯ */
+
+@keyframes wave1{
+  0%{transform:translateY(300px) rotate(20deg);}
+  40%{transform:translateY(-50px) rotate(-10deg);}
+  70%{transform:translateY(100px) rotate(15deg);}
+  100%{transform:translateY(-400px) rotate(25deg);}
+}
+
+@keyframes wave2{
+  0%{transform:translateY(-200px) rotate(-20deg);}
+  50%{transform:translateY(150px) rotate(20deg);}
+  100%{transform:translateY(-300px) rotate(-30deg);}
+}
+
+@keyframes wave3{
+  0%{transform:translateY(250px) rotate(10deg);}
+  60%{transform:translateY(-150px) rotate(-15deg);}
+  100%{transform:translateY(300px) rotate(20deg);}
+}
+
+@keyframes wave4{
+  0%{transform:translateY(-150px) rotate(30deg);}
+  50%{transform:translateY(200px) rotate(-20deg);}
+  100%{transform:translateY(-250px) rotate(30deg);}
+}
+
+@keyframes wave5{
+  0%{transform:translateY(200px) rotate(-15deg);}
+  50%{transform:translateY(-200px) rotate(20deg);}
+  100%{transform:translateY(200px) rotate(-15deg);}
+}
+
+/* Разные позиции */
+
+.a1{ left:5%; top:60%; animation:wave1 22s infinite linear; }
+.a2{ left:25%; top:20%; animation:wave2 26s infinite linear; }
+.a3{ left:45%; top:75%; animation:wave3 24s infinite linear; }
+.a4{ left:65%; top:35%; animation:wave4 28s infinite linear; }
+.a5{ left:80%; top:10%; animation:wave5 30s infinite linear; }
+
 </style>
 </head>
 <body>
 
-<!-- Фоновые рыночные линии -->
-<div class="market-line" style="left:-100px; top:200px;"></div>
-<div class="market-line red" style="right:-150px; top:300px;"></div>
-<div class="market-line" style="left:200px; top:500px;"></div>
+<!-- Фоновые стрелки -->
+<div class="market-arrow a1"></div>
+<div class="market-arrow a2"></div>
+<div class="market-arrow a3"></div>
+<div class="market-arrow a4"></div>
+<div class="market-arrow a5"></div>
 
 <nav>
   <div><b>🚀 CryptoStart AI</b></div>
@@ -183,12 +222,12 @@ async function loadPrices(){
     const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,tether,binancecoin,solana,ripple&vs_currencies=usd");
     const data = await res.json();
 
-    document.getElementById("btc").innerText = data.bitcoin.usd;
-    document.getElementById("eth").innerText = data.ethereum.usd;
-    document.getElementById("usdt").innerText = data.tether.usd;
-    document.getElementById("bnb").innerText = data.binancecoin.usd;
-    document.getElementById("sol").innerText = data.solana.usd;
-    document.getElementById("xrp").innerText = data.ripple.usd;
+    btc.innerText = data.bitcoin.usd;
+    eth.innerText = data.ethereum.usd;
+    usdt.innerText = data.tether.usd;
+    bnb.innerText = data.binancecoin.usd;
+    sol.innerText = data.solana.usd;
+    xrp.innerText = data.ripple.usd;
 
   }catch{
     alert("Ошибка загрузки цен");
