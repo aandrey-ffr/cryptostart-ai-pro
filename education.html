@@ -7,7 +7,6 @@
 
 <style>
 
-/* ===== ЖИВОЙ ГРАДИЕНТ ===== */
 body{
   margin:0;
   font-family:Segoe UI, sans-serif;
@@ -24,7 +23,7 @@ body{
   100%{background-position:0% 50%;}
 }
 
-/* ===== ПЛАВАЮЩИЕ МОНЕТЫ ===== */
+/* Монеты */
 .coin{
   position:fixed;
   font-size:28px;
@@ -38,7 +37,6 @@ body{
   100%{transform:translateY(-20vh) rotate(360deg);}
 }
 
-/* ===== НАВБАР ===== */
 nav{
   padding:20px 40px;
   background:rgba(15,23,42,0.9);
@@ -57,13 +55,10 @@ nav a:hover{
   color:#38bdf8;
 }
 
-/* ===== КОНТЕЙНЕР ===== */
 .container{
   padding:70px 30px;
-  max-width:1300px;
+  max-width:1200px;
   margin:auto;
-  position:relative;
-  z-index:2;
 }
 
 h1{
@@ -71,41 +66,23 @@ h1{
   margin-bottom:60px;
 }
 
-/* ===== ГЛУБИНА ПОД СЕТКОЙ ===== */
-.grid-wrapper{
-  position:relative;
-}
-
-.grid-wrapper::before{
-  content:"";
-  position:absolute;
-  top:-120px;
-  left:50%;
-  transform:translateX(-50%);
-  width:900px;
-  height:500px;
-  background:radial-gradient(circle, rgba(139,92,246,0.25), transparent 70%);
-  filter:blur(120px);
-  z-index:-1;
-}
-
-/* ===== СЕТКА ===== */
+/* ===== СЕТКА 5 КОЛОНОК ===== */
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  grid-template-columns:repeat(5, 1fr);
   gap:30px;
 }
 
 /* ===== КАРТОЧКА ===== */
 .card{
   perspective:1000px;
-  height:230px;
+  height:220px;
   cursor:pointer;
   transition:0.3s ease;
 }
 
 .card:hover{
-  transform:translateY(-8px) scale(1.03);
+  transform:translateY(-6px);
 }
 
 .card-inner{
@@ -141,31 +118,16 @@ h1{
 .card-back{
   transform:rotateY(180deg);
   font-size:14px;
-  line-height:1.4;
 }
 
-/* ===== ИКОНКИ ===== */
 .icon{
-  font-size:42px;
+  font-size:40px;
   margin-bottom:15px;
-  text-shadow:0 0 5px #38bdf8,
-               0 0 15px #8b5cf6;
-  transition:0.3s;
+  text-shadow:0 0 8px #38bdf8,
+               0 0 20px #8b5cf6;
 }
 
-.card:hover .icon{
-  text-shadow:0 0 10px #38bdf8,
-               0 0 25px #8b5cf6,
-               0 0 40px #38bdf8;
-}
-
-/* НЕОНОВОЕ СВЕЧЕНИЕ АКТИВНОЙ */
-.card.active .card-front{
-  box-shadow:0 0 20px #38bdf8,
-             0 0 40px #8b5cf6;
-}
-
-/* ===== ПРОГРЕСС ===== */
+/* Прогресс */
 .progress{
   margin-top:60px;
   height:6px;
@@ -181,20 +143,26 @@ h1{
   transition:0.4s;
 }
 
- .exchange{
-  order: 6;
+/* Адаптив */
+@media(max-width:1100px){
+  .grid{
+    grid-template-columns:repeat(3, 1fr);
+  }
 }
-  
+
+@media(max-width:700px){
+  .grid{
+    grid-template-columns:repeat(2, 1fr);
+  }
+}
+
 </style>
 </head>
 <body>
 
-<!-- Плавающие монеты -->
-<div class="coin" style="left:5%; animation-delay:0s;">₿</div>
-<div class="coin" style="left:20%; animation-delay:6s;">Ξ</div>
-<div class="coin" style="left:40%; animation-delay:12s;">₿</div>
-<div class="coin" style="left:60%; animation-delay:4s;">Ξ</div>
-<div class="coin" style="left:80%; animation-delay:9s;">₿</div>
+<div class="coin" style="left:10%; animation-delay:0s;">₿</div>
+<div class="coin" style="left:30%; animation-delay:6s;">Ξ</div>
+<div class="coin" style="left:60%; animation-delay:12s;">₿</div>
 
 <nav>
   <div><b>🚀 CryptoStart AI</b></div>
@@ -209,15 +177,9 @@ h1{
 <div class="container">
 <h1>Обучение криптовалютам</h1>
 
-<div class="grid-wrapper">
 <div class="grid">
 
-<div class="card exchange" onclick="toggleCard(this)">
-<div class="card-inner">
-<div class="card-front"><div class="icon">🪙</div>Криптовалюта</div>
-<div class="card-back">Цифровые деньги, которыми можно платить через интернет.</div>
-</div></div>
-
+<!-- ПЕРВЫЙ РЯД -->
 <div class="card" onclick="toggleCard(this)">
 <div class="card-inner">
 <div class="card-front"><div class="icon">₿</div>Bitcoin</div>
@@ -233,7 +195,7 @@ h1{
 <div class="card" onclick="toggleCard(this)">
 <div class="card-inner">
 <div class="card-front"><div class="icon">💳</div>Кошелёк</div>
-<div class="card-back">Программа для хранения ваших монет.</div>
+<div class="card-back">Программа для хранения криптомонет.</div>
 </div></div>
 
 <div class="card" onclick="toggleCard(this)">
@@ -248,10 +210,11 @@ h1{
 <div class="card-back">Попытка заработать на изменении цены.</div>
 </div></div>
 
+<!-- ВТОРОЙ РЯД -->
 <div class="card" onclick="toggleCard(this)">
 <div class="card-inner">
 <div class="card-front"><div class="icon">🔐</div>Безопасность</div>
-<div class="card-back">Никому не сообщайте свои пароли и коды.</div>
+<div class="card-back">Никому не сообщайте свои пароли.</div>
 </div></div>
 
 <div class="card" onclick="toggleCard(this)">
@@ -260,7 +223,12 @@ h1{
 <div class="card-back">Создание новых монет с помощью техники.</div>
 </div></div>
 
-</div>
+<div class="card" onclick="toggleCard(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">🪙</div>Криптовалюта</div>
+<div class="card-back">Цифровые деньги для интернета.</div>
+</div></div>
+
 </div>
 
 <div class="progress">
