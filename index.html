@@ -7,7 +7,7 @@
 
 <style>
 
-/* ===== ОСНОВА ===== */
+/* ===== ФОН PREMIUM ===== */
 
 body{
   margin:0;
@@ -15,33 +15,31 @@ body{
   color:white;
   overflow:hidden;
 
-  background:linear-gradient(
-    135deg,
-    #0f172a,
-    #1e1b4b,
-    #312e81,
-    #0f172a
-  );
+  background:
+  radial-gradient(circle at 20% 30%, #312e81 0%, transparent 40%),
+  radial-gradient(circle at 80% 70%, #1e1b4b 0%, transparent 40%),
+  linear-gradient(135deg,#0f172a,#0b1120,#0f172a);
 
-  background-size:300% 300%;
-  animation:gradientMove 12s ease infinite;
+  background-size:200% 200%;
+  animation:bgMove 15s ease infinite;
 }
 
-@keyframes gradientMove{
+@keyframes bgMove{
   0%{background-position:0% 50%;}
   50%{background-position:100% 50%;}
   100%{background-position:0% 50%;}
 }
 
-/* ===== НАВБАР ===== */
+/* ===== NAVBAR ===== */
 
 nav{
   padding:20px 40px;
-  background:rgba(15,23,42,0.8);
-  backdrop-filter:blur(12px);
+  background:rgba(15,23,42,0.7);
+  backdrop-filter:blur(15px);
   position:relative;
   z-index:10;
   font-weight:bold;
+  letter-spacing:1px;
 }
 
 /* ===== HERO ===== */
@@ -54,14 +52,20 @@ nav{
 }
 
 .hero h1{
-  font-size:52px;
+  font-size:56px;
   margin-bottom:20px;
+  background:linear-gradient(90deg,#38bdf8,#8b5cf6);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
 
 .hero p{
-  color:#cbd5e1;
+  color:#94a3b8;
   margin-bottom:60px;
+  font-size:18px;
 }
+
+/* ===== КНОПКИ ===== */
 
 .hero-links{
   display:flex;
@@ -71,67 +75,56 @@ nav{
 }
 
 .hero-links a{
-  padding:16px 30px;
-  border-radius:14px;
+  padding:16px 32px;
+  border-radius:16px;
   text-decoration:none;
   color:#e2e8f0;
   background:rgba(30,41,59,0.6);
   backdrop-filter:blur(10px);
-  border:1px solid rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.05);
   transition:0.3s;
 }
 
 .hero-links a:hover{
   transform:translateY(-6px);
   border:1px solid #8b5cf6;
-  box-shadow:0 0 25px rgba(139,92,246,0.6);
+  box-shadow:0 0 35px rgba(139,92,246,0.7);
   color:white;
 }
 
-/* ===== ДЕТАЛИЗИРОВАННЫЕ МОНЕТЫ ===== */
+/* ===== МОНЕТЫ ===== */
 
 .coin{
   position:absolute;
   width:70px;
   height:70px;
-  opacity:0.08;
+  opacity:0.12;
   animation:float linear infinite;
-  filter:drop-shadow(0 0 15px rgba(255,255,255,0.2));
+  transition:transform 0.3s ease;
+  filter:drop-shadow(0 0 20px rgba(139,92,246,0.4));
 }
 
-/* Разные скорости */
 .c1{ left:5%; animation-duration:18s; }
-.c2{ left:20%; animation-duration:22s; }
+.c2{ left:20%; animation-duration:24s; }
 .c3{ left:35%; animation-duration:20s; }
-.c4{ left:55%; animation-duration:26s; }
-.c5{ left:75%; animation-duration:24s; }
-.c6{ left:90%; animation-duration:28s; }
+.c4{ left:55%; animation-duration:28s; }
+.c5{ left:75%; animation-duration:22s; }
+.c6{ left:90%; animation-duration:30s; }
 
 @keyframes float{
-  0%{
-    transform:translateY(110vh) rotate(0deg);
-  }
-  100%{
-    transform:translateY(-20vh) rotate(360deg);
-  }
+  0%{ transform:translateY(110vh) rotate(0deg);}
+  100%{ transform:translateY(-20vh) rotate(360deg);}
 }
 
 /* ===== МОБИЛКА ===== */
 
 @media (max-width:768px){
 
-  body{
-    overflow:auto;
-  }
+  body{overflow:auto;}
 
-  .hero{
-    margin-top:80px;
-    padding:0 20px;
-  }
+  .hero{margin-top:80px;padding:0 20px;}
 
-  .hero h1{
-    font-size:32px;
-  }
+  .hero h1{font-size:34px;}
 
   .hero-links a{
     width:100%;
@@ -143,7 +136,6 @@ nav{
     width:45px;
     height:45px;
   }
-
 }
 
 </style>
@@ -166,14 +158,27 @@ nav{
   </div>
 </div>
 
-<!-- ===== SVG МОНЕТЫ ===== -->
-
+<!-- SVG монеты -->
 <img class="coin c1" src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=029">
 <img class="coin c2" src="https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=029">
 <img class="coin c3" src="https://cryptologos.cc/logos/solana-sol-logo.svg?v=029">
 <img class="coin c4" src="https://cryptologos.cc/logos/binance-coin-bnb-logo.svg?v=029">
 <img class="coin c5" src="https://cryptologos.cc/logos/cardano-ada-logo.svg?v=029">
 <img class="coin c6" src="https://cryptologos.cc/logos/xrp-xrp-logo.svg?v=029">
+
+<script>
+/* ===== ПАРАЛЛАКС ЭФФЕКТ ===== */
+
+document.addEventListener("mousemove", (e) => {
+  const coins = document.querySelectorAll(".coin");
+  const x = (window.innerWidth / 2 - e.clientX) / 40;
+  const y = (window.innerHeight / 2 - e.clientY) / 40;
+
+  coins.forEach((coin) => {
+    coin.style.transform += ` translate(${x}px, ${y}px)`;
+  });
+});
+</script>
 
 </body>
 </html>
