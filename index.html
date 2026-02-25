@@ -19,7 +19,7 @@ body{
   min-height:100vh;
   overflow:hidden;
 
-  background: linear-gradient(135deg,#0b0f2a,#1e1b4b,#3b1d73);
+  background: linear-gradient(135deg,#1a0f3a,#3b1d73,#4c1d95);
   background-size:300% 300%;
   animation:gradientMove 18s ease infinite;
 }
@@ -37,7 +37,7 @@ header{
   justify-content:space-between;
   align-items:center;
   padding:20px 60px;
-  background:rgba(10,15,30,0.6);
+  background:rgba(15,10,40,0.6);
   backdrop-filter:blur(14px);
   position:relative;
   z-index:10;
@@ -48,19 +48,39 @@ header{
   font-size:18px;
 }
 
-nav{
+/* ===== НОВОЕ МЕНЮ ===== */
+
+.nav-links{
   display:flex;
-  gap:30px;
+  gap:32px;
 }
 
-nav a{
+.nav-links a{
+  position:relative;
   text-decoration:none;
   color:#cbd5e1;
+  font-weight:500;
+  padding-bottom:4px;
   transition:0.3s;
 }
 
-nav a:hover{
-  color:#8b5cf6;
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:0%;
+  height:2px;
+  background:linear-gradient(90deg,#60a5fa,#a78bfa);
+  transition:0.3s;
+}
+
+.nav-links a:hover{
+  color:white;
+}
+
+.nav-links a:hover::after{
+  width:100%;
 }
 
 /* ===== HERO ===== */
@@ -78,11 +98,11 @@ nav a:hover{
   background:linear-gradient(90deg,#60a5fa,#a78bfa);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  text-shadow:0 0 35px rgba(139,92,246,0.4);
+  text-shadow:0 0 40px rgba(139,92,246,0.5);
 }
 
 .hero p{
-  color:#94a3b8;
+  color:#cbd5e1;
   margin-bottom:40px;
   font-size:18px;
 }
@@ -159,6 +179,10 @@ nav a:hover{
 
   body{overflow:auto;}
 
+  header{
+    padding:15px 20px;
+  }
+
   .hero{
     margin-top:80px;
     padding:0 20px;
@@ -188,11 +212,12 @@ nav a:hover{
 
 <header>
   <div class="logo">🚀 CryptoStart AI</div>
-  <nav>
-    <a href="education.html">📘 Обучение</a>
-    <a href="rates.html">💰 Курсы</a>
-    <a href="ai.html">🤖 AI</a>
-    <a href="about.html">🌍 О проекте</a>
+
+  <nav class="nav-links">
+    <a href="education.html">Обучение</a>
+    <a href="rates.html">Курсы</a>
+    <a href="ai.html">AI</a>
+    <a href="about.html">О проекте</a>
   </nav>
 </header>
 
@@ -205,9 +230,9 @@ nav a:hover{
   </a>
 
   <div class="hero-links">
-    <a href="rates.html">💰 Курсы</a>
-    <a href="ai.html">🤖 AI</a>
-    <a href="about.html">🌍 О проекте</a>
+    <a href="rates.html">Курсы</a>
+    <a href="ai.html">AI</a>
+    <a href="about.html">О проекте</a>
   </div>
 </div>
 
