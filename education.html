@@ -48,8 +48,11 @@ body{
 }
 
 .logo{
+  font-size:20px;
   font-weight:bold;
-  font-size:18px;
+  background:linear-gradient(90deg,#38bdf8,#8b5cf6);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
 
 .menu{
@@ -177,21 +180,71 @@ h1{
   100%{transform:translateY(-20vh);} 
 }
 
+
+
+/* ===== MOBILE ADAPT (ОБУЧЕНИЕ) ===== */
+@media(max-width:768px){
+
+  .navbar{
+    padding:0 15px;
+  }
+
+  .menu{
+    gap:12px;
+    font-size:12px;
+  }
+
+  .title{
+    margin-top:20px;
+    padding:0 10px;
+  }
+
+  h1{
+    font-size:22px;
+  }
+
+  .progress{
+    width:80%;
+    margin-bottom:30px;
+  }
+
+  .grid{
+    gap:20px;
+    padding:0 15px;
+  }
+
+  .card{
+    width:45%;
+    height:150px;
+  }
+
+  .icon{
+    font-size:28px;
+  }
+
+}
+
 </style>
 </head>
 
 <body>
 
 <div class="navbar">
-  <div class="logo">🚀 CryptoStart AI</div>
+  <div class="logo">🚀 CryptoStart</div>
   <div class="menu">
     <a href="index.html">🏠 Главная</a>
-    <a href="rates.html">📈Курсы</a>
-    <a href="ai.html">🤖 AI</a>
     <a href="about.html">📘 О проекте</a>
+    <a href="contact.html">📩 Контакты</a>
   </div>
 </div>
- 
+  <div class="menu">
+    <a href="index.html">Главная</a>
+    <a href="learn.html">Обучение</a>
+    <a href="about.html">О проекте</a>
+    <a href="contact.html">Контакты</a>
+  </div>
+</div>
+
 <script>
 const coins=["₿","Ξ","◈","◎","✦","✧"];
 const count=window.innerWidth<768?10:20;
