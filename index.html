@@ -6,7 +6,6 @@
 <title>CryptoStart AI</title>
 
 <style>
-
 *{
   margin:0;
   padding:0;
@@ -17,8 +16,7 @@ body{
   font-family:Segoe UI, sans-serif;
   color:white;
   min-height:100vh;
-  overflow:hidden;
-
+  overflow-x:hidden;
   background: linear-gradient(135deg,#1a0f3a,#3b1d73,#4c1d95);
   background-size:300% 300%;
   animation:gradientMove 18s ease infinite;
@@ -30,17 +28,13 @@ body{
   100%{background-position:0% 0%;}
 }
 
-/* ===== HEADER (ТОЛЬКО ЛОГО) ===== */
-
 header{
   display:flex;
   justify-content:flex-start;
   align-items:center;
-  padding:20px 60px;
+  padding:20px;
   background:rgba(15,10,40,0.6);
   backdrop-filter:blur(14px);
-  position:relative;
-  z-index:10;
 }
 
 .logo{
@@ -48,128 +42,55 @@ header{
   font-size:18px;
 }
 
-/* ===== HERO ===== */
-
 .hero{
   text-align:center;
-  margin-top:140px;
-  position:relative;
-  z-index:5;
+  margin-top:80px;
+  padding:0 20px;
 }
 
 .hero h1{
-  font-size:54px;
+  font-size:34px;
   margin-bottom:20px;
   background:linear-gradient(90deg,#60a5fa,#a78bfa);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  text-shadow:0 0 40px rgba(139,92,246,0.5);
 }
 
 .hero p{
   color:#cbd5e1;
   margin-bottom:40px;
-  font-size:18px;
 }
 
-/* ===== MAIN BUTTON ===== */
-
 .main-btn{
-  display:inline-block;
-  padding:16px 42px;
+  display:block;
+  margin:0 auto;
+  padding:14px 24px;
   border-radius:16px;
   background:linear-gradient(90deg,#3b82f6,#8b5cf6);
   color:white;
   text-decoration:none;
   font-weight:bold;
-  transition:0.3s;
+  max-width:260px;
 }
-
-.main-btn:hover{
-  transform:translateY(-4px);
-  box-shadow:0 0 35px rgba(139,92,246,0.8);
-}
-
-/* ===== SECONDARY BUTTONS ===== */
 
 .hero-links{
-  margin-top:50px;
+  margin-top:30px;
   display:flex;
-  justify-content:center;
-  gap:25px;
-  flex-wrap:wrap;
+  flex-direction:column;
+  gap:15px;
+  align-items:center;
 }
 
 .hero-links a{
-  padding:14px 26px;
+  padding:12px 20px;
   border-radius:14px;
   text-decoration:none;
   color:#cbd5e1;
   background:rgba(30,41,59,0.4);
-  backdrop-filter:blur(8px);
-  border:1px solid rgba(255,255,255,0.05);
-  transition:0.3s;
+  width:100%;
+  max-width:260px;
+  text-align:center;
 }
-
-.hero-links a:hover{
-  transform:translateY(-4px);
-  border:1px solid #8b5cf6;
-  box-shadow:0 0 20px rgba(139,92,246,0.6);
-  color:white;
-}
-
-/* ===== FLOATING TOKENS ===== */
-
-.floating-coin{
-  position:fixed;
-  bottom:-120px;
-  pointer-events:none;
-  animation:flyUp linear forwards;
-  filter:drop-shadow(0 0 20px rgba(139,92,246,0.5));
-  z-index:1;
-}
-
-@keyframes flyUp{
-  0%{
-    transform:translateY(0) rotate(0deg);
-  }
-  100%{
-    transform:translateY(-120vh) rotate(360deg);
-  }
-}
-
-/* ===== MOBILE ===== */
-
-@media(max-width:768px){
-
-  body{overflow:auto;}
-
-  header{
-    padding:15px 20px;
-  }
-
-  .hero{
-    margin-top:80px;
-    padding:0 20px;
-  }
-
-  .hero h1{
-    font-size:34px;
-  }
-
-  .main-btn{
-    display:block;
-    margin:0 auto;
-    max-width:280px;
-  }
-
-  .hero-links a{
-    width:100%;
-    max-width:260px;
-    text-align:center;
-  }
-}
-
 </style>
 </head>
 
