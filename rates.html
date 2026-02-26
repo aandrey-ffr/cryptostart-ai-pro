@@ -280,9 +280,14 @@ function createCandle(){
   }, duration * 1000);
 }
 
-/* каждые 700мс новая свеча */
-setInterval(createCandle, 700);
 
+// стартовая генерация свечей
+for(let i=0; i<15; i++){
+  createCandle();
+}
+
+// потом продолжаем анимацию
+setInterval(createCandle, 700);
 
 /* ===== ЗАГРУЗКА ЦЕН ===== */
 
