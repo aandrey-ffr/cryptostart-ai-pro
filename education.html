@@ -179,107 +179,88 @@ h1{
 
 
 
-/* ===== MOBILE ADAPT (ОБУЧЕНИЕ) ===== */
-/* ===== MOBILE OPTIMIZATION (ОБУЧЕНИЕ) ===== */
-@media(max-width:768px){
+/* === MOBILE FIX === */
 
-  /* Navbar */
-  .navbar{
-    flex-direction:column;
-    height:auto;
-    padding:15px;
-    gap:10px;
-    text-align:center;
-  }
+@media (max-width:768px){
 
-  .menu{
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:10px;
-  }
-
-  .menu a{
-    font-size:13px;
-  }
-
-  /* Title */
-  .title{
-    margin-top:20px;
-    padding:0 12px;
-  }
-
-  h1{
-    font-size:22px;
-  }
-
-  /* Progress */
-  .progress{
-    width:80%;
-    margin-bottom:30px;
-  }
-
-  /* Cards grid */
-  .grid{
-    gap:18px;
-    padding:0 15px;
-  }
-
-  /* Cards */
-  .card{
-    width:48%;
-    height:150px;
-  }
-
-  /* Icons */
-  .icon{
-    font-size:26px;
-  }
-
+body{
+  overflow-x:hidden;
 }
 
-  .navbar{
-    padding:0 15px;
-  }
+/* КОНТЕЙНЕР */
 
-  .menu{
-    gap:12px;
-    font-size:12px;
-  }
-
-  .title{
-    margin-top:20px;
-    padding:0 10px;
-  }
-
-  h1{
-    font-size:22px;
-  }
-
-  .progress{
-    width:80%;
-    margin-bottom:30px;
-  }
-
-  .grid{
-    gap:20px;
-    padding:0 15px;
-  }
-
-  .card{
-    width:45%;
-    height:150px;
-  }
-
-  .icon{
-    font-size:28px;
-  }
-
+.container,
+.grid,
+.section,
+.wrapper{
+  width:100% !important;
+  max-width:100% !important;
+  padding:0 15px !important;
+  box-sizing:border-box;
 }
 
-.grid {
-  width: 100%;
-  padding: 0 15px;
-  box-sizing: border-box;
+/* NAVBAR */
+
+.navbar{
+  flex-wrap:wrap;
+  justify-content:center;
+  text-align:center;
+  padding:10px;
+}
+
+.nav-links{
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
+}
+
+/* ЗАГОЛОВКИ */
+
+h1{
+  font-size:22px !important;
+  padding:0 10px;
+  text-align:center;
+}
+
+/* КУБЫ */
+
+.grid{
+  display:grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap:20px !important;
+  justify-items:center !important;
+}
+
+.card{
+  width:150px !important;
+  height:150px !important;
+}
+
+/* ТАБЛИЦА */
+
+.table-wrapper{
+  width:100%;
+  overflow-x:auto;
+}
+
+table{
+  min-width:100%;
+}
+
+/* БЛОКИ */
+
+.section,
+.block,
+.box{
+  width:100% !important;
+}
+
+/* УБИРАЕМ ГОРИЗОНТАЛЬНЫЙ СКРОЛЛ */
+
+*{
+  max-width:100vw;
+}
+
 }
 
 </style>
