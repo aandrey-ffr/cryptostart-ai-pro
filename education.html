@@ -55,13 +55,19 @@ h1{
   display:grid;
   grid-template-columns:repeat(5, 220px);
   justify-content:center;
-  gap:30px;
+  column-gap:30px;
+  row-gap:60px;
 }
 
 /* центр второй строки */
 .grid .card:nth-child(6){ grid-column:2; }
 .grid .card:nth-child(7){ grid-column:3; }
 .grid .card:nth-child(8){ grid-column:4; }
+
+/* дополнительный отступ второго ряда */
+.grid .card:nth-child(n+6){
+  margin-top:20px;
+}
 
 /* ===== CARD ===== */
 .card{
@@ -142,7 +148,7 @@ h1{
   transition:0.4s;
 }
 
-/* ===== MOBILE ===== */
+/* MOBILE */
 @media(max-width:768px){
   .grid{
     grid-template-columns:repeat(2, 1fr);
