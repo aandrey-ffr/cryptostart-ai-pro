@@ -163,12 +163,14 @@ h1{
   position:fixed;
   font-size:20px;
   opacity:0.12;
-  animation:float 30s linear infinite;
+  animation:float linear infinite;
   pointer-events:none;
 }
 
 @keyframes float{
-  0%{transform:translateY(110vh);} 
+  0%{transform:translateY(0);} 
+  100%{transform:translateY(-140vh);} 
+} 
   100%{transform:translateY(-20vh);} 
 }
 
@@ -202,7 +204,9 @@ for(let i=0;i<count;i++){
   c.className="coin";
   c.innerText=coins[Math.floor(Math.random()*coins.length)];
   c.style.left=Math.random()*100+"vw";
-  c.style.animationDelay=Math.random()*20+"s";
+  c.style.top=Math.random()*100+"vh";
+  c.style.animationDuration=(20+Math.random()*20)+"s";
+  c.style.animationDelay=(-Math.random()*40)+"s";
   document.body.appendChild(c);
 }
 </script>
