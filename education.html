@@ -17,7 +17,7 @@ body{
   overflow-x:hidden;
 }
 
-/* GRID BACKGROUND */
+/* СЕТКА */
 
 body::before{
   content:"";
@@ -75,20 +75,18 @@ nav{
   display:grid;
   grid-template-columns:repeat(3, 160px);
   justify-content:center;
-  gap:35px;
+  gap:60px;
   margin:80px auto;
 }
 
-/* Центр нижних */
+/* НИЖНИЕ КАК НА СКРИНЕ */
 
 .grid .card:nth-child(7){
-  grid-column:1 / span 2;
-  justify-self:end;
+  grid-column:2;
 }
 
 .grid .card:nth-child(8){
-  grid-column:2 / span 2;
-  justify-self:start;
+  grid-column:3;
 }
 
 /* CARD */
@@ -144,6 +142,20 @@ nav{
   margin-bottom:8px;
 }
 
+/* МОНЕТЫ */
+
+.coin{
+  position:fixed;
+  font-size:18px;
+  opacity:0.12;
+  animation:float linear infinite;
+}
+
+@keyframes float{
+  0%{transform:translateY(0);}
+  100%{transform:translateY(-120vh);}
+}
+
 </style>
 </head>
 
@@ -175,49 +187,49 @@ nav{
 <div class="card" onclick="toggle(this)">
 <div class="card-inner">
 <div class="card-front"><div class="icon">⛓</div>Блокчейн</div>
-<div class="card-back">Технология хранения транзакций в защищённых блоках</div>
+<div class="card-back">Технология хранения транзакций</div>
 </div>
 </div>
 
 <div class="card" onclick="toggle(this)">
 <div class="card-inner">
 <div class="card-front"><div class="icon">💳</div>Кошелёк</div>
-<div class="card-back">Программа для хранения и управления криптоактивами</div>
+<div class="card-back">Хранение криптоактивов</div>
 </div>
 </div>
 
 <div class="card" onclick="toggle(this)">
 <div class="card-inner">
 <div class="card-front"><div class="icon">🏛</div>Биржа</div>
-<div class="card-back">Площадка для покупки и продажи криптовалют</div>
+<div class="card-back">Покупка и продажа криптовалют</div>
 </div>
 </div>
 
 <div class="card" onclick="toggle(this)">
 <div class="card-inner">
 <div class="card-front"><div class="icon">📈</div>Трейдинг</div>
-<div class="card-back">Анализ рынка и заработок на изменении цены</div>
+<div class="card-back">Заработок на изменении цены</div>
 </div>
 </div>
 
 <div class="card" onclick="toggle(this)">
 <div class="card-inner">
 <div class="card-front"><div class="icon">🔐</div>Безопасность</div>
-<div class="card-back">Защита ключей и цифровых активов пользователя</div>
+<div class="card-back">Защита активов</div>
 </div>
 </div>
 
 <div class="card" onclick="toggle(this)">
 <div class="card-inner">
 <div class="card-front"><div class="icon">⛏</div>Майнинг</div>
-<div class="card-back">Создание новых монет через вычисления</div>
+<div class="card-back">Создание новых монет</div>
 </div>
 </div>
 
 <div class="card" onclick="toggle(this)">
 <div class="card-inner">
 <div class="card-front"><div class="icon">🪙</div>Криптовалюта</div>
-<div class="card-back">Цифровые деньги нового поколения</div>
+<div class="card-back">Цифровые деньги будущего</div>
 </div>
 </div>
 
@@ -227,6 +239,28 @@ nav{
 function toggle(card){
  card.classList.toggle("active");
 }
+
+// МОНЕТЫ
+
+const coins=["₿","Ξ","◈","◎","✦","✧"];
+const count=window.innerWidth<768?10:20;
+
+function createCoin(){
+  let c=document.createElement("div");
+  c.className="coin";
+  c.innerText=coins[Math.floor(Math.random()*coins.length)];
+  c.style.left=Math.random()*100+"vw";
+  c.style.top=(Math.random()*100+100)+"vh";
+  c.style.animationDuration=(20+Math.random()*20)+"s";
+  document.body.appendChild(c);
+  setTimeout(()=>c.remove(),40000);
+}
+
+for(let i=0;i<count;i++){
+  createCoin();
+}
+
+setInterval(createCoin,2500);
 </script>
 
 </body>
