@@ -7,6 +7,8 @@
 
 <style>
 
+/* ===== BODY ===== */
+
 body{
   margin:0;
   font-family:Segoe UI, sans-serif;
@@ -21,6 +23,20 @@ body{
   0%{background-position:0% 50%;}
   50%{background-position:100% 50%;}
   100%{background-position:0% 50%;}
+}
+
+/* ===== WEB3 GRID ===== */
+
+body::before{
+  content:"";
+  position:fixed;
+  width:100%;
+  height:100%;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size:60px 60px;
+  pointer-events:none;
 }
 
 /* ===== NAV ===== */
@@ -38,19 +54,6 @@ nav a{
   color:#cbd5e1;
   margin-left:20px;
   text-decoration:none;
-}
-
-/* ===== CONTAINER ===== */
-
-.container{
-  padding:70px 20px;
-  max-width:1200px;
-  margin:auto;
-}
-
-h1{
-  text-align:center;
-  margin-bottom:60px;
 }
 
 /* ===== GRID ===== */
@@ -103,37 +106,19 @@ h1{
   backdrop-filter:blur(10px);
   backface-visibility:hidden;
   padding:20px;
-  box-sizing:border-box;
   text-align:center;
 }
 
 .card-back{
   transform:rotateY(180deg);
-  font-size:14px;
 }
 
-/* ICON */
+/* 🔥 НЕОН ВЕРНУЛ */
 
-.icon{
-  font-size:40px;
-  margin-bottom:10px;
-}
-
-/* ===== PROGRESS ===== */
-
-.progress{
-  margin-top:60px;
-  height:6px;
-  background:rgba(255,255,255,0.1);
-  border-radius:10px;
-  overflow:hidden;
-}
-
-.progress-bar{
-  height:100%;
-  width:0%;
-  background:linear-gradient(90deg,#38bdf8,#8b5cf6);
-  transition:0.4s;
+.card:hover .card-front{
+  box-shadow:
+    0 0 10px rgba(56,189,248,0.6),
+    0 0 30px rgba(139,92,246,0.6);
 }
 
 /* ===== FLOATING COINS ===== */
@@ -142,7 +127,7 @@ h1{
   position:fixed;
   font-size:20px;
   opacity:0.06;
-  animation:float 30s linear infinite;
+  animation:float 35s linear infinite;
   pointer-events:none;
 }
 
@@ -155,12 +140,6 @@ h1{
 
 @media(max-width:768px){
 
-  nav{
-    flex-direction:column;
-    align-items:center;
-    text-align:center;
-  }
-
   .grid{
     grid-template-columns:repeat(2, 1fr);
     justify-items:center;
@@ -172,26 +151,6 @@ h1{
     height:180px;
   }
 
-  .grid .card:nth-child(6),
-  .grid .card:nth-child(7),
-  .grid .card:nth-child(8){
-    grid-column:auto;
-  }
-
-}
-
-@media(max-width:480px){
-
-  .grid{
-    grid-template-columns:1fr;
-    gap:25px;
-  }
-
-  .card{
-    width:200px;
-    height:180px;
-  }
-
 }
 
 </style>
@@ -199,17 +158,22 @@ h1{
 
 <body>
 
-<!-- FLOATING COINS -->
-<div class="coin" style="left:5%; animation-delay:0s;">₿</div>
-<div class="coin" style="left:15%; animation-delay:4s;">Ξ</div>
-<div class="coin" style="left:25%; animation-delay:8s;">₿</div>
-<div class="coin" style="left:35%; animation-delay:12s;">Ξ</div>
-<div class="coin" style="left:45%; animation-delay:2s;">₿</div>
-<div class="coin" style="left:55%; animation-delay:6s;">Ξ</div>
-<div class="coin" style="left:65%; animation-delay:10s;">₿</div>
-<div class="coin" style="left:75%; animation-delay:14s;">Ξ</div>
-<div class="coin" style="left:85%; animation-delay:5s;">₿</div>
-<div class="coin" style="left:95%; animation-delay:9s;">Ξ</div>
+<!-- 20 COINS PC / 10 MOBILE -->
+<script>
+const coins = ["₿","Ξ","◈","◎"];
+
+const isMobile = window.innerWidth < 768;
+const coinCount = isMobile ? 10 : 20;
+
+for(let i=0;i<coinCount;i++){
+  const c = document.createElement("div");
+  c.className="coin";
+  c.innerText=coins[Math.floor(Math.random()*coins.length)];
+  c.style.left = Math.random()*100+"vw";
+  c.style.animationDelay = Math.random()*20+"s";
+  document.body.appendChild(c);
+}
+</script>
 
 <nav>
   <div><b>🚀 CryptoStart AI</b></div>
@@ -228,96 +192,60 @@ h1{
 
 <div class="card" onclick="toggleCard(this)">
 <div class="card-inner">
-<div class="card-front"><div class="icon">₿</div>Bitcoin</div>
-<div class="card-back">Первая и самая известная криптовалюта.</div>
+<div class="card-front">₿ Bitcoin</div>
+<div class="card-back">Первая криптовалюта</div>
 </div></div>
 
 <div class="card" onclick="toggleCard(this)">
 <div class="card-inner">
-<div class="card-front"><div class="icon">⛓</div>Блокчейн</div>
-<div class="card-back">Система, где записываются все переводы.</div>
+<div class="card-front">⛓ Блокчейн</div>
+<div class="card-back">Система переводов</div>
 </div></div>
 
 <div class="card" onclick="toggleCard(this)">
 <div class="card-inner">
-<div class="card-front"><div class="icon">💳</div>Кошелёк</div>
-<div class="card-back">Программа для хранения криптомонет.</div>
+<div class="card-front">💳 Кошелёк</div>
+<div class="card-back">Хранение крипты</div>
 </div></div>
 
 <div class="card" onclick="toggleCard(this)">
 <div class="card-inner">
-<div class="card-front"><div class="icon">🏛</div>Биржа</div>
-<div class="card-back">Платформа для покупки и продажи криптовалют.</div>
+<div class="card-front">🏛 Биржа</div>
+<div class="card-back">Покупка и продажа</div>
 </div></div>
 
 <div class="card" onclick="toggleCard(this)">
 <div class="card-inner">
-<div class="card-front"><div class="icon">📈</div>Трейдинг</div>
-<div class="card-back">Попытка заработать на изменении цены.</div>
+<div class="card-front">📈 Трейдинг</div>
+<div class="card-back">Заработок на цене</div>
 </div></div>
 
 <div class="card" onclick="toggleCard(this)">
 <div class="card-inner">
-<div class="card-front"><div class="icon">🔐</div>Безопасность</div>
-<div class="card-back">Никому не сообщайте свои пароли.</div>
+<div class="card-front">🔐 Безопасность</div>
+<div class="card-back">Храни ключи</div>
 </div></div>
 
 <div class="card" onclick="toggleCard(this)">
 <div class="card-inner">
-<div class="card-front"><div class="icon">⛏</div>Майнинг</div>
-<div class="card-back">Создание новых монет с помощью техники.</div>
+<div class="card-front">⛏ Майнинг</div>
+<div class="card-back">Создание монет</div>
 </div></div>
 
 <div class="card" onclick="toggleCard(this)">
 <div class="card-inner">
-<div class="card-front"><div class="icon">🪙</div>Криптовалюта</div>
-<div class="card-back">Цифровые деньги для интернета.</div>
+<div class="card-front">🪙 Криптовалюта</div>
+<div class="card-back">Цифровые деньги</div>
 </div></div>
 
-</div>
-
-<div class="progress">
-<div class="progress-bar" id="progressBar"></div>
 </div>
 
 </div>
 
 <script>
-let openedCards = new Set();
-
 function toggleCard(card){
-    const index = Array.from(document.querySelectorAll(".card")).indexOf(card);
-    card.classList.toggle("active");
-
-    if(card.classList.contains("active")){
-        openedCards.add(index);
-    } else {
-        openedCards.delete(index);
-    }
-
-    localStorage.setItem("cryptoProgress", JSON.stringify([...openedCards]));
-    updateProgress();
+  card.classList.toggle("active");
 }
-
-function updateProgress(){
-    const total = document.querySelectorAll(".card").length;
-    const percent = (openedCards.size / total) * 100;
-    document.getElementById("progressBar").style.width = percent + "%";
-}
-
-window.onload = function(){
-    const saved = JSON.parse(localStorage.getItem("cryptoProgress")) || [];
-    const cards = document.querySelectorAll(".card");
-
-    saved.forEach(i=>{
-        if(cards[i]){
-            cards[i].classList.add("active");
-            openedCards.add(i);
-        }
-    });
-
-    updateProgress();
-};
 </script>
 
 </body>
