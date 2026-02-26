@@ -23,11 +23,11 @@ body{
   100%{background-position:0% 50%;}
 }
 
-/* Монеты */
+/* ===== COINS ===== */
 .coin{
   position:fixed;
-  font-size:32px;
-  opacity:0.12;
+  font-size:28px;
+  opacity:0.1;
   animation:float 25s linear infinite;
   pointer-events:none;
 }
@@ -37,8 +37,9 @@ body{
   100%{transform:translateY(-20vh) rotate(360deg);}
 }
 
+/* ===== NAV ===== */
 nav{
-  padding:20px;
+  padding:20px 40px;
   background:rgba(15,23,42,0.9);
   backdrop-filter:blur(12px);
   display:flex;
@@ -57,6 +58,7 @@ nav a:hover{
   color:#38bdf8;
 }
 
+/* ===== CONTAINER ===== */
 .container{
   padding:70px 30px;
   max-width:1200px;
@@ -68,18 +70,19 @@ h1{
   margin-bottom:60px;
 }
 
-/* ===== СЕТКА ===== */
+/* ===== GRID ===== */
 .grid{
   display:grid;
   grid-template-columns:repeat(5, 1fr);
   gap:30px;
 }
 
+/* Центр второй строки */
 .grid .card:nth-child(6){ grid-column:2; }
 .grid .card:nth-child(7){ grid-column:3; }
 .grid .card:nth-child(8){ grid-column:4; }
 
-/* ===== КАРТОЧКИ ===== */
+/* ===== CARD ===== */
 .card{
   perspective:1000px;
   height:220px;
@@ -116,8 +119,8 @@ h1{
   justify-content:center;
   align-items:center;
   text-align:center;
-  box-sizing:border-box;
   background:rgba(30,41,59,0.85);
+  border:1px solid rgba(255,255,255,0.05);
 }
 
 .card-back{
@@ -125,12 +128,39 @@ h1{
   font-size:14px;
 }
 
+/* 🔥 НЕОН ВЕРНУЛ */
+.card:hover .card-front{
+  box-shadow:
+    0 0 10px rgba(56,189,248,0.6),
+    0 0 25px rgba(139,92,246,0.6),
+    0 0 50px rgba(56,189,248,0.4);
+  border:1px solid rgba(139,92,246,0.6);
+}
+
 .icon{
   font-size:40px;
   margin-bottom:15px;
+  text-shadow:0 0 8px #38bdf8,
+               0 0 20px #8b5cf6;
 }
 
-/* ===== АДАПТИВ ===== */
+/* ===== PROGRESS ===== */
+.progress{
+  margin-top:60px;
+  height:6px;
+  background:rgba(255,255,255,0.1);
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.progress-bar{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#38bdf8,#8b5cf6);
+  transition:0.4s;
+}
+
+/* ===== MOBILE ===== */
 @media(max-width:768px){
   .grid{
     grid-template-columns:repeat(2, 1fr);
@@ -147,7 +177,7 @@ h1{
 </head>
 <body>
 
-<!-- МНОГО ЛЕТАЮЩИХ МОНЕТ -->
+<!-- COINS -->
 <div class="coin" style="left:10%; animation-delay:0s;">₿</div>
 <div class="coin" style="left:30%; animation-delay:6s;">Ξ</div>
 <div class="coin" style="left:60%; animation-delay:12s;">₿</div>
@@ -196,14 +226,75 @@ h1{
 <div class="card-back">Платформа для покупки и продажи криптовалют.</div>
 </div></div>
 
+<div class="card" onclick="toggleCard(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">📈</div>Трейдинг</div>
+<div class="card-back">Попытка заработать на изменении цены.</div>
+</div></div>
+
+<div class="card" onclick="toggleCard(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">🔐</div>Безопасность</div>
+<div class="card-back">Никому не сообщайте свои пароли.</div>
+</div></div>
+
+<div class="card" onclick="toggleCard(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">⛏</div>Майнинг</div>
+<div class="card-back">Создание новых монет с помощью техники.</div>
+</div></div>
+
+<div class="card" onclick="toggleCard(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">🪙</div>Криптовалюта</div>
+<div class="card-back">Цифровые деньги для интернета.</div>
+</div></div>
+
+</div>
+
+<div class="progress">
+<div class="progress-bar" id="progressBar"></div>
 </div>
 
 </div>
 
 <script>
+let openedCards = new Set();
+
 function toggleCard(card){
-  card.classList.toggle("active");
+    const index = Array.from(document.querySelectorAll(".card")).indexOf(card);
+
+    card.classList.toggle("active");
+
+    if(card.classList.contains("active")){
+        openedCards.add(index);
+    } else {
+        openedCards.delete(index);
+    }
+
+    localStorage.setItem("cryptoProgress", JSON.stringify([...openedCards]));
+    updateProgress();
 }
+
+function updateProgress(){
+    const total = document.querySelectorAll(".card").length;
+    const percent = (openedCards.size / total) * 100;
+    document.getElementById("progressBar").style.width = percent + "%";
+}
+
+window.onload = function(){
+    const saved = JSON.parse(localStorage.getItem("cryptoProgress")) || [];
+    const cards = document.querySelectorAll(".card");
+
+    saved.forEach(i=>{
+        if(cards[i]){
+            cards[i].classList.add("active");
+            openedCards.add(i);
+        }
+    });
+
+    updateProgress();
+};
 </script>
 
 </body>
