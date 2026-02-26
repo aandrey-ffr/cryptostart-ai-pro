@@ -72,25 +72,7 @@ nav{
 }
 
 h1{
-  margin-bottom:20px;
-}
-
-/* PROGRESS */
-
-.progress{
-  width:300px;
-  height:6px;
-  margin:0 auto 60px auto;
-  background:rgba(255,255,255,0.1);
-  border-radius:10px;
-  overflow:hidden;
-}
-
-.progress-bar{
-  height:100%;
-  width:0%;
-  background:linear-gradient(90deg,#38bdf8,#8b5cf6);
-  transition:0.4s;
+  margin-bottom:40px;
 }
 
 /* GRID */
@@ -140,10 +122,10 @@ h1{
   text-align:center;
   padding:20px;
   backface-visibility:hidden;
-  box-sizing:border-box;
 }
 
 /* НЕОН */
+
 .card:hover .card-front{
   box-shadow:
     0 0 15px rgba(56,189,248,0.6),
@@ -168,7 +150,6 @@ h1{
   font-size:20px;
   opacity:0.12;
   animation:float 30s linear infinite;
-  pointer-events:none;
 }
 
 @keyframes float{
@@ -185,7 +166,6 @@ h1{
   <div><b>🚀 CryptoStart AI</b></div>
   <div class="nav-links">
     <a href="index.html">🏠 Главная</a>
-    <a href="education.html">📚 Обучение</a>
     <a href="rates.html">💰 Курсы</a>
     <a href="ai.html">🤖 AI</a>
     <a href="about.html">🌐 О проекте</a>
@@ -208,11 +188,73 @@ for(let i=0;i<count;i++){
 
 <div class="title">
 <h1>Обучение криптовалютам</h1>
-
-<div class="progress">
-<div class="progress-bar" id="progressBar"></div>
-</div>
 </div>
 
 <div class="grid">
-<!-- твои карточки остаются как есть -->
+
+<div class="card" onclick="toggle(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">₿</div>Bitcoin</div>
+<div class="card-back">Первая криптовалюта</div>
+</div>
+</div>
+
+<div class="card" onclick="toggle(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">⛓</div>Блокчейн</div>
+<div class="card-back">Система транзакций</div>
+</div>
+</div>
+
+<div class="card" onclick="toggle(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">💳</div>Кошелёк</div>
+<div class="card-back">Хранение крипты</div>
+</div>
+</div>
+
+<div class="card" onclick="toggle(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">🏛</div>Биржа</div>
+<div class="card-back">Покупка и продажа</div>
+</div>
+</div>
+
+<div class="card" onclick="toggle(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">📈</div>Трейдинг</div>
+<div class="card-back">Заработок на цене</div>
+</div>
+</div>
+
+<div class="card" onclick="toggle(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">🔐</div>Безопасность</div>
+<div class="card-back">Береги ключи</div>
+</div>
+</div>
+
+<div class="card" onclick="toggle(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">⛏</div>Майнинг</div>
+<div class="card-back">Создание монет</div>
+</div>
+</div>
+
+<div class="card" onclick="toggle(this)">
+<div class="card-inner">
+<div class="card-front"><div class="icon">🪙</div>Криптовалюта</div>
+<div class="card-back">Цифровые деньги</div>
+</div>
+</div>
+
+</div>
+
+<script>
+function toggle(card){
+ card.classList.toggle("active");
+}
+</script>
+
+</body>
+</html>
