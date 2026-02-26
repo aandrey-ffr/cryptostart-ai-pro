@@ -6,6 +6,7 @@
 <title>CryptoStart AI</title>
 
 <style>
+
 *{
   margin:0;
   padding:0;
@@ -91,6 +92,7 @@ header{
   max-width:260px;
   text-align:center;
 }
+
 </style>
 </head>
 
@@ -114,42 +116,6 @@ header{
     <a href="about.html">О проекте</a>
   </div>
 </div>
-
-<script>
-
-const coins = [
-  "https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=029",
-  "https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=029",
-  "https://cryptologos.cc/logos/solana-sol-logo.svg?v=029",
-  "https://cryptologos.cc/logos/binance-coin-bnb-logo.svg?v=029",
-  "https://cryptologos.cc/logos/xrp-xrp-logo.svg?v=029",
-  "https://cryptologos.cc/logos/cardano-ada-logo.svg?v=029",
-  "https://cryptologos.cc/logos/polygon-matic-logo.svg?v=029"
-];
-
-function createCoin(){
-  const coin = document.createElement("img");
-  coin.src = coins[Math.floor(Math.random() * coins.length)];
-  coin.className = "floating-coin";
-
-  const size = Math.random() * 50 + 50;
-  coin.style.width = size + "px";
-  coin.style.height = size + "px";
-
-  coin.style.left = Math.random() * 100 + "vw";
-  coin.style.animationDuration = (Math.random() * 6 + 8) + "s";
-  coin.style.opacity = Math.random() * 0.25 + 0.15;
-
-  document.body.appendChild(coin);
-
-  setTimeout(()=>{
-    coin.remove();
-  },15000);
-}
-
-setInterval(createCoin, 500);
-
-</script>
 
 </body>
 </html>
