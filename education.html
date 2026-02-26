@@ -15,12 +15,53 @@ body{
   background-size:600% 600%;
   animation:gradientMove 12s ease infinite;
   overflow-x:hidden;
+  position:relative;
+}
+
+/* WEB3 GRID */
+body::before{
+  content:"";
+  position:fixed;
+  width:100%;
+  height:100%;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size:70px 70px;
+  pointer-events:none;
 }
 
 @keyframes gradientMove{
   0%{background-position:0% 50%;}
   50%{background-position:100% 50%;}
   100%{background-position:0% 50%;}
+}
+
+/* NAVBAR */
+
+nav{
+  padding:20px 40px;
+  background:rgba(15,23,42,0.85);
+  backdrop-filter:blur(12px);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.nav-links{
+  display:flex;
+  gap:20px;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:#cbd5e1;
+  font-weight:500;
+  transition:0.3s;
+}
+
+.nav-links a:hover{
+  color:white;
 }
 
 /* TITLE */
@@ -125,7 +166,7 @@ h1{
 .coin{
   position:fixed;
   font-size:20px;
-  opacity:0.12; /* было 0.05 */
+  opacity:0.12;
   animation:float 30s linear infinite;
   pointer-events:none;
 }
@@ -139,6 +180,17 @@ h1{
 </head>
 
 <body>
+
+<nav>
+  <div><b>🚀 CryptoStart AI</b></div>
+  <div class="nav-links">
+    <a href="index.html">🏠 Главная</a>
+    <a href="education.html">📚 Обучение</a>
+    <a href="rates.html">💰 Курсы</a>
+    <a href="ai.html">🤖 AI</a>
+    <a href="about.html">🌐 О проекте</a>
+  </div>
+</nav>
 
 <script>
 const coins=["₿","Ξ","◈","◎","✦","✧"];
@@ -163,138 +215,4 @@ for(let i=0;i<count;i++){
 </div>
 
 <div class="grid">
-
-<div class="card" onclick="toggle(this,0)">
-<div class="card-inner">
-<div class="card-front">
-<div class="icon">₿</div>
-Bitcoin
-</div>
-<div class="card-back">
-Первая и самая известная криптовалюта
-</div>
-</div>
-</div>
-
-<div class="card" onclick="toggle(this,1)">
-<div class="card-inner">
-<div class="card-front">
-<div class="icon">⛓</div>
-Блокчейн
-</div>
-<div class="card-back">
-Система записи всех транзакций
-</div>
-</div>
-</div>
-
-<div class="card" onclick="toggle(this,2)">
-<div class="card-inner">
-<div class="card-front">
-<div class="icon">💳</div>
-Кошелёк
-</div>
-<div class="card-back">
-Хранение криптовалют
-</div>
-</div>
-</div>
-
-<div class="card" onclick="toggle(this,3)">
-<div class="card-inner">
-<div class="card-front">
-<div class="icon">🏛</div>
-Биржа
-</div>
-<div class="card-back">
-Покупка и продажа крипты
-</div>
-</div>
-</div>
-
-<div class="card" onclick="toggle(this,4)">
-<div class="card-inner">
-<div class="card-front">
-<div class="icon">📈</div>
-Трейдинг
-</div>
-<div class="card-back">
-Заработок на изменении цены
-</div>
-</div>
-</div>
-
-<div class="card" onclick="toggle(this,5)">
-<div class="card-inner">
-<div class="card-front">
-<div class="icon">🔐</div>
-Безопасность
-</div>
-<div class="card-back">
-Никому не передавайте ключи
-</div>
-</div>
-</div>
-
-<div class="card" onclick="toggle(this,6)">
-<div class="card-inner">
-<div class="card-front">
-<div class="icon">⛏</div>
-Майнинг
-</div>
-<div class="card-back">
-Создание новых монет
-</div>
-</div>
-</div>
-
-<div class="card" onclick="toggle(this,7)">
-<div class="card-inner">
-<div class="card-front">
-<div class="icon">🪙</div>
-Криптовалюта
-</div>
-<div class="card-back">
-Цифровые деньги будущего
-</div>
-</div>
-</div>
-
-</div>
-
-<script>
-
-let opened=new Set();
-
-function toggle(card,i){
- card.classList.toggle("active");
-
- if(card.classList.contains("active")){
-   opened.add(i);
- } else {
-   opened.delete(i);
- }
-
- localStorage.setItem("progress",JSON.stringify([...opened]));
- update();
-}
-
-function update(){
- let total=8;
- let percent=(opened.size/total)*100;
- document.getElementById("progressBar").style.width=percent+"%";
-}
-
-window.onload=()=>{
- let saved=JSON.parse(localStorage.getItem("progress"))||[];
- saved.forEach(i=>{
-   opened.add(i);
-   document.querySelectorAll(".card")[i].classList.add("active");
- });
- update();
-}
-
-</script>
-
-</body>
-</html>
+<!-- твои карточки остаются как есть -->
