@@ -55,19 +55,14 @@ h1{
   display:grid;
   grid-template-columns:repeat(5, 220px);
   justify-content:center;
-  column-gap:30px;
-  row-gap:60px;
+  column-gap:40px;
+  row-gap:80px;
 }
 
 /* центр второй строки */
 .grid .card:nth-child(6){ grid-column:2; }
 .grid .card:nth-child(7){ grid-column:3; }
 .grid .card:nth-child(8){ grid-column:4; }
-
-/* дополнительный отступ второго ряда */
-.grid .card:nth-child(n+6){
-  margin-top:20px;
-}
 
 /* ===== CARD ===== */
 .card{
@@ -148,17 +143,68 @@ h1{
   transition:0.4s;
 }
 
-/* MOBILE */
-@media(max-width:768px){
+/* ===== TABLET ===== */
+@media(max-width:1024px){
+
   .grid{
-    grid-template-columns:repeat(2, 1fr);
+    grid-template-columns:repeat(3, 200px);
+    row-gap:50px;
+    column-gap:25px;
   }
+
+  .card{
+    width:200px;
+    height:200px;
+  }
+
 }
 
-@media(max-width:500px){
+/* ===== PHONE ===== */
+@media(max-width:768px){
+
+  nav{
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+  }
+
+  .container{
+    padding:40px 15px;
+  }
+
+  .grid{
+    grid-template-columns:repeat(2, 1fr);
+    gap:25px;
+  }
+
+  .card{
+    width:100%;
+    max-width:180px;
+    height:180px;
+  }
+
+  .grid .card:nth-child(6),
+  .grid .card:nth-child(7),
+  .grid .card:nth-child(8){
+    grid-column:auto;
+  }
+
+}
+
+/* ===== SMALL PHONE ===== */
+@media(max-width:480px){
+
   .grid{
     grid-template-columns:1fr;
+    gap:20px;
   }
+
+  .card{
+    max-width:240px;
+    height:180px;
+    margin:0 auto;
+  }
+
 }
 
 </style>
