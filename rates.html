@@ -14,7 +14,7 @@ body{
   font-family:Segoe UI, sans-serif;
   color:white;
   background:#0b1220;
-  overflow:hidden;
+  overflow-x:hidden;
 }
 
 /* ===== НАВБАР ===== */
@@ -134,6 +134,28 @@ button:hover{
   100%{
     transform:translateY(-120vh);
     opacity:0;
+  }
+}
+
+@media(max-width:768px){
+
+  nav{
+    flex-direction:column;
+    gap:10px;
+  }
+
+  .container{
+    margin-top:40px;
+    padding:0 15px;
+  }
+
+  .table-wrapper{
+    width:100%;
+    overflow-x:auto;
+  }
+
+  table{
+    width:100%;
   }
 }
 
