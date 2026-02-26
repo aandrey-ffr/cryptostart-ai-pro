@@ -56,7 +56,6 @@ nav{
 .nav-links a{
   text-decoration:none;
   color:#cbd5e1;
-  font-weight:500;
 }
 
 .nav-links a:hover{
@@ -74,20 +73,22 @@ nav{
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(3, 1fr);
-  gap:25px;
-  max-width:600px;
-  margin:60px auto;
+  grid-template-columns:repeat(3, 160px);
+  justify-content:center;
+  gap:35px;
+  margin:80px auto;
 }
 
-/* CENTER BOTTOM */
+/* Центр нижних */
 
 .grid .card:nth-child(7){
-  grid-column:1 / 2;
+  grid-column:1 / span 2;
+  justify-self:end;
 }
 
 .grid .card:nth-child(8){
-  grid-column:2 / 3;
+  grid-column:2 / span 2;
+  justify-self:start;
 }
 
 /* CARD */
@@ -95,7 +96,6 @@ nav{
 .card{
   width:160px;
   height:160px;
-  margin:auto;
   perspective:1000px;
   cursor:pointer;
 }
@@ -129,8 +129,6 @@ nav{
   backface-visibility:hidden;
 }
 
-/* NEON */
-
 .card:hover .card-front{
   box-shadow:
     0 0 15px rgba(56,189,248,0.6),
@@ -146,20 +144,6 @@ nav{
   margin-bottom:8px;
 }
 
-/* COINS */
-
-.coin{
-  position:fixed;
-  font-size:18px;
-  opacity:0.12;
-  animation:float linear infinite;
-}
-
-@keyframes float{
-  0%{transform:translateY(0);}
-  100%{transform:translateY(-120vh);}
-}
-
 </style>
 </head>
 
@@ -169,7 +153,6 @@ nav{
   <div><b>🚀 CryptoStart AI</b></div>
   <div class="nav-links">
     <a href="index.html">🏠 Главная</a>
-    <a href="education.html">📚 Обучение</a>
     <a href="rates.html">💰 Курсы</a>
     <a href="ai.html">🤖 AI</a>
     <a href="about.html">🌐 О проекте</a>
@@ -185,56 +168,56 @@ nav{
 <div class="card" onclick="toggle(this)">
 <div class="card-inner">
 <div class="card-front"><div class="icon">₿</div>Bitcoin</div>
-<div class="card-back">Первая цифровая валюта</div>
+<div class="card-back">Первая цифровая валюта без банков и посредников</div>
 </div>
 </div>
 
 <div class="card" onclick="toggle(this)">
 <div class="card-inner">
 <div class="card-front"><div class="icon">⛓</div>Блокчейн</div>
-<div class="card-back">Система транзакций</div>
+<div class="card-back">Технология хранения транзакций в защищённых блоках</div>
 </div>
 </div>
 
 <div class="card" onclick="toggle(this)">
 <div class="card-inner">
 <div class="card-front"><div class="icon">💳</div>Кошелёк</div>
-<div class="card-back">Хранение крипты</div>
+<div class="card-back">Программа для хранения и управления криптоактивами</div>
 </div>
 </div>
 
 <div class="card" onclick="toggle(this)">
 <div class="card-inner">
 <div class="card-front"><div class="icon">🏛</div>Биржа</div>
-<div class="card-back">Покупка крипты</div>
+<div class="card-back">Площадка для покупки и продажи криптовалют</div>
 </div>
 </div>
 
 <div class="card" onclick="toggle(this)">
 <div class="card-inner">
 <div class="card-front"><div class="icon">📈</div>Трейдинг</div>
-<div class="card-back">Заработок</div>
+<div class="card-back">Анализ рынка и заработок на изменении цены</div>
 </div>
 </div>
 
 <div class="card" onclick="toggle(this)">
 <div class="card-inner">
 <div class="card-front"><div class="icon">🔐</div>Безопасность</div>
-<div class="card-back">Защита средств</div>
+<div class="card-back">Защита ключей и цифровых активов пользователя</div>
 </div>
 </div>
 
 <div class="card" onclick="toggle(this)">
 <div class="card-inner">
 <div class="card-front"><div class="icon">⛏</div>Майнинг</div>
-<div class="card-back">Создание монет</div>
+<div class="card-back">Создание новых монет через вычисления</div>
 </div>
 </div>
 
 <div class="card" onclick="toggle(this)">
 <div class="card-inner">
 <div class="card-front"><div class="icon">🪙</div>Криптовалюта</div>
-<div class="card-back">Цифровые деньги</div>
+<div class="card-back">Цифровые деньги нового поколения</div>
 </div>
 </div>
 
