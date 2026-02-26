@@ -23,20 +23,6 @@ body{
   100%{background-position:0% 50%;}
 }
 
-/* ===== COINS ===== */
-.coin{
-  position:fixed;
-  font-size:28px;
-  opacity:0.1;
-  animation:float 25s linear infinite;
-  pointer-events:none;
-}
-
-@keyframes float{
-  0%{transform:translateY(110vh) rotate(0deg);}
-  100%{transform:translateY(-20vh) rotate(360deg);}
-}
-
 /* ===== NAV ===== */
 nav{
   padding:20px 40px;
@@ -54,10 +40,6 @@ nav a{
   text-decoration:none;
 }
 
-nav a:hover{
-  color:#38bdf8;
-}
-
 /* ===== CONTAINER ===== */
 .container{
   padding:70px 30px;
@@ -70,17 +52,18 @@ h1{
   margin-bottom:60px;
 }
 
-/* ===== GRID ===== */
+/* ===== GRID (РАЗДВИНУТ) ===== */
 .grid{
   display:grid;
   grid-template-columns:repeat(5, 1fr);
-  gap:30px;
+  gap:40px;
+  justify-items:center;
 }
 
-/* Центр второй строки */
-.grid .card:nth-child(6){ grid-column:2; }
+/* ВТОРОЙ РЯД РАЗДВИНУТ */
+.grid .card:nth-child(6){ grid-column:1; }
 .grid .card:nth-child(7){ grid-column:3; }
-.grid .card:nth-child(8){ grid-column:4; }
+.grid .card:nth-child(8){ grid-column:5; }
 
 /* ===== CARD ===== */
 .card{
@@ -88,6 +71,7 @@ h1{
   height:220px;
   cursor:pointer;
   transition:0.3s ease;
+  margin-bottom:20px;
 }
 
 .card:hover{
@@ -128,7 +112,7 @@ h1{
   font-size:14px;
 }
 
-/* 🔥 НЕОН ВЕРНУЛ */
+/* НЕОН */
 .card:hover .card-front{
   box-shadow:
     0 0 10px rgba(56,189,248,0.6),
@@ -160,7 +144,7 @@ h1{
   transition:0.4s;
 }
 
-/* ===== MOBILE ===== */
+/* MOBILE */
 @media(max-width:768px){
   .grid{
     grid-template-columns:repeat(2, 1fr);
@@ -176,16 +160,6 @@ h1{
 </style>
 </head>
 <body>
-
-<!-- COINS -->
-<div class="coin" style="left:10%; animation-delay:0s;">₿</div>
-<div class="coin" style="left:30%; animation-delay:6s;">Ξ</div>
-<div class="coin" style="left:60%; animation-delay:12s;">₿</div>
-<div class="coin" style="left:20%; animation-delay:2s;">Ξ</div>
-<div class="coin" style="left:50%; animation-delay:8s;">₿</div>
-<div class="coin" style="left:75%; animation-delay:14s;">Ξ</div>
-<div class="coin" style="left:85%; animation-delay:5s;">₿</div>
-<div class="coin" style="left:40%; animation-delay:10s;">Ξ</div>
 
 <nav>
   <div><b>🚀 CryptoStart AI</b></div>
