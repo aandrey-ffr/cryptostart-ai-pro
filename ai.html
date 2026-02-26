@@ -198,6 +198,67 @@ button{
 .quick-btn:hover{
   background:#475569;
 }
+
+/* ===== MOBILE ADAPT (AI PAGE) ===== */
+@media(max-width:900px){
+
+  /* Общий контейнер */
+  .container{
+    display:flex;
+    flex-direction:column;
+    padding:20px 15px;
+    gap:15px;
+  }
+
+  /* Боковые панели */
+  .side{
+    height:auto;
+    max-height:300px;
+  }
+
+  /* Чат */
+  .chat{
+    height:60vh;
+  }
+
+  /* Сообщения */
+  .messages{
+    font-size:14px;
+  }
+
+  /* Поле ввода */
+  input{
+    font-size:16px;
+  }
+
+  button{
+    font-size:14px;
+    padding:10px;
+  }
+
+  /* Навбар */
+  nav{
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+    text-align:center;
+    padding:15px;
+  }
+
+  nav div:last-child{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:8px;
+  }
+
+  nav a{
+    margin:0;
+    font-size:14px;
+  }
+
+}
+
 </style>
 </head>
 
