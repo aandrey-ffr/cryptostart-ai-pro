@@ -23,7 +23,6 @@ body{
   100%{background-position:0% 50%;}
 }
 
-/* ===== NAV ===== */
 nav{
   padding:20px 40px;
   background:rgba(15,23,42,0.9);
@@ -40,7 +39,6 @@ nav a{
   text-decoration:none;
 }
 
-/* ===== CONTAINER ===== */
 .container{
   padding:70px 30px;
   max-width:1200px;
@@ -52,26 +50,26 @@ h1{
   margin-bottom:60px;
 }
 
-/* ===== GRID (РАЗДВИНУТ) ===== */
+/* ===== GRID ===== */
 .grid{
   display:grid;
-  grid-template-columns:repeat(5, 1fr);
-  gap:40px;
-  justify-items:center;
+  grid-template-columns:repeat(5, 220px);
+  justify-content:center;
+  gap:30px;
 }
 
-/* ВТОРОЙ РЯД РАЗДВИНУТ */
-.grid .card:nth-child(6){ grid-column:1; }
+/* центр второй строки */
+.grid .card:nth-child(6){ grid-column:2; }
 .grid .card:nth-child(7){ grid-column:3; }
-.grid .card:nth-child(8){ grid-column:5; }
+.grid .card:nth-child(8){ grid-column:4; }
 
 /* ===== CARD ===== */
 .card{
   perspective:1000px;
+  width:220px;
   height:220px;
   cursor:pointer;
   transition:0.3s ease;
-  margin-bottom:20px;
 }
 
 .card:hover{
@@ -144,7 +142,7 @@ h1{
   transition:0.4s;
 }
 
-/* MOBILE */
+/* ===== MOBILE ===== */
 @media(max-width:768px){
   .grid{
     grid-template-columns:repeat(2, 1fr);
