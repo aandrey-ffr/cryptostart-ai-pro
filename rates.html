@@ -159,6 +159,65 @@ button:hover{
   }
 }
 
+  /* ===== MOBILE OPTIMIZATION (КУРСЫ) ===== */
+@media(max-width:768px){
+
+  /* Navbar */
+  nav{
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+    padding:15px;
+    text-align:center;
+  }
+
+  nav div:last-child{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:8px;
+  }
+
+  nav a{
+    margin:0;
+    font-size:14px;
+  }
+
+  /* Заголовок */
+  h1{
+    font-size:22px;
+  }
+
+  /* Контейнер */
+  .container{
+    margin-top:30px;
+    padding:0 12px;
+  }
+
+  /* Карточка */
+  .table-wrapper{
+    width:100%;
+    padding:20px 10px;
+  }
+
+  /* Таблица */
+  table{
+    width:100%;
+    font-size:14px;
+  }
+
+  th, td{
+    padding:10px 6px;
+  }
+
+  /* Кнопка */
+  button{
+    width:100%;
+    font-size:16px;
+  }
+
+}
+
 </style>
 </head>
 <body>
