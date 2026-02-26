@@ -7,11 +7,7 @@
 
 <style>
 
-nav:not(.navbar),
-body > nav:first-of-type,
-body > ul:first-of-type{
-  display:none !important;
-}
+*{box-sizing:border-box;}
 
 body{
   margin:0;
@@ -33,18 +29,17 @@ body{
 
 .navbar{
   width:100%;
-  height:60px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:0 40px;
-  box-sizing:border-box;
+  padding:15px 20px;
   background:rgba(15,23,42,0.8);
   backdrop-filter:blur(10px);
   border-bottom:1px solid rgba(255,255,255,0.1);
   position:sticky;
   top:0;
   z-index:1000;
+  flex-wrap:wrap;
 }
 
 .logo{
@@ -54,37 +49,29 @@ body{
 
 .menu{
   display:flex;
-  gap:25px;
+  gap:20px;
+  flex-wrap:wrap;
 }
 
 .menu a{
   text-decoration:none;
   color:white;
   font-size:14px;
-  transition:0.3s;
-}
-
-.menu a:hover{
-  color:#38bdf8;
 }
 
 /* TITLE */
 
 .title{
   text-align:center;
-  margin-top:40px;
-}
-
-h1{
-  margin-bottom:20px;
+  margin-top:30px;
 }
 
 /* PROGRESS */
 
 .progress{
-  width:300px;
+  width:260px;
   height:6px;
-  margin:0 auto 60px auto;
+  margin:20px auto 40px auto;
   background:rgba(255,255,255,0.1);
   border-radius:10px;
   overflow:hidden;
@@ -100,19 +87,19 @@ h1{
 /* GRID */
 
 .grid{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:40px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:30px;
   max-width:900px;
   margin:0 auto;
+  padding:0 20px;
 }
 
 /* CARD */
 
 .card{
-  width:200px;
-  height:200px;
+  width:100%;
+  aspect-ratio:1/1;
   perspective:1000px;
   cursor:pointer;
 }
@@ -142,15 +129,8 @@ h1{
   justify-content:center;
   align-items:center;
   text-align:center;
-  padding:20px;
+  padding:15px;
   backface-visibility:hidden;
-  box-sizing:border-box;
-}
-
-.card:hover .card-front{
-  box-shadow:
-    0 0 15px rgba(56,189,248,0.6),
-    0 0 40px rgba(139,92,246,0.6);
 }
 
 .card-back{
@@ -158,107 +138,42 @@ h1{
 }
 
 .icon{
-  font-size:40px;
+  font-size:32px;
   margin-bottom:10px;
 }
 
+/* COINS */
+
 .coin{
   position:fixed;
-  font-size:20px;
-  opacity:0.12;
-  animation:float linear infinite;
+  font-size:18px;
+  opacity:0.15;
   pointer-events:none;
+  animation:float linear infinite;
 }
 
 @keyframes float{
-  0%{transform:translateY(0);} 
-  100%{transform:translateY(-140vh);} 
-} 
-  100%{transform:translateY(-20vh);} 
+  from{transform:translateY(120vh);}
+  to{transform:translateY(-120vh);}
 }
 
+/* ================= MOBILE ================= */
 
-
-/* === MOBILE FIX === */
-
-@media (max-width:768px){
-
-body{
-  overflow-x:hidden;
-}
-
-/* КОНТЕЙНЕР */
-
-.container,
-.grid,
-.section,
-.wrapper{
-  width:100% !important;
-  max-width:100% !important;
-  padding:0 15px !important;
-  box-sizing:border-box;
-}
-
-/* NAVBAR */
-
-.navbar{
-  flex-wrap:wrap;
-  justify-content:center;
-  text-align:center;
-  padding:10px;
-}
-
-.nav-links{
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:10px;
-}
-
-/* ЗАГОЛОВКИ */
-
-h1{
-  font-size:22px !important;
-  padding:0 10px;
-  text-align:center;
-}
-
-/* КУБЫ */
+@media(max-width:768px){
 
 .grid{
-  display:grid !important;
-  grid-template-columns: repeat(2, 1fr) !important;
-  gap:20px !important;
-  justify-items:center !important;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
 }
 
-.card{
-  width:150px !important;
-  height:150px !important;
+h1{
+  font-size:22px;
 }
 
-/* ТАБЛИЦА */
-
-.table-wrapper{
+.menu{
+  justify-content:center;
   width:100%;
-  overflow-x:auto;
-}
-
-table{
-  min-width:100%;
-}
-
-/* БЛОКИ */
-
-.section,
-.block,
-.box{
-  width:100% !important;
-}
-
-/* УБИРАЕМ ГОРИЗОНТАЛЬНЫЙ СКРОЛЛ */
-
-*{
-  max-width:100vw;
+  margin-top:10px;
 }
 
 }
@@ -272,7 +187,7 @@ table{
   <div class="logo">🚀 CryptoStart AI</div>
   <div class="menu">
     <a href="index.html">🏠 Главная</a>
-    <a href="rates.html">📈Курсы</a>
+    <a href="rates.html">📈 Курсы</a>
     <a href="ai.html">🤖 AI</a>
     <a href="about.html">📘 О проекте</a>
   </div>
@@ -287,7 +202,6 @@ for(let i=0;i<count;i++){
   c.className="coin";
   c.innerText=coins[Math.floor(Math.random()*coins.length)];
   c.style.left=Math.random()*100+"vw";
-  c.style.top=Math.random()*100+"vh";
   c.style.animationDuration=(20+Math.random()*20)+"s";
   c.style.animationDelay=(-Math.random()*40)+"s";
   document.body.appendChild(c);
@@ -296,14 +210,12 @@ for(let i=0;i<count;i++){
 
 <div class="title">
 <h1>Обучение криптовалютам</h1>
-
 <div class="progress">
 <div class="progress-bar" id="progressBar"></div>
 </div>
 </div>
 
-<div class="grid" id="cards">
-</div>
+<div class="grid" id="cards"></div>
 
 <script>
 
@@ -322,7 +234,6 @@ const names=["Bitcoin","Блокчейн","Кошелёк","Биржа","Тре�
 const icons=["₿","⛓","💳","🏛","📈","🔐","⛏","🪙"];
 
 let opened=new Set(JSON.parse(localStorage.getItem("progress"))||[]);
-
 const container=document.getElementById("cards");
 
 names.forEach((name,i)=>{
