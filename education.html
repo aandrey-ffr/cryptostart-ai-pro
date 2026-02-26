@@ -18,7 +18,8 @@ body{
   position:relative;
 }
 
-/* WEB3 GRID */
+/* СЕТКА */
+
 body::before{
   content:"";
   position:fixed;
@@ -35,33 +36,6 @@ body::before{
   0%{background-position:0% 50%;}
   50%{background-position:100% 50%;}
   100%{background-position:0% 50%;}
-}
-
-/* NAVBAR */
-
-nav{
-  padding:20px 40px;
-  background:rgba(15,23,42,0.85);
-  backdrop-filter:blur(12px);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.nav-links{
-  display:flex;
-  gap:20px;
-}
-
-.nav-links a{
-  text-decoration:none;
-  color:#cbd5e1;
-  font-weight:500;
-  transition:0.3s;
-}
-
-.nav-links a:hover{
-  color:white;
 }
 
 /* TITLE */
@@ -82,15 +56,15 @@ h1{
   flex-wrap:wrap;
   justify-content:center;
   gap:40px;
-  max-width:900px;
+  max-width:1100px;
   margin:0 auto;
 }
 
 /* CARD */
 
 .card{
-  width:200px;
-  height:200px;
+  width:240px;
+  height:240px;
   perspective:1000px;
   cursor:pointer;
 }
@@ -112,15 +86,15 @@ h1{
   position:absolute;
   width:100%;
   height:100%;
-  border-radius:20px;
-  background:rgba(30,41,59,0.8);
+  border-radius:22px;
+  background:rgba(30,41,59,0.85);
   border:1px solid rgba(255,255,255,0.05);
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   text-align:center;
-  padding:20px;
+  padding:25px;
   backface-visibility:hidden;
 }
 
@@ -139,8 +113,8 @@ h1{
 /* ICON */
 
 .icon{
-  font-size:40px;
-  margin-bottom:10px;
+  font-size:42px;
+  margin-bottom:12px;
 }
 
 /* COINS */
@@ -149,42 +123,18 @@ h1{
   position:fixed;
   font-size:20px;
   opacity:0.12;
-  animation:float 30s linear infinite;
+  animation:float linear infinite;
 }
 
 @keyframes float{
-  0%{transform:translateY(110vh);}
-  100%{transform:translateY(-20vh);}
+  0%{transform:translateY(0);}
+  100%{transform:translateY(-120vh);}
 }
 
 </style>
 </head>
 
 <body>
-
-<nav>
-  <div><b>🚀 CryptoStart AI</b></div>
-  <div class="nav-links">
-    <a href="index.html">🏠 Главная</a>
-    <a href="rates.html">💰 Курсы</a>
-    <a href="ai.html">🤖 AI</a>
-    <a href="about.html">🌐 О проекте</a>
-  </div>
-</nav>
-
-<script>
-const coins=["₿","Ξ","◈","◎","✦","✧"];
-const count=window.innerWidth<768?10:20;
-
-for(let i=0;i<count;i++){
-  let c=document.createElement("div");
-  c.className="coin";
-  c.innerText=coins[Math.floor(Math.random()*coins.length)];
-  c.style.left=Math.random()*100+"vw";
-  c.style.animationDelay=Math.random()*20+"s";
-  document.body.appendChild(c);
-}
-</script>
 
 <div class="title">
 <h1>Обучение криптовалютам</h1>
@@ -195,65 +145,92 @@ for(let i=0;i<count;i++){
 <div class="card" onclick="toggle(this)">
 <div class="card-inner">
 <div class="card-front"><div class="icon">₿</div>Bitcoin</div>
-<div class="card-back">Первая криптовалюта</div>
+<div class="card-back">Первая децентрализованная цифровая валюта без банков</div>
 </div>
 </div>
 
 <div class="card" onclick="toggle(this)">
 <div class="card-inner">
 <div class="card-front"><div class="icon">⛓</div>Блокчейн</div>
-<div class="card-back">Система транзакций</div>
+<div class="card-back">Технология хранения транзакций в защищённых блоках</div>
 </div>
 </div>
 
 <div class="card" onclick="toggle(this)">
 <div class="card-inner">
 <div class="card-front"><div class="icon">💳</div>Кошелёк</div>
-<div class="card-back">Хранение крипты</div>
+<div class="card-back">Программа для хранения и отправки криптовалют</div>
 </div>
 </div>
 
 <div class="card" onclick="toggle(this)">
 <div class="card-inner">
 <div class="card-front"><div class="icon">🏛</div>Биржа</div>
-<div class="card-back">Покупка и продажа</div>
+<div class="card-back">Платформа для покупки и продажи крипты</div>
 </div>
 </div>
 
 <div class="card" onclick="toggle(this)">
 <div class="card-inner">
 <div class="card-front"><div class="icon">📈</div>Трейдинг</div>
-<div class="card-back">Заработок на цене</div>
+<div class="card-back">Заработок на изменении курса</div>
 </div>
 </div>
 
 <div class="card" onclick="toggle(this)">
 <div class="card-inner">
 <div class="card-front"><div class="icon">🔐</div>Безопасность</div>
-<div class="card-back">Береги ключи</div>
+<div class="card-back">Защита приватных ключей и средств</div>
 </div>
 </div>
 
 <div class="card" onclick="toggle(this)">
 <div class="card-inner">
 <div class="card-front"><div class="icon">⛏</div>Майнинг</div>
-<div class="card-back">Создание монет</div>
+<div class="card-back">Создание новых монет через вычисления</div>
 </div>
 </div>
 
 <div class="card" onclick="toggle(this)">
 <div class="card-inner">
 <div class="card-front"><div class="icon">🪙</div>Криптовалюта</div>
-<div class="card-back">Цифровые деньги</div>
+<div class="card-back">Цифровые деньги будущего</div>
 </div>
 </div>
 
 </div>
 
 <script>
+
 function toggle(card){
  card.classList.toggle("active");
 }
+
+// МОНЕТЫ БЕЗ БАГА
+
+const coins=["₿","Ξ","◈","◎","✦","✧"];
+const count=window.innerWidth<768?10:20;
+
+function createCoin(){
+  let c=document.createElement("div");
+  c.className="coin";
+  c.innerText=coins[Math.floor(Math.random()*coins.length)];
+
+  c.style.left=Math.random()*100+"vw";
+  c.style.top=(Math.random()*100+100)+"vh";
+  c.style.animationDuration=(20+Math.random()*20)+"s";
+
+  document.body.appendChild(c);
+
+  setTimeout(()=>c.remove(),40000);
+}
+
+for(let i=0;i<count;i++){
+  createCoin();
+}
+
+setInterval(createCoin,2000);
+
 </script>
 
 </body>
