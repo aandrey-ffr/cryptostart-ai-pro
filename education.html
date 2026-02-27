@@ -88,11 +88,21 @@ body{
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(3,1fr);
   gap:30px;
-  max-width:900px;
+  max-width:750px;
   margin:0 auto;
-  padding:0 20px;
+  justify-items:center;
+}
+
+/* нижний ряд по центру */
+
+.grid .card:nth-child(7){
+  grid-column:2;
+}
+
+.grid .card:nth-child(8){
+  grid-column:3;
 }
 
 /* CARD */
@@ -164,6 +174,18 @@ body{
 .grid{
   grid-template-columns:repeat(2,1fr);
   gap:20px;
+  max-width:340px;
+  margin:auto;
+}
+
+/* нижний ряд по центру */
+
+.grid .card:nth-child(7){
+  grid-column:1;
+}
+
+.grid .card:nth-child(8){
+  grid-column:2;
 }
 
 h1{
