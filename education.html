@@ -192,6 +192,47 @@ h1{
 
 }
 
+/* ================= PHONE VERSION ================= */
+
+@media(max-width:768px){
+
+/* КУБЫ ВЕРТИКАЛЬНО */
+
+.grid{
+  grid-template-columns:1fr !important;
+  max-width:220px;
+  margin:0 auto;
+  gap:18px;
+}
+
+/* ЧТОБЫ НЕ БЫЛО ПЛОТНО */
+
+.card{
+  width:100%;
+}
+
+/* ЦЕНТРОВКА */
+
+.title{
+  margin-bottom:20px;
+}
+
+/* ПРОДЛЯЕМ СТРАНИЦУ */
+
+body::after{
+  content:"";
+  display:block;
+  height:220px;
+}
+
+/* ЧТОБЫ ФОН ТЯНУЛСЯ */
+
+body{
+  min-height:130vh;
+}
+
+}
+
 </style>
 </head>
 
