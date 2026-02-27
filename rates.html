@@ -7,8 +7,6 @@
 
 <style>
 
-/* ===== ОСНОВНОЙ ФОН ===== */
-
 body{
   margin:0;
   font-family:Segoe UI, sans-serif;
@@ -17,7 +15,7 @@ body{
   overflow-x:hidden;
 }
 
-/* ===== НАВБАР ===== */
+/* NAVBAR */
 
 nav{
   padding:20px 40px;
@@ -37,12 +35,9 @@ nav a{
 }
 
 nav a:hover{ color:#22c55e; }
+nav a.active{ color:#22c55e; }
 
-nav a.active{
-  color:#22c55e;
-}
-
-/* ===== КОНТЕНТ ===== */
+/* CONTENT */
 
 .container{
   text-align:center;
@@ -90,7 +85,7 @@ button:hover{
   box-shadow:0 0 15px #22c55e;
 }
 
-/* ===== FUTURES CANDLE BACKGROUND ===== */
+/* CANDLES BACKGROUND */
 
 .candles{
   position:absolute;
@@ -110,7 +105,6 @@ button:hover{
   animation:floatUp linear infinite;
 }
 
-/* фитиль */
 .candle::after{
   content:"";
   position:absolute;
@@ -122,107 +116,61 @@ button:hover{
   bottom:-20px;
 }
 
-/* движение вверх */
 @keyframes floatUp{
-  0%{
-    transform:translateY(100vh);
-    opacity:0;
-  }
-  10%{
-    opacity:1;
-  }
-  100%{
-    transform:translateY(-120vh);
-    opacity:0;
-  }
+  0%{ transform:translateY(100vh); opacity:0; }
+  10%{ opacity:1; }
+  100%{ transform:translateY(-120vh); opacity:0; }
 }
+
+/* ================= MOBILE ================= */
 
 @media(max-width:768px){
 
-  nav{
-    flex-direction:column;
-    gap:10px;
-  }
-
-  .container{
-    margin-top:40px;
-    padding:0 15px;
-  }
-
-  .table-wrapper{
-    width:100%;
-    overflow-x:auto;
-  }
-
-  table{
-    width:100%;
-  }
+nav{
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  padding:15px;
+  text-align:center;
 }
 
-  /* ===== MOBILE OPTIMIZATION (КУРСЫ) ===== */
-@media(max-width:768px){
+nav div:last-child{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:8px;
+}
 
-  /* Navbar */
-  nav{
-    flex-direction:column;
-    align-items:center;
-    gap:10px;
-    padding:15px;
-    text-align:center;
-  }
+nav a{
+  margin:0;
+  font-size:14px;
+}
 
-  nav div:last-child{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:8px;
-  }
-
-  nav a{
-    margin:0;
-    font-size:14px;
-  }
-
-  /* Заголовок */
-  h1{
-    font-size:22px;
-  }
-
-  /* Контейнер */
-  .container{
-    margin-top:30px;
-    padding:0 12px;
-  }
-
-  /* Карточка */
-  .table-wrapper{
-    width:100%;
-    padding:20px 10px;
-  }
-
-  /* Таблица */
- <div class="table-wrapper">
-  table{
-    width:100%;
-    font-size:14px;
-  }
+.container{
+  margin-top:30px;
+  padding:0 12px;
+}
 
 .table-wrapper{
   width:100%;
+  padding:20px 10px;
   overflow-x:auto;
 }
-  
-  </div>
 
-  th, td{
-    padding:10px 6px;
-  }
+table{
+  width:100%;
+  min-width:280px;
+  font-size:14px;
+}
 
-  /* Кнопка */
-  button{
-    width:100%;
-    font-size:16px;
-  }
+th, td{
+  padding:10px 6px;
+}
+
+button{
+  width:100%;
+  font-size:16px;
+}
 
 }
 
@@ -230,7 +178,6 @@ button:hover{
 </head>
 <body>
 
-<!-- CANDLE BACKGROUND -->
 <div class="candles"></div>
 
 <nav>
@@ -263,8 +210,6 @@ button:hover{
 
 <script>
 
-/* ===== ГЕНЕРАЦИЯ СВЕЧЕЙ ===== */
-
 const container = document.querySelector(".candles");
 
 function createCandle(){
@@ -288,16 +233,8 @@ function createCandle(){
   }, duration * 1000);
 }
 
-
-// стартовая генерация свечей
-for(let i=0; i<15; i++){
-  createCandle();
-}
-
-// потом продолжаем анимацию
+for(let i=0; i<15; i++){ createCandle(); }
 setInterval(createCandle, 700);
-
-/* ===== ЗАГРУЗКА ЦЕН ===== */
 
 async function loadPrices(){
   try{
