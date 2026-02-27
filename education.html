@@ -7,6 +7,8 @@
 
 <style>
 
+*{box-sizing:border-box;}
+
 body{
   margin:0;
   font-family:Segoe UI, sans-serif;
@@ -14,6 +16,7 @@ body{
   background:linear-gradient(-45deg,#020617,#1e293b,#0f172a,#1e1b4b,#1e3a8a);
   background-size:600% 600%;
   animation:gradientMove 12s ease infinite;
+  overflow-x:hidden;
 }
 
 @keyframes gradientMove{
@@ -22,11 +25,45 @@ body{
   100%{background-position:0% 50%;}
 }
 
+/* NAVBAR */
+
+.navbar{
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 20px;
+  background:rgba(15,23,42,0.8);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,255,255,0.1);
+  position:sticky;
+  top:0;
+  z-index:1000;
+  flex-wrap:wrap;
+}
+
+.logo{
+  font-weight:bold;
+  font-size:18px;
+}
+
+.menu{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.menu a{
+  text-decoration:none;
+  color:white;
+  font-size:14px;
+}
+
 /* TITLE */
 
 .title{
   text-align:center;
-  margin-top:40px;
+  margin-top:30px;
 }
 
 /* PROGRESS */
@@ -34,7 +71,7 @@ body{
 .progress{
   width:260px;
   height:6px;
-  margin:20px auto 50px auto;
+  margin:20px auto 40px auto;
   background:rgba(255,255,255,0.1);
   border-radius:10px;
   overflow:hidden;
@@ -51,27 +88,18 @@ body{
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(3, 160px);
-  justify-content:center;
-  gap:50px;
+  grid-template-columns:repeat(4,1fr);
+  gap:30px;
+  max-width:900px;
+  margin:0 auto;
+  padding:0 20px;
 }
-
-/* ЁЛКА */
-
-.grid .card:nth-child(1){grid-column:2;}
-.grid .card:nth-child(2){grid-column:1;}
-.grid .card:nth-child(3){grid-column:3;}
-.grid .card:nth-child(4){grid-column:2;}
-.grid .card:nth-child(5){grid-column:1;}
-.grid .card:nth-child(6){grid-column:3;}
-.grid .card:nth-child(7){grid-column:2;}
-.grid .card:nth-child(8){grid-column:2;}
 
 /* CARD */
 
 .card{
-  width:160px;
-  height:160px;
+  width:100%;
+  aspect-ratio:1/1;
   perspective:1000px;
   cursor:pointer;
 }
@@ -80,19 +108,21 @@ body{
   position:relative;
   width:100%;
   height:100%;
-  transform-style:preserve-3d;
   transition:transform 0.6s;
+  transform-style:preserve-3d;
 }
 
-/* НЕ МЕНЯЕТ РАЗМЕР */
+.card.active .card-inner{
+  transform:rotateY(180deg);
+}
 
 .card-front,
 .card-back{
   position:absolute;
   width:100%;
   height:100%;
-  border-radius:18px;
-  background:rgba(30,41,59,0.85);
+  border-radius:20px;
+  background:rgba(30,41,59,0.8);
   border:1px solid rgba(255,255,255,0.05);
   display:flex;
   flex-direction:column;
@@ -107,13 +137,59 @@ body{
   transform:rotateY(180deg);
 }
 
-.card.active .card-inner{
-  transform:rotateY(180deg);
+.icon{
+  font-size:32px;
+  margin-bottom:10px;
 }
 
-.icon{
-  font-size:30px;
-  margin-bottom:8px;
+/* COINS */
+
+.coin{
+  position:fixed;
+  font-size:18px;
+  opacity:0.15;
+  pointer-events:none;
+  animation:float linear infinite;
+}
+
+@keyframes float{
+  from{transform:translateY(120vh);}
+  to{transform:translateY(-120vh);}
+}
+
+/* ================= MOBILE ONLY ================= */
+
+@media(max-width:768px){
+
+/* уменьшение без изменения расположения */
+
+.grid{
+  transform:scale(0.9);
+  transform-origin: top center;
+}
+
+/* страница не обрывается */
+
+body{
+  min-height:120vh;
+}
+
+body::after{
+  content:"";
+  display:block;
+  height:150px;
+}
+
+h1{
+  font-size:22px;
+}
+
+.menu{
+  justify-content:center;
+  width:100%;
+  margin-top:10px;
+}
+
 }
 
 </style>
@@ -121,94 +197,92 @@ body{
 
 <body>
 
-<div class="title">
-<h1>Обучение криптовалютам</h1>
-</div>
-
-<div class="progress">
-<div class="progress-bar" id="progressBar"></div>
-</div>
-
-<div class="grid">
-
-<div class="card" onclick="toggle(this,0)">
-<div class="card-inner">
-<div class="card-front"><div class="icon">₿</div>Bitcoin</div>
-<div class="card-back">Первая цифровая валюта</div>
-</div>
-</div>
-
-<div class="card" onclick="toggle(this,1)">
-<div class="card-inner">
-<div class="card-front"><div class="icon">⛓</div>Блокчейн</div>
-<div class="card-back">Система транзакций</div>
-</div>
-</div>
-
-<div class="card" onclick="toggle(this,2)">
-<div class="card-inner">
-<div class="card-front"><div class="icon">💳</div>Кошелёк</div>
-<div class="card-back">Хранение крипты</div>
-</div>
-</div>
-
-<div class="card" onclick="toggle(this,3)">
-<div class="card-inner">
-<div class="card-front"><div class="icon">🏛</div>Биржа</div>
-<div class="card-back">Покупка крипты</div>
-</div>
-</div>
-
-<div class="card" onclick="toggle(this,4)">
-<div class="card-inner">
-<div class="card-front"><div class="icon">📈</div>Трейдинг</div>
-<div class="card-back">Заработок</div>
-</div>
-</div>
-
-<div class="card" onclick="toggle(this,5)">
-<div class="card-inner">
-<div class="card-front"><div class="icon">🔐</div>Безопасность</div>
-<div class="card-back">Защита средств</div>
-</div>
-</div>
-
-<div class="card" onclick="toggle(this,6)">
-<div class="card-inner">
-<div class="card-front"><div class="icon">⛏</div>Майнинг</div>
-<div class="card-back">Создание монет</div>
-</div>
-</div>
-
-<div class="card" onclick="toggle(this,7)">
-<div class="card-inner">
-<div class="card-front"><div class="icon">🪙</div>Криптовалюта</div>
-<div class="card-back">Цифровые деньги</div>
-</div>
-</div>
-
+<div class="navbar">
+  <div class="logo">🚀 CryptoStart AI</div>
+  <div class="menu">
+    <a href="index.html">🏠 Главная</a>
+    <a href="rates.html">📈 Курсы</a>
+    <a href="ai.html">🤖 AI</a>
+    <a href="about.html">📘 О проекте</a>
+  </div>
 </div>
 
 <script>
+const coins=["₿","Ξ","◈","◎","✦","✧"];
+const count=window.innerWidth<768?10:20;
 
-let opened=new Set();
+for(let i=0;i<count;i++){
+  let c=document.createElement("div");
+  c.className="coin";
+  c.innerText=coins[Math.floor(Math.random()*coins.length)];
+  c.style.left=Math.random()*100+"vw";
+  c.style.animationDuration=(20+Math.random()*20)+"s";
+  c.style.animationDelay=(-Math.random()*40)+"s";
+  document.body.appendChild(c);
+}
+</script>
+
+<div class="title">
+<h1>Обучение криптовалютам</h1>
+<div class="progress">
+<div class="progress-bar" id="progressBar"></div>
+</div>
+</div>
+
+<div class="grid" id="cards"></div>
+
+<script>
+
+const data=[
+"Первая и самая известная криптовалюта",
+"Система записи всех транзакций",
+"Хранение криптовалют",
+"Покупка и продажа крипты",
+"Заработок на изменении цены",
+"Никому не передавайте ключи",
+"Создание новых монет",
+"Цифровые деньги будущего"
+];
+
+const names=["Bitcoin","Блокчейн","Кошелёк","Биржа","Трейдинг","Безопасность","Майнинг","Криптовалюта"];
+const icons=["₿","⛓","💳","🏛","📈","🔐","⛏","🪙"];
+
+let opened=new Set(JSON.parse(localStorage.getItem("progress"))||[]);
+const container=document.getElementById("cards");
+
+names.forEach((name,i)=>{
+  container.innerHTML+=`
+  <div class="card ${opened.has(i)?'active':''}" onclick="toggle(this,${i})">
+    <div class="card-inner">
+      <div class="card-front">
+        <div class="icon">${icons[i]}</div>
+        ${name}
+      </div>
+      <div class="card-back">
+        ${data[i]}
+      </div>
+    </div>
+  </div>`;
+});
 
 function toggle(card,i){
  card.classList.toggle("active");
-
  if(card.classList.contains("active")){
    opened.add(i);
  } else {
    opened.delete(i);
  }
-
+ localStorage.setItem("progress",JSON.stringify([...opened]));
  update();
 }
 
 function update(){
- let percent=(opened.size/8)*100;
+ let total=names.length;
+ let percent=(opened.size/total)*100;
  document.getElementById("progressBar").style.width=percent+"%";
 }
+
+update();
 
 </script>
 
