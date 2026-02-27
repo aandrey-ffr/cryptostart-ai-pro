@@ -196,15 +196,36 @@ h1{
 
 @media(max-width:768px){
 
-/* КУБЫ ВЕРТИКАЛЬНО */
+/* КУБЫ ПО 2 В РЯД */
 
 .grid{
-  grid-template-columns:1fr !important;
-  max-width:220px;
+  grid-template-columns:repeat(2,1fr) !important;
+  max-width:340px;
   margin:0 auto;
-  gap:18px;
+  gap:20px;
 }
 
+/* ЧТОБЫ НЕ БЫЛО СЛИШКОМ ШИРОКО */
+
+.card{
+  width:100%;
+}
+
+/* ПРОДЛЯЕМ СТРАНИЦУ */
+
+body::after{
+  content:"";
+  display:block;
+  height:220px;
+}
+
+/* ЧТОБЫ ФОН НЕ ОБРЫВАЛСЯ */
+
+body{
+  min-height:130vh;
+}
+
+}
 /* ЧТОБЫ НЕ БЫЛО ПЛОТНО */
 
 .card{
