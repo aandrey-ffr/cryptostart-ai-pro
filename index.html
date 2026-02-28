@@ -6,6 +6,7 @@
 <title>CryptoStart AI</title>
 
 <style>
+
 *{
   margin:0;
   padding:0;
@@ -19,6 +20,7 @@ body{
   Apple Color Emoji,
   Noto Color Emoji,
   sans-serif;
+
   color:white;
   min-height:100vh;
   overflow:hidden;
@@ -122,19 +124,18 @@ header{
   color:white;
 }
 
-/* FLOATING EMOJI */
+/* === ЛЕТАЮЩИЕ КРИПТО ТОКЕНЫ === */
 
-.floating-emoji{
+.floating-token{
   position:fixed;
-  bottom:-50px;
-  font-size:30px;
+  bottom:-100px;
   pointer-events:none;
-  animation:floatEmoji linear forwards;
-  opacity:0.25;
+  animation:tokenFloat linear forwards;
   z-index:1;
+  filter:drop-shadow(0 0 20px rgba(139,92,246,0.5));
 }
 
-@keyframes floatEmoji{
+@keyframes tokenFloat{
   0%{
     transform:translateY(0) rotate(0deg);
   }
@@ -174,6 +175,7 @@ header{
     text-align:center;
   }
 }
+
 </style>
 </head>
 
@@ -192,30 +194,44 @@ header{
   </a>
 
   <div class="hero-links">
-    <a href="rates.html">📈 Курсы</a>
-    <a href="ai.html">🤖 AI</a>
-    <a href="about.html">📖 О проекте</a>
+    <a href="rates.html">📈Курсы</a>
+    <a href="ai.html">🤖AI</a>
+    <a href="about.html">📖О проекте</a>
   </div>
 </div>
 
 <script>
-const emojis = ["🚀","📈","🪙","🔗","💎","⚡","📊","💰","🧠","🤖"];
 
-function createEmoji(){
-  const el = document.createElement("div");
-  el.className = "floating-emoji";
-  el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+const tokens = [
+"https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=029",
+"https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=029",
+"https://cryptologos.cc/logos/solana-sol-logo.svg?v=029",
+"https://cryptologos.cc/logos/binance-coin-bnb-logo.svg?v=029",
+"https://cryptologos.cc/logos/xrp-xrp-logo.svg?v=029",
+"https://cryptologos.cc/logos/cardano-ada-logo.svg?v=029",
+"https://cryptologos.cc/logos/polygon-matic-logo.svg?v=029"
+];
 
-  el.style.left = Math.random() * 100 + "vw";
-  el.style.animationDuration = (Math.random()*6+8)+"s";
-  el.style.fontSize = (Math.random()*20+20)+"px";
+function createToken(){
+  const token = document.createElement("img");
+  token.src = tokens[Math.floor(Math.random() * tokens.length)];
+  token.className = "floating-token";
 
-  document.body.appendChild(el);
+  const size = Math.random()*40 + 40;
+  token.style.width = size + "px";
+  token.style.height = size + "px";
 
-  setTimeout(()=> el.remove(),15000);
+  token.style.left = Math.random() * 100 + "vw";
+  token.style.animationDuration = (Math.random()*8+10)+"s";
+  token.style.opacity = Math.random()*0.25 + 0.15;
+
+  document.body.appendChild(token);
+
+  setTimeout(()=> token.remove(), 20000);
 }
 
-setInterval(createEmoji, 600);
+setInterval(createToken, 700);
+
 </script>
 
 </body>
