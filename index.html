@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CryptoStart AI</title>
 
@@ -13,12 +14,12 @@
 }
 
 body{
-font-family:
-Segoe UI,
-Segoe UI Emoji,
-Apple Color Emoji,
-Noto Color Emoji,
-sans-serif;
+  font-family:
+  Segoe UI,
+  Segoe UI Emoji,
+  Apple Color Emoji,
+  Noto Color Emoji,
+  sans-serif;
   color:white;
   min-height:100vh;
   overflow:hidden;
@@ -136,9 +137,12 @@ header{
 @keyframes flyUp{
   0%{
     transform:translateY(0) rotate(0deg);
+    opacity:0;
   }
+  10%{opacity:1;}
   100%{
     transform:translateY(-120vh) rotate(360deg);
+    opacity:0;
   }
 }
 
@@ -146,7 +150,10 @@ header{
 
 @media(max-width:768px){
 
-  body{overflow:auto;}
+  body{
+    overflow:auto;
+    min-height:140vh; /* продлеваем страницу */
+  }
 
   header{
     padding:15px 20px;
@@ -191,9 +198,9 @@ header{
   </a>
 
   <div class="hero-links">
-    <a href="rates.html">📈Курсы</a>
-    <a href="ai.html">🤖AI</a>
-    <a href="about.html">📖О проекте</a>
+    <a href="rates.html">📈 Курсы</a>
+    <a href="ai.html">🤖 AI</a>
+    <a href="about.html">📖 О проекте</a>
   </div>
 </div>
 
@@ -215,7 +222,6 @@ function createCoin(){
 
   const size = Math.random() * 50 + 50;
   coin.style.width = size + "px";
-  coin.style.height = size + "px";
 
   coin.style.left = Math.random() * 100 + "vw";
   coin.style.animationDuration = (Math.random() * 6 + 8) + "s";
@@ -225,10 +231,10 @@ function createCoin(){
 
   setTimeout(()=>{
     coin.remove();
-  },15000);
+  },14000);
 }
 
-setInterval(createCoin, 500);
+setInterval(createCoin, 900);
 </script>
 
 </body>
