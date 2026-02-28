@@ -2,16 +2,10 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CryptoStart AI</title>
 
 <style>
-
-html{
-  font-variant-emoji: emoji;
-}
-
 *{
   margin:0;
   padding:0;
@@ -20,10 +14,10 @@ html{
 
 body{
   font-family:
-  "Segoe UI Emoji",
-  "Apple Color Emoji",
-  "Noto Color Emoji",
-  "Segoe UI",
+  Segoe UI,
+  Segoe UI Emoji,
+  Apple Color Emoji,
+  Noto Color Emoji,
   sans-serif;
   color:white;
   min-height:100vh;
@@ -82,7 +76,7 @@ header{
   font-size:18px;
 }
 
-/* BUTTON */
+/* MAIN BUTTON */
 
 .main-btn{
   display:inline-block;
@@ -100,7 +94,7 @@ header{
   box-shadow:0 0 35px rgba(139,92,246,0.8);
 }
 
-/* LINKS */
+/* SECONDARY BUTTONS */
 
 .hero-links{
   margin-top:50px;
@@ -128,57 +122,57 @@ header{
   color:white;
 }
 
-/* COINS */
+/* FLOATING EMOJI */
 
-.floating-coin{
+.floating-emoji{
   position:fixed;
-  bottom:-120px;
+  bottom:-50px;
+  font-size:30px;
   pointer-events:none;
-  animation:flyUp linear forwards;
-  filter:drop-shadow(0 0 20px rgba(139,92,246,0.5));
+  animation:floatEmoji linear forwards;
+  opacity:0.25;
   z-index:1;
 }
 
-@keyframes flyUp{
-  0%{ transform:translateY(0) rotate(0deg); opacity:0; }
-  10%{ opacity:1; }
-  100%{ transform:translateY(-120vh) rotate(360deg); opacity:0; }
+@keyframes floatEmoji{
+  0%{
+    transform:translateY(0) rotate(0deg);
+  }
+  100%{
+    transform:translateY(-120vh) rotate(360deg);
+  }
 }
 
 /* MOBILE */
 
 @media(max-width:768px){
 
-body{
-  overflow:auto;
-  min-height:140vh;
-}
+  body{overflow:auto;}
 
-header{
-  padding:15px 20px;
-}
+  header{
+    padding:15px 20px;
+  }
 
-.hero{
-  margin-top:80px;
-  padding:0 20px;
-}
+  .hero{
+    margin-top:80px;
+    padding:0 20px;
+  }
 
-.hero h1{
-  font-size:34px;
-}
+  .hero h1{
+    font-size:34px;
+  }
 
-.main-btn{
-  display:block;
-  margin:0 auto;
-  max-width:280px;
-}
+  .main-btn{
+    display:block;
+    margin:0 auto;
+    max-width:280px;
+  }
 
-.hero-links a{
-  width:100%;
-  max-width:260px;
-  text-align:center;
-}
-
+  .hero-links a{
+    width:100%;
+    max-width:260px;
+    text-align:center;
+  }
 }
 </style>
 </head>
@@ -205,38 +199,23 @@ header{
 </div>
 
 <script>
+const emojis = ["🚀","📈","🪙","🔗","💎","⚡","📊","💰","🧠","🤖"];
 
-const coins = [
-  "https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=029",
-  "https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=029",
-  "https://cryptologos.cc/logos/solana-sol-logo.svg?v=029",
-  "https://cryptologos.cc/logos/binance-coin-bnb-logo.svg?v=029",
-  "https://cryptologos.cc/logos/xrp-xrp-logo.svg?v=029",
-  "https://cryptologos.cc/logos/cardano-ada-logo.svg?v=029",
-  "https://cryptologos.cc/logos/polygon-matic-logo.svg?v=029"
-];
+function createEmoji(){
+  const el = document.createElement("div");
+  el.className = "floating-emoji";
+  el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
 
-function createCoin(){
-  const coin = document.createElement("img");
-  coin.src = coins[Math.floor(Math.random() * coins.length)];
-  coin.className = "floating-coin";
+  el.style.left = Math.random() * 100 + "vw";
+  el.style.animationDuration = (Math.random()*6+8)+"s";
+  el.style.fontSize = (Math.random()*20+20)+"px";
 
-  const size = Math.random() * 50 + 50;
-  coin.style.width = size + "px";
+  document.body.appendChild(el);
 
-  coin.style.left = Math.random() * 100 + "vw";
-  coin.style.animationDuration = (Math.random() * 6 + 8) + "s";
-  coin.style.opacity = Math.random() * 0.25 + 0.15;
-
-  document.body.appendChild(coin);
-
-  setTimeout(()=>{
-    coin.remove();
-  },14000);
+  setTimeout(()=> el.remove(),15000);
 }
 
-setInterval(createCoin, 900);
-
+setInterval(createEmoji, 600);
 </script>
 
 </body>
