@@ -246,16 +246,15 @@ function createCandle(){
   }, duration * 1000);
 }
 
-/* ===== ПОСТОЯННЫЙ ФОН ===== */
+/* ===== СРАЗУ СОЗДАЁМ СВЕЧИ ===== */
 
-function startCandles(){
-  for(let i=0; i<20; i++){
-    setTimeout(createCandle, i * 300);
-  }
-  setInterval(createCandle, 900);
+for(let i=0; i<25; i++){
+  createCandle();
 }
 
-window.addEventListener("load", startCandles);
+/* ===== БЕСКОНЕЧНЫЙ ПОТОК ===== */
+
+setInterval(createCandle, 900);
 
 /* ===== LOAD PRICES ===== */
 
