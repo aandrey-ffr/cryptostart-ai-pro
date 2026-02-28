@@ -84,7 +84,7 @@ button:hover{
   box-shadow:0 0 15px #22c55e;
 }
 
-/* CANDLE BACKGROUND */
+/* ===== CANDLES BACKGROUND ===== */
 
 .candles{
   position:absolute;
@@ -116,9 +116,20 @@ button:hover{
 }
 
 @keyframes floatUp{
-  0%{ transform:translateY(100vh); opacity:0; }
-  10%{ opacity:1; }
-  100%{ transform:translateY(-120vh); opacity:0; }
+  0%{
+    transform:translateY(120vh);
+    opacity:0;
+  }
+  20%{
+    opacity:1;
+  }
+  80%{
+    opacity:1;
+  }
+  100%{
+    transform:translateY(-140vh);
+    opacity:0;
+  }
 }
 
 /* MOBILE */
@@ -178,7 +189,6 @@ button{
 </head>
 <body>
 
-<!-- CANDLES -->
 <div class="candles"></div>
 
 <nav>
@@ -236,11 +246,16 @@ function createCandle(){
   }, duration * 1000);
 }
 
-for(let i=0; i<15; i++){
-  createCandle();
+/* ===== ПОСТОЯННЫЙ ФОН ===== */
+
+function startCandles(){
+  for(let i=0; i<20; i++){
+    setTimeout(createCandle, i * 300);
+  }
+  setInterval(createCandle, 900);
 }
 
-setInterval(createCandle, 700);
+window.addEventListener("load", startCandles);
 
 /* ===== LOAD PRICES ===== */
 
