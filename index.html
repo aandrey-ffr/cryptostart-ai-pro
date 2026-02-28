@@ -6,231 +6,227 @@
 <title>CryptoStart AI</title>
 
 <style>
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
-  font-family:
-  Segoe UI,
-  Segoe UI Emoji,
-  Apple Color Emoji,
-  Noto Color Emoji,
-  sans-serif;
+font-family:
+Segoe UI,
+Segoe UI Emoji,
+Apple Color Emoji,
+Noto Color Emoji,
+sans-serif;
+color:white;
+min-height:100vh;
+overflow:hidden;
 
-  color:white;
-  min-height:100vh;
-  overflow:hidden;
-
-  background: linear-gradient(135deg,#1a0f3a,#3b1d73,#4c1d95);
-  background-size:300% 300%;
-  animation:gradientMove 18s ease infinite;
+background: linear-gradient(135deg,#1a0f3a,#3b1d73,#4c1d95);
+background-size:300% 300%;
+animation:gradientMove 18s ease infinite;
 }
 
 @keyframes gradientMove{
-  0%{background-position:0% 0%;}
-  50%{background-position:100% 100%;}
-  100%{background-position:0% 0%;}
+0%{background-position:0% 0%;}
+50%{background-position:100% 100%;}
+100%{background-position:0% 0%;}
 }
 
-/* HEADER */
-
 header{
-  display:flex;
-  justify-content:flex-start;
-  align-items:center;
-  padding:20px 60px;
-  background:rgba(15,10,40,0.6);
-  backdrop-filter:blur(14px);
-  position:relative;
-  z-index:10;
+display:flex;
+justify-content:flex-start;
+align-items:center;
+padding:20px 60px;
+background:rgba(15,10,40,0.6);
+backdrop-filter:blur(14px);
+position:relative;
+z-index:10;
 }
 
 .logo{
-  font-weight:bold;
-  font-size:18px;
+font-weight:bold;
+font-size:18px;
 }
 
-/* HERO */
-
 .hero{
-  text-align:center;
-  margin-top:140px;
-  position:relative;
-  z-index:5;
+text-align:center;
+margin-top:140px;
+position:relative;
+z-index:5;
 }
 
 .hero h1{
-  font-size:54px;
-  margin-bottom:20px;
-  background:linear-gradient(90deg,#60a5fa,#a78bfa);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  text-shadow:0 0 40px rgba(139,92,246,0.5);
+font-size:54px;
+margin-bottom:20px;
+background:linear-gradient(90deg,#60a5fa,#a78bfa);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+text-shadow:0 0 40px rgba(139,92,246,0.5);
 }
 
 .hero p{
-  color:#cbd5e1;
-  margin-bottom:40px;
-  font-size:18px;
+color:#cbd5e1;
+margin-bottom:40px;
+font-size:18px;
 }
 
-/* MAIN BUTTON */
-
 .main-btn{
-  display:inline-block;
-  padding:16px 42px;
-  border-radius:16px;
-  background:linear-gradient(90deg,#3b82f6,#8b5cf6);
-  color:white;
-  text-decoration:none;
-  font-weight:bold;
-  transition:0.3s;
+display:inline-block;
+padding:16px 42px;
+border-radius:16px;
+background:linear-gradient(90deg,#3b82f6,#8b5cf6);
+color:white;
+text-decoration:none;
+font-weight:bold;
+transition:0.3s;
 }
 
 .main-btn:hover{
-  transform:translateY(-4px);
-  box-shadow:0 0 35px rgba(139,92,246,0.8);
+transform:translateY(-4px);
+box-shadow:0 0 35px rgba(139,92,246,0.8);
 }
 
-/* SECONDARY BUTTONS */
-
 .hero-links{
-  margin-top:50px;
-  display:flex;
-  justify-content:center;
-  gap:25px;
-  flex-wrap:wrap;
+margin-top:50px;
+display:flex;
+justify-content:center;
+gap:25px;
+flex-wrap:wrap;
 }
 
 .hero-links a{
-  padding:14px 26px;
-  border-radius:14px;
-  text-decoration:none;
-  color:#cbd5e1;
-  background:rgba(30,41,59,0.4);
-  backdrop-filter:blur(8px);
-  border:1px solid rgba(255,255,255,0.05);
-  transition:0.3s;
+padding:14px 26px;
+border-radius:14px;
+text-decoration:none;
+color:#cbd5e1;
+background:rgba(30,41,59,0.4);
+backdrop-filter:blur(8px);
+border:1px solid rgba(255,255,255,0.05);
+transition:0.3s;
 }
 
 .hero-links a:hover{
-  transform:translateY(-4px);
-  border:1px solid #8b5cf6;
-  box-shadow:0 0 20px rgba(139,92,246,0.6);
-  color:white;
+transform:translateY(-4px);
+border:1px solid #8b5cf6;
+box-shadow:0 0 20px rgba(139,92,246,0.6);
+color:white;
 }
 
-/* === ЛЕТАЮЩИЕ КРИПТО ТОКЕНЫ === */
+/* ===== FLOATING TOKENS ===== */
 
 .floating-token{
-  position:fixed;
-  bottom:-100px;
-  pointer-events:none;
-  animation:tokenFloat linear forwards;
-  z-index:1;
-  filter:drop-shadow(0 0 20px rgba(139,92,246,0.5));
+position:fixed;
+bottom:-100px;
+pointer-events:none;
+animation:tokenFloat linear forwards;
+z-index:1;
+filter:drop-shadow(0 0 20px rgba(139,92,246,0.5));
+object-fit:contain;
 }
 
 @keyframes tokenFloat{
-  0%{
-    transform:translateY(0) rotate(0deg);
-  }
-  100%{
-    transform:translateY(-120vh) rotate(360deg);
-  }
+0%{
+transform:translateY(0) rotate(0deg);
+}
+100%{
+transform:translateY(-120vh) rotate(360deg);
+}
 }
 
 /* MOBILE */
 
 @media(max-width:768px){
 
-  body{overflow:auto;}
+body{overflow:auto;}
 
-  header{
-    padding:15px 20px;
-  }
-
-  .hero{
-    margin-top:80px;
-    padding:0 20px;
-  }
-
-  .hero h1{
-    font-size:34px;
-  }
-
-  .main-btn{
-    display:block;
-    margin:0 auto;
-    max-width:280px;
-  }
-
-  .hero-links a{
-    width:100%;
-    max-width:260px;
-    text-align:center;
-  }
+header{
+padding:15px 20px;
 }
 
+.hero{
+margin-top:80px;
+padding:0 20px;
+}
+
+.hero h1{
+font-size:34px;
+}
+
+.main-btn{
+display:block;
+margin:0 auto;
+max-width:280px;
+}
+
+.hero-links a{
+width:100%;
+max-width:260px;
+text-align:center;
+}
+}
 </style>
 </head>
 
 <body>
 
 <header>
-  <div class="logo">🚀 CryptoStart AI</div>
+<div class="logo">🚀 CryptoStart AI</div>
 </header>
 
 <div class="hero">
-  <h1>Изучай криптовалюты современно</h1>
-  <p>Блокчейн • Инвестиции • Безопасность • AI-помощник</p>
+<h1>Изучай криптовалюты современно</h1>
+<p>Блокчейн • Инвестиции • Безопасность • AI-помощник</p>
 
-  <a href="education.html" class="main-btn">
-    Начать обучение
-  </a>
+<a href="education.html" class="main-btn">
+Начать обучение
+</a>
 
-  <div class="hero-links">
-    <a href="rates.html">📈Курсы</a>
-    <a href="ai.html">🤖AI</a>
-    <a href="about.html">📖О проекте</a>
-  </div>
+<div class="hero-links">
+<a href="rates.html">📈Курсы</a>
+<a href="ai.html">🤖AI</a>
+<a href="about.html">📖О проекте</a>
+</div>
 </div>
 
 <script>
 
+/* ===== РЕАЛЬНЫЕ ТОКЕНЫ ===== */
+
 const tokens = [
-"https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=029",
-"https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=029",
-"https://cryptologos.cc/logos/solana-sol-logo.svg?v=029",
-"https://cryptologos.cc/logos/binance-coin-bnb-logo.svg?v=029",
-"https://cryptologos.cc/logos/xrp-xrp-logo.svg?v=029",
-"https://cryptologos.cc/logos/cardano-ada-logo.svg?v=029",
-"https://cryptologos.cc/logos/polygon-matic-logo.svg?v=029"
+"https://cdn-icons-png.flaticon.com/512/5968/5968260.png", // BTC
+"https://cdn-icons-png.flaticon.com/512/6001/6001527.png", // ETH
+"https://cdn-icons-png.flaticon.com/512/7016/7016537.png", // SOL
+"https://cdn-icons-png.flaticon.com/512/7016/7016531.png", // BNB
+"https://cdn-icons-png.flaticon.com/512/7016/7016533.png", // XRP
+"https://cdn-icons-png.flaticon.com/512/7016/7016535.png"  // ADA
 ];
 
 function createToken(){
-  const token = document.createElement("img");
-  token.src = tokens[Math.floor(Math.random() * tokens.length)];
-  token.className = "floating-token";
 
-  const size = Math.random()*40 + 40;
-  token.style.width = size + "px";
-  token.style.height = size + "px";
+const token = document.createElement("img");
+token.src = tokens[Math.floor(Math.random()*tokens.length)];
+token.className = "floating-token";
 
-  token.style.left = Math.random() * 100 + "vw";
-  token.style.animationDuration = (Math.random()*8+10)+"s";
-  token.style.opacity = Math.random()*0.25 + 0.15;
+const size = Math.random()*40 + 30;
+token.style.width = size+"px";
 
-  document.body.appendChild(token);
+token.style.left = Math.random()*100+"vw";
+token.style.animationDuration = (Math.random()*6+8)+"s";
+token.style.opacity = Math.random()*0.4 + 0.3;
 
-  setTimeout(()=> token.remove(), 20000);
+document.body.appendChild(token);
+
+setTimeout(()=>{
+token.remove();
+},15000);
+
 }
 
-setInterval(createToken, 700);
+/* старт */
+for(let i=0;i<8;i++){
+createToken();
+}
+
+/* постоянный полёт */
+setInterval(createToken,900);
 
 </script>
 
