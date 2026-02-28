@@ -7,6 +7,11 @@
 <title>CryptoStart AI</title>
 
 <style>
+
+html{
+  font-variant-emoji: emoji;
+}
+
 *{
   margin:0;
   padding:0;
@@ -15,10 +20,10 @@
 
 body{
   font-family:
-  Segoe UI,
-  Segoe UI Emoji,
-  Apple Color Emoji,
-  Noto Color Emoji,
+  "Segoe UI Emoji",
+  "Apple Color Emoji",
+  "Noto Color Emoji",
+  "Segoe UI",
   sans-serif;
   color:white;
   min-height:100vh;
@@ -77,7 +82,7 @@ header{
   font-size:18px;
 }
 
-/* MAIN BUTTON */
+/* BUTTON */
 
 .main-btn{
   display:inline-block;
@@ -95,7 +100,7 @@ header{
   box-shadow:0 0 35px rgba(139,92,246,0.8);
 }
 
-/* SECONDARY BUTTONS */
+/* LINKS */
 
 .hero-links{
   margin-top:50px;
@@ -123,7 +128,7 @@ header{
   color:white;
 }
 
-/* FLOATING TOKENS */
+/* COINS */
 
 .floating-coin{
   position:fixed;
@@ -135,50 +140,45 @@ header{
 }
 
 @keyframes flyUp{
-  0%{
-    transform:translateY(0) rotate(0deg);
-    opacity:0;
-  }
-  10%{opacity:1;}
-  100%{
-    transform:translateY(-120vh) rotate(360deg);
-    opacity:0;
-  }
+  0%{ transform:translateY(0) rotate(0deg); opacity:0; }
+  10%{ opacity:1; }
+  100%{ transform:translateY(-120vh) rotate(360deg); opacity:0; }
 }
 
 /* MOBILE */
 
 @media(max-width:768px){
 
-  body{
-    overflow:auto;
-    min-height:140vh; /* продлеваем страницу */
-  }
+body{
+  overflow:auto;
+  min-height:140vh;
+}
 
-  header{
-    padding:15px 20px;
-  }
+header{
+  padding:15px 20px;
+}
 
-  .hero{
-    margin-top:80px;
-    padding:0 20px;
-  }
+.hero{
+  margin-top:80px;
+  padding:0 20px;
+}
 
-  .hero h1{
-    font-size:34px;
-  }
+.hero h1{
+  font-size:34px;
+}
 
-  .main-btn{
-    display:block;
-    margin:0 auto;
-    max-width:280px;
-  }
+.main-btn{
+  display:block;
+  margin:0 auto;
+  max-width:280px;
+}
 
-  .hero-links a{
-    width:100%;
-    max-width:260px;
-    text-align:center;
-  }
+.hero-links a{
+  width:100%;
+  max-width:260px;
+  text-align:center;
+}
+
 }
 </style>
 </head>
@@ -205,6 +205,7 @@ header{
 </div>
 
 <script>
+
 const coins = [
   "https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=029",
   "https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=029",
@@ -235,6 +236,7 @@ function createCoin(){
 }
 
 setInterval(createCoin, 900);
+
 </script>
 
 </body>
